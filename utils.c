@@ -36,5 +36,3 @@ int	char_check(char c)
 		ft_printf("Map is invalid.");
 	return (0);
 }
-
-

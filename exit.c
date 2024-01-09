@@ -39,7 +39,6 @@ void	freeimages(t_container *free)
 	mlx_destroy_image(free->game, free->wall);
 	mlx_destroy_image(free->game, free->exit);
 	mlx_destroy_image(free->game, free->collectible);
-	freemap(free->map);
 }
 
 int	quit(t_map *quit)
