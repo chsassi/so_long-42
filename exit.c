@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	freemap(char **map)
+void	free_map(char **map)
 {
 	int i;
 
@@ -25,7 +25,7 @@ void	freemap(char **map)
 	free(map);
 }
 
-void	freeimages(t_container *free)
+void	free_images(t_container *free)
 {
 	int	i;
 
@@ -41,7 +41,7 @@ void	freeimages(t_container *free)
 	mlx_destroy_image(free->game, free->collectible);
 }
 
-int	quit(t_map *quit)
+int	quit_game(t_map *quit)
 {
 	freemap(quit->map);
 	freeimages(quit);

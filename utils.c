@@ -22,7 +22,7 @@ int	mtxlen(char *s)
 	return (i);
 }
 
-void	ret_error(char *error_msg, char **mtx)
+void	print_error(char *error_msg, char **mtx)
 {
 	if (mtx)
 		freemap(mtx);
@@ -30,7 +30,7 @@ void	ret_error(char *error_msg, char **mtx)
 	exit (1);
 }
 
-int	char_check(char c)
+int	element_check(char c)
 {
 	if (c != '1' && c != '0' && c != 'E' && c != 'P' && c != 'C')
 		ft_printf("Map is invalid.");

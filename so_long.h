@@ -68,4 +68,11 @@ typedef struct s_map
 	t_axis		player_pos;
 }	t_map;
 
+void	free_map(char **map);
+void	free_images(t_container *free);
+int		quit_game(t_map *quit);
+int		mtxlen(char *s);
+void	print_error(char *error_msg, char **mtx);
+int		element_check(char c);
+
 #endif
