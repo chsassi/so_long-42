@@ -12,7 +12,8 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include "../mlx/mlx.h"
+
+# include "mlx/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <stdio.h>
@@ -39,30 +40,32 @@ typedef struct s_axis
 	int	y;
 }	t_axis;
 
-typedef struct s_window
+typedef struct s_container
 {
-	void	*mlx;
-	void	*mlx_win;
-	void	*player;
-	void	*player_exit;
+	void	*game;
+	void	*window;
+	void	*player[4];
+	void	*floor;
 	void	*wall;
 	void	*exit;
 	void	*collectible;
-	void	*enemy;
 	int		window_w;
 	int		window_h;
 	int		sprite_w;
 	int		sprite_h;
-}	t_window;
+	t_map	**map;
+}	t_container;
 
 typedef struct s_map
 {
-	char	**map;
-	int		rows;
-	int		cols;
-	int		collectibles;
-	int		moves;
-	t_axis	player_pos;
+	char		**map;
+	int			rows;
+	int			cols;
+	int			collectibles;
+	int			moves;
+	t_axis		player_pos;
+	t_container	*game;
+	t_container	*window;
 }	t_map;
 
 #endif

@@ -2,40 +2,35 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wextra -Werror -Wall -g
 RM = rm -f
+
 LINKS_LINUX = -lX11 -lm -lXext
-
 MINILIBX = mlx/libmlx.a
-LIBFT = Libft/libft.a
 PRINTF = ft_printf/libftprintf.a
-GET_NEXT_LINE = get_next_line/get_next_line.a
 
-SRC = ft_render.c
+SRC = map_rendering.c
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): libft_comp mlx_comp printf_comp get_next_line_comp
+$(NAME): mlx_comp printf_comp comp
 
-libft_comp:
-	make -C Libft/
 mlx_comp:
 	make -C mlx/
 printf_comp:
 	make -C ft_printf/
-get_next_line_comp:
-	make -C get_next_line/
 
 comp:
-	$(CC) $(CFLAGS) $(SRC) $(LIBFT) $(MINILIBX) $(PRINTF) $(GET_NEXT_LINE) $(LINKS_LINUX) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) $(MINILIBX) $(PRINTF) $(LINKS_LINUX) -o $(NAME)
+	@echo "Compiled ✅\033[0;37m"
 
 clean:
 	$(RM) $(OBJ)
 
 fclean: clean
 	make clean -C mlx/
-	make clean -C Libft/
-	make clean -C get_next_line/
+	make clean -C ft_printf/
+
 	$(RM) $(NAME)
 
 re: fclean all
