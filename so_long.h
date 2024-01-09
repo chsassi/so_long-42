@@ -63,9 +63,9 @@ typedef struct s_map
 	int			cols;
 	int			collectibles;
 	int			moves;
-	t_axis		player_pos;
 	t_container	*game;
 	t_container	*window;
+	t_axis		player_pos;
 }	t_map;
 
 #endif
