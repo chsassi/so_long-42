@@ -47,8 +47,6 @@ typedef struct s_map
 	int			cols;
 	int			collectibles;
 	int			moves;
-	t_container	*game;
-	t_container	*window;
 	t_axis		player_pos;
 }	t_map;
 
@@ -71,7 +69,7 @@ typedef struct s_container
 
 void	free_map(char **map);
 void	free_images(t_container *free);
-int		quit_game(t_map *quit);
+int		quit_game(t_container *quit);
 int		mtxlen(char *s);
 void	print_error(char *error_msg, char **mtx);
 int		element_check(char c);

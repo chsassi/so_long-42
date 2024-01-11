@@ -41,9 +41,9 @@ void	free_images(t_container *free)
 	mlx_destroy_image(free->game, free->collectible);
 }
 
-int	quit_game(t_map *quit)
+int	quit_game(t_container *quit)
 {
-	free_map(quit->map);
+	free_map(quit->map->map);
 	free_images(quit);
 	mlx_destroy_window(quit->game, quit->window);
 	mlx_destroy_display(quit->game);
