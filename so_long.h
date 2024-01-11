@@ -70,10 +70,11 @@ typedef struct s_container
 void	free_map(char **map);
 void	free_images(t_container *free);
 int		quit_game(t_container *quit);
-int		mtxlen(char *s);
+int		map_len(char *s);
 void	print_error(char *error_msg, char **mtx);
 int		element_check(char c);
 void	render_player(t_container *img);
 void	render_elements(t_container *img);
+void	insert_image(t_container *img, int x, int y);
 
 #endif

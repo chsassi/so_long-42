@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	insert_images_to_window(t_container *img, int x, int y)
+void	insert_image(t_container *img, int x, int y)
 {
 	if (img->map.map[y][x] == '1')
 		mlx_put_image_to_window(img->game, img->window, img->wall, ());
@@ -22,6 +22,4 @@ void	insert_images_to_window(t_container *img, int x, int y)
 		mlx_put_image_to_window(img->game, img->collectible, img->wall, ());
 	else if (img->map.map[y][x] == 'E')
 		mlx_put_image_to_window(img->game, img->exit, img->wall, ());
-	else if (img->map.map[y][x] == 'P')
-		mlx_put_image_to_window(img->game, img->floor, img->player[0], ());
 }

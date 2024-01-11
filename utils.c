@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	mtxlen(char *s)
+int	map_len(char *s)
 {
 	int	i;
 
