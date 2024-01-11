@@ -42,5 +42,8 @@ void	render_elements(t_container *img)
 	img->exit = mlx_xpm_file_to_image(img->window,
 			"/textures/Earth.xpm", (32 * img->sprite_w),
 			(32 * img->sprite_h));
+	img->wall = mlx_xpm_file_to_image(img->window,
+			"/textures/Wall.xpm", (32 * img->sprite_w),
+			(32 * img->sprite_h));
 }
 
