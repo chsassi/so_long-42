@@ -40,22 +40,6 @@ typedef struct s_axis
 	int	y;
 }	t_axis;
 
-typedef struct s_container
-{
-	void	*game;
-	void	*window;
-	void	*player[4];
-	void	*floor;
-	void	*wall;
-	void	*exit;
-	void	*collectible;
-	int		window_w;
-	int		window_h;
-	int		sprite_w;
-	int		sprite_h;
-	t_map	**map;
-}	t_container;
-
 typedef struct s_map
 {
 	char		**map;
@@ -68,11 +52,30 @@ typedef struct s_map
 	t_axis		player_pos;
 }	t_map;
 
+typedef struct s_container
+{
+	void	*game;
+	void	*window;
+	void	*player[3];
+	void	*floor;
+	void	*wall;
+	void	*exit;
+	void	*collectible;
+	void	*enemy;
+	int		window_w;
+	int		window_h;
+	int		sprite_w;
+	int		sprite_h;
+	t_map	map;
+}	t_container;
+
 void	free_map(char **map);
 void	free_images(t_container *free);
 int		quit_game(t_map *quit);
 int		mtxlen(char *s);
 void	print_error(char *error_msg, char **mtx);
 int		element_check(char c);
+void	render_player(t_container *img);
+void	render_elements(t_container *img);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_functions.c                                   :+:      :+:    :+:   */
+/*   process_endgame.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 18:04:11 by chsassi           #+#    #+#             */
-/*   Updated: 2024/01/09 18:04:13 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/01/11 18:53:32 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_map(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])
@@ -32,7 +32,7 @@ void	free_images(t_container *free)
 	i = 0;
 	while (i < 4)
 	{
-		mlx_destroy_image(free->game, free->player[i]); 
+		mlx_destroy_image(free->game, free->player[i]);
 		i++;
 	}
 	mlx_destroy_image(free->game, free->floor);
@@ -43,8 +43,8 @@ void	free_images(t_container *free)
 
 int	quit_game(t_map *quit)
 {
-	freemap(quit->map);
-	freeimages(quit);
+	free_map(quit->map);
+	free_images(quit);
 	mlx_destroy_window(quit->game, quit->window);
 	mlx_destroy_display(quit->game);
 	free(quit->game);
