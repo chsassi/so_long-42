@@ -76,5 +76,6 @@ int		element_check(char c);
 void	render_player(t_container *img);
 void	render_elements(t_container *img);
 void	insert_image(t_container *img, int x, int y);
+int		check_map_validity(t_map *map);
 
 #endif

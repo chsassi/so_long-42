@@ -25,7 +25,7 @@ int	map_len(char *s)
 void	print_error(char *error_msg, char **mtx)
 {
 	if (mtx)
-		freemap(mtx);
+		free_map(mtx);
 	ft_printf("Error!\n%s!\n", error_msg);
 	exit (1);
 }
