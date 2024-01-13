@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 18:04:32 by chsassi           #+#    #+#             */
-/*   Updated: 2024/01/09 18:04:34 by chsassi          ###   ########.fr       */
+/*   Created: 2023/10/09 14:23:46 by chsassi           #+#    #+#             */
+/*   Updated: 2023/10/14 16:17:38 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "so_long.h"
-
-size_t	ft_strlen(char *s)
+int	ft_isalnum(int c)
 {
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s && s[i])
-		i++;
-	return (i);
-}
-
-void	print_error(char *error_msg, char **mtx)
-{
-	if (mtx)
-		free_map(mtx);
-	ft_printf("Error!\n%s!\n", error_msg);
-	exit (1);
-}
-
-int	element_check(char c)
-{
-	if (c != '1' && c != '0' && c != 'E' && c != 'P' && c != 'C')
-		ft_printf("Map is invalid.");
+	if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z'))
+	{
+		return (1);
+	}
 	return (0);
 }

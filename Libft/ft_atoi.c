@@ -1,40 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 18:04:32 by chsassi           #+#    #+#             */
-/*   Updated: 2024/01/09 18:04:34 by chsassi          ###   ########.fr       */
+/*   Created: 2023/10/09 13:19:01 by chsassi           #+#    #+#             */
+/*   Updated: 2023/10/14 16:17:38 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "so_long.h"
-
-size_t	ft_strlen(char *s)
+int	ft_atoi(const char *str)
 {
 	int	i;
+	int	sign;
+	int	n;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s && s[i])
+	sign = 1;
+	n = 0;
+	while ((str[i] == ' ') || (str[i] >= 9 && str[i] <= 13))
+	{
 		i++;
-	return (i);
+	}
+	if (str[i] == '-' || (str[i] == '+'))
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		n = n * 10 + (str[i] - '0');
+		i++;
+	}
+	return (n * sign);
 }
 
-void	print_error(char *error_msg, char **mtx)
+/*int		main(void)
 {
-	if (mtx)
-		free_map(mtx);
-	ft_printf("Error!\n%s!\n", error_msg);
-	exit (1);
-}
-
-int	element_check(char c)
-{
-	if (c != '1' && c != '0' && c != 'E' && c != 'P' && c != 'C')
-		ft_printf("Map is invalid.");
-	return (0);
-}
+	char	str[] = "    -12345ab";
+	printf("Atoi:	%i", ft_atoi(str));
+}*/

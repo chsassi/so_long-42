@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 18:04:32 by chsassi           #+#    #+#             */
-/*   Updated: 2024/01/09 18:04:34 by chsassi          ###   ########.fr       */
+/*   Created: 2023/10/14 00:23:15 by chsassi           #+#    #+#             */
+/*   Updated: 2023/10/14 16:17:39 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "so_long.h"
-
-size_t	ft_strlen(char *s)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	i;
+	size_t			i;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
 
+	ptr1 = (unsigned char *)s1;
+	ptr2 = (unsigned char *)s2;
 	i = 0;
-	if (!s)
-		return (0);
-	while (s && s[i])
+	while (i < n)
+	{
+		if (ptr1[i] != ptr2[i])
+		{
+			return (ptr1[i] - ptr2[i]);
+		}
 		i++;
-	return (i);
-}
-
-void	print_error(char *error_msg, char **mtx)
-{
-	if (mtx)
-		free_map(mtx);
-	ft_printf("Error!\n%s!\n", error_msg);
-	exit (1);
-}
-
-int	element_check(char c)
-{
-	if (c != '1' && c != '0' && c != 'E' && c != 'P' && c != 'C')
-		ft_printf("Map is invalid.");
+	}
 	return (0);
 }
+
+/* int	main(void)
+{
+	const void	*s1 = "Casa mia";
+	const void	*s2 = "Casamia";
+	size_t		n;
+
+	printf("Cmp: %i", ft_memcmp(s1, s2, 5));
+} */

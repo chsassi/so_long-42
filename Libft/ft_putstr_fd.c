@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 18:04:32 by chsassi           #+#    #+#             */
-/*   Updated: 2024/01/09 18:04:34 by chsassi          ###   ########.fr       */
+/*   Created: 2023/10/31 01:11:47 by chsassi           #+#    #+#             */
+/*   Updated: 2023/10/31 01:11:50 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-size_t	ft_strlen(char *s)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s && s[i])
-		i++;
-	return (i);
+	write(fd, s, ft_strlen(s));
 }
 
-void	print_error(char *error_msg, char **mtx)
+/* int		main (void)
 {
-	if (mtx)
-		free_map(mtx);
-	ft_printf("Error!\n%s!\n", error_msg);
-	exit (1);
-}
-
-int	element_check(char c)
-{
-	if (c != '1' && c != '0' && c != 'E' && c != 'P' && c != 'C')
-		ft_printf("Map is invalid.");
-	return (0);
-}
+	char *str = "Isso";
+	int fd = open("test.txt", O_WRONLY);
+	if (fd == -1)
+	{
+		printf("Failure during opening\n");
+		return (1);
+	}
+	ft_putstr_fd(s, fd);
+	close(fd);
+} */

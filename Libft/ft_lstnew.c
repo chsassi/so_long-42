@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 18:04:32 by chsassi           #+#    #+#             */
-/*   Updated: 2024/01/09 18:04:34 by chsassi          ###   ########.fr       */
+/*   Created: 2023/11/06 11:25:09 by chsassi           #+#    #+#             */
+/*   Updated: 2023/11/06 11:25:10 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "so_long.h"
-
-size_t	ft_strlen(char *s)
+t_list	*ft_lstnew(void *content)
 {
-	int	i;
+	t_list	*new;
 
-	i = 0;
-	if (!s)
-		return (0);
-	while (s && s[i])
-		i++;
-	return (i);
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }
 
-void	print_error(char *error_msg, char **mtx)
+/* int		main(void)
 {
-	if (mtx)
-		free_map(mtx);
-	ft_printf("Error!\n%s!\n", error_msg);
-	exit (1);
-}
+	int		n = 42;
+	t_list	*node = ft_lstnew(&n);
 
-int	element_check(char c)
-{
-	if (c != '1' && c != '0' && c != 'E' && c != 'P' && c != 'C')
-		ft_printf("Map is invalid.");
-	return (0);
-}
+	if (node)
+	{
+		printf("Content: %d\n", *(int *)(node->content));
+		printf("Next: %p\n", (void *)node->next);
+		free(node);
+	}
+	else
+		printf("Malloc failed\n");
+} */

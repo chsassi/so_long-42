@@ -25,6 +25,8 @@ void	free_map(char **map)
 	free(map);
 }
 
+/*mettere controllo su null alle variabili degli sprite*/
+
 void	free_images(t_container *free)
 {
 	int	i;

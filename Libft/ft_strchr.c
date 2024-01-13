@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 18:04:32 by chsassi           #+#    #+#             */
-/*   Updated: 2024/01/09 18:04:34 by chsassi          ###   ########.fr       */
+/*   Created: 2023/10/11 22:54:01 by chsassi           #+#    #+#             */
+/*   Updated: 2023/10/14 16:17:39 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "so_long.h"
-
-size_t	ft_strlen(char *s)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	size_t		i;
+	char		*res;
+	size_t		len;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s && s[i])
+	len = ft_strlen(s);
+	while (i <= len)
+	{
+		if (s[i] == (unsigned char)c)
+		{
+			res = (char *)&s[i];
+			return (res);
+		}
 		i++;
-	return (i);
+	}
+	return (NULL);
 }
 
-void	print_error(char *error_msg, char **mtx)
+/* int main(void)
 {
-	if (mtx)
-		free_map(mtx);
-	ft_printf("Error!\n%s!\n", error_msg);
-	exit (1);
-}
+	const char	*string = "Hello, World!";
+	int			character = 'o';
 
-int	element_check(char c)
-{
-	if (c != '1' && c != '0' && c != 'E' && c != 'P' && c != 'C')
-		ft_printf("Map is invalid.");
-	return (0);
-}
+	char		*result = ft_strchr(string, character);
+	printf("Strchr:		%s", result);
+} */

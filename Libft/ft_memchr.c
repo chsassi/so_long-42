@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 18:04:32 by chsassi           #+#    #+#             */
-/*   Updated: 2024/01/09 18:04:34 by chsassi          ###   ########.fr       */
+/*   Created: 2023/10/30 14:35:54 by chsassi           #+#    #+#             */
+/*   Updated: 2023/10/30 14:35:56 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "so_long.h"
-
-size_t	ft_strlen(char *s)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	i;
+	size_t					i;
+	const unsigned char		*res;
+	unsigned char			occ;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s && s[i])
+	res = (const unsigned char *)s;
+	occ = (unsigned char)c;
+	while (i < n)
+	{
+		if (res[i] == occ)
+			return ((void *)(res + i));
 		i++;
-	return (i);
+	}
+	return (NULL);
 }
 
-void	print_error(char *error_msg, char **mtx)
+/* int		main(void)
 {
-	if (mtx)
-		free_map(mtx);
-	ft_printf("Error!\n%s!\n", error_msg);
-	exit (1);
-}
+	char	*str = "Casa mia";
+	char	c = 'm';
+	size_t	n = 6;
 
-int	element_check(char c)
-{
-	if (c != '1' && c != '0' && c != 'E' && c != 'P' && c != 'C')
-		ft_printf("Map is invalid.");
-	return (0);
-}
+	str = ft_memchr(str, c, n);
+	printf("Memchr:		%s", str);
+} */

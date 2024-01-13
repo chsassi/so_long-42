@@ -14,6 +14,9 @@
 # define SO_LONG_H
 
 # include "mlx/mlx.h"
+# include "ft_printf.h"
+# include "libft.h"
+# include "get_next_line.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <stdio.h>
@@ -34,6 +37,10 @@
 
 # define KEY_ESC 65307
 
+# define SPRITE_WIDTH 32
+# define SPRITE_HEIGHT 32
+
+
 typedef struct s_axis
 {
 	int	x;
@@ -47,7 +54,10 @@ typedef struct s_map
 	int			cols;
 	int			collectibles;
 	int			moves;
+	int			exit;
 	t_axis		player_pos;
+	t_container	game;
+	t_container	window;
 }	t_map;
 
 typedef struct s_container
@@ -67,15 +77,31 @@ typedef struct s_container
 	t_map	map;
 }	t_container;
 
-void	free_map(char **map);
-void	free_images(t_container *free);
-int		quit_game(t_container *quit);
-int		map_len(char *s);
+/* Map Rendering */
+
+int		check_map_validity(t_map *map);
+char	*read_map(t_map *map_ptr);
+
+/* Utils */
+
+int		ft_strlen(char *s);
 void	print_error(char *error_msg, char **mtx);
 int		element_check(char c);
+
+/* Image Rendering */
+
 void	render_player(t_container *img);
 void	render_elements(t_container *img);
 void	insert_image(t_container *img, int x, int y);
-int		check_map_validity(t_map *map);
+
+/* Process Endgame */
+
+void	free_map(char **map);
+void	free_images(t_container *free);
+int		quit_game(t_container *quit);
+
+/* Main */
+
+void	init_vars(t_map *init);
 
 #endif
