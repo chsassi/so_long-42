@@ -6,13 +6,13 @@ COMPILE = $(CC) $(CFLAGS) -c
 AR = ar rc $(NAME)
 
 SRC =	./ft_printf.c \
-		./ft_putchar.c \
-		./ft_putstr.c \
+		./putchar_pf.c \
+		./putstr_pf.c \
+		./strlen_pf.c \
 		./ft_putnbr_base.c \
 		./ft_putnbr_base_unsigned.c \
 		./ft_putnbr_base_unsigned_long.c \
 		./ft_putaddr.c \
-		./ft_strlen.c \
 		./ft_specifiers.c \
 
 OBJ = $(SRC:.c=.o)

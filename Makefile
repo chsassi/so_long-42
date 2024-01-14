@@ -10,7 +10,7 @@ FT_PRINTF_DIR = ft_printf
 GNL_DIR = get_next_line
 EVERY_INCLUDES=-I. -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR) -I$(GNL_DIR)
 
-SRC = ./main.c \
+SRC =   ./main.c \
 		./map_rendering.c \
 		./image_rendering.c \
 		./movement.c \
@@ -33,7 +33,6 @@ gnl_comp:
 	make -C get_next_line/
 
 comp:
-	$(CC) $(EVERY_INCLUDES) $(CFLAGS) $(SRC) $(MINILIBX) $(FT_PRINTF_DIR) $(LIBFT_DIR) $(GNL_DIR) $(LINKS_LINUX) -o $(NAME)
 	@echo "Compiled ✅\033[0;37m"
 
 clean:

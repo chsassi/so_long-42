@@ -18,11 +18,11 @@ void	ft_putaddr(void *ptr, int *length)
 
 	if (ptr == NULL)
 	{
-		ft_putstr("(nil)", length);
+		putstr_pf("(nil)", length);
 		return ;
 	}
 	address = (uintptr_t)ptr;
-	ft_putstr("0x", length);
+	putstr_pf("0x", length);
 	ft_putnbr_base_unsigned_long(address, BASE16, length);
 }
 

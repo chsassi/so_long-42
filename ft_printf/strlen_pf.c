@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,26 +9,14 @@
 /*   Updated: 2023/11/21 15:58:58 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
+#include "printf.h"
 
-void	ft_putstr(char *str, int *length)
+int	strlen_pf(char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	if (!str)
-		str = "(null)";
-	while (str[i])
-	{
-		ft_putchar(str[i], length);
+	while (str && str[i])
 		i++;
-	}
+	return (i);
 }
-
-/* int		main(void)
-{
-	char	*str = "Hello World!\n";
-	int		length = 0;
-	ft_putstr(str, &length);
-	printf("%i\n", length);
-} */

@@ -16,7 +16,7 @@
 # include "mlx/mlx.h"
 # include "ft_printf.h"
 # include "libft.h"
-# include "get_next_line.h"
+# include "gnl.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <stdio.h>
@@ -80,11 +80,11 @@ typedef struct s_container
 /* Map Rendering */
 
 int		check_map_validity(t_map *map);
-char	*read_map(t_map *map_ptr);
+char	*read_map(t_map *map_ptr, char *ptr);
 
 /* Utils */
 
-int		ft_strlen(char *s);
+size_t	strlen_sl(char *s);
 void	print_error(char *error_msg, char **mtx);
 int		element_check(char c);
 

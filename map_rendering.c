@@ -36,30 +36,4 @@ char	*read_map(t_map *map_ptr, char *path)
 		return (NULL);
 	fd = open(path, O_RDONLY);
 	i = 0;
-
-}
-
-char	*ft_read_map(t_container *map, char *path)
-{
-	int		fd;
-	char	*line;
-	char	*read;
-
-	read = ft_calloc(1, 1);
-	if (!read)
-		return (NULL);
-	fd = open(path, O_RDONLY);
-	if (fd >= 0 || fd <= 1024)
-	{
-		while (1)
-		{
-			line = get_next_line(fd);
-			if (!line)
-				break ;
-			read = ft_strjoin(read, line);
-			free(line);
-		}
-		close(fd);
-	}
-	return (read);
 }

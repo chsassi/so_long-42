@@ -1,14 +1,12 @@
 NAME = gnl.a
-HNAME = get_next_line.h
+HNAME = gnl.h
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 COMPILE = $(CC) $(CFLAGS) -c
 AR = ar rc $(NAME)
 
-SRC =	./get_next_line.c \
-		./get_next_line_utils.c \
-		./get_next_line_bonus.c \
-		./get_next_line_utils_bonus.c \
+SRC =	./gnl.c \
+		./gnl_utils.c \
 
 OBJ = $(SRC:.c=.o)
 

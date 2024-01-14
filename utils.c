@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-size_t	ft_strlen(char *s)
+size_t	strlen_sl(char *s)
 {
 	int	i;
 

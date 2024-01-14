@@ -15,18 +15,18 @@ void	ft_putnbr_base(long nbr, char *base, int *length)
 {
 	int	base_len;
 
-	base_len = ft_strlen(base);
+	base_len = strlen_pf(base);
 	if (nbr < 0)
 	{
-		ft_putchar('-', length);
+		putchar_pf('-', length);
 		nbr = -nbr;
 	}
 	if (nbr >= base_len)
 		ft_putnbr_base(nbr / base_len, base, length);
 	if ((nbr % base_len) < 10)
-		ft_putchar((nbr % base_len) + '0', length);
+		putchar_pf((nbr % base_len) + '0', length);
 	else
-		ft_putchar(base[nbr % base_len], length);
+		putchar_pf(base[nbr % base_len], length);
 }
 
 /* int	main(void)

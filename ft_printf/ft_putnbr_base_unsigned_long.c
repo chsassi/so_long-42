@@ -15,13 +15,13 @@ void	ft_putnbr_base_unsigned_long(unsigned long nbr, char *base, int *length)
 {
 	size_t	base_len;
 
-	base_len = ft_strlen(base);
+	base_len = strlen_pf(base);
 	if (nbr >= base_len)
 		ft_putnbr_base_unsigned_long(nbr / base_len, base, length);
 	if ((nbr % base_len) < 10)
-		ft_putchar((nbr % base_len) + '0', length);
+		putchar_pf((nbr % base_len) + '0', length);
 	else
-		ft_putchar(base[nbr % base_len], length);
+		putchar_pf(base[nbr % base_len], length);
 }
 
 /* int main()

@@ -58,5 +58,5 @@ void	insert_image(t_container *img, int x, int y)
 	else if (img->map.map[x][y] == 'E')
 		mlx_put_image_to_window(img->game, img->window, img->exit, img->sprite_w, img->sprite_h);
 	else if (img->map.map[x][y] == 'P')
-		mlx_put_image_to_window(img->game, img->window, img->exit, img->sprite_w, img->sprite_h);
+		mlx_put_image_to_window(img->game, img->window, img->player[3], img->sprite_w, img->sprite_h);
 }

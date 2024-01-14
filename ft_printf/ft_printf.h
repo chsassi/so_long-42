@@ -24,14 +24,14 @@
 # define BASE10 "0123456789"
 
 int		ft_printf(const char *str, ...);
-void	ft_putchar(char c, int *length);
-void	ft_putstr(char *str, int *length);
+void	putchar_pf(char c, int *length);
+void	putstr_pf(char *str, int *length);
+int		strlen_pf(char *str);
 void	ft_putnbr_base(long nbr, char *base, int *length);
 void	ft_putnbr_base_unsigned(unsigned int nbr, char *base, int *length);
 void	ft_putnbr_base_unsigned_long(unsigned long nbr,
 			char *base, int *length);
 void	ft_putaddr(void *ptr, int *length);
-int		ft_strlen(char *str);
 void	ft_specifiers(char c, va_list ap, int *length);
 
 #endif

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-void	ft_putchar(char c, int *length)
+void	putchar_pf(char c, int *length)
 {
 	write (1, &c, 1);
 	(*length)++;
