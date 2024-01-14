@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	check_borders(t_map *map)
+static int	check_borders(t_map *map)
 {
 	int valid = 1;
 	int exit_found = 0;
@@ -25,15 +25,20 @@ int	check_borders(t_map *map)
 	}
 }
 
-char	*read_map(t_map *map_ptr, char *path)
+char	*render_map(t_map *ptr, char *path)
 {
 	int		fd;
-	char	*buffer;
+	char	*tmp;
 	int		i;
 
-	buffer = ft_calloc();
-	if (!buffer)
-		return (NULL);
 	fd = open(path, O_RDONLY);
+	tmp = gnl(fd);
 	i = 0;
+	ptr->map = ft_calloc(sizeof(char *), 2);
+	if (!ptr->map)
+		return (NULL);
+	while (tmp)
+		ptr->map[i++] = ft_strtrim(tmp, '\n');
+	free(tmp);
+	return (ptr->map);
 }

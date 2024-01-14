@@ -49,14 +49,14 @@ void	render_elements(t_container *img)
 
 void	insert_image(t_container *img, int x, int y)
 {
-	if (img->map.map[x][y] == '1')
+	if (img->map->map[x][y] == '1')
 		mlx_put_image_to_window(img->game, img->window, img->wall, img->sprite_w, img->sprite_h);
-	else if (img->map.map[x][y] == '0')
+	else if (img->map->map[x][y] == '0')
 		mlx_put_image_to_window(img->game, img->window, img->floor, img->sprite_w, img->sprite_h);
-	else if (img->map.map[x][y] == 'C')
+	else if (img->map->map[x][y] == 'C')
 		mlx_put_image_to_window(img->game, img->window, img->collectible, img->sprite_w, img->sprite_h);
-	else if (img->map.map[x][y] == 'E')
+	else if (img->map->map[x][y] == 'E')
 		mlx_put_image_to_window(img->game, img->window, img->exit, img->sprite_w, img->sprite_h);
-	else if (img->map.map[x][y] == 'P')
+	else if (img->map->map[x][y] == 'P')
 		mlx_put_image_to_window(img->game, img->window, img->player[3], img->sprite_w, img->sprite_h);
 }

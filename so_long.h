@@ -14,9 +14,6 @@
 # define SO_LONG_H
 
 # include "mlx/mlx.h"
-# include "ft_printf.h"
-# include "libft.h"
-# include "gnl.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <stdio.h>
@@ -47,19 +44,6 @@ typedef struct s_axis
 	int	y;
 }	t_axis;
 
-typedef struct s_map
-{
-	char		**map;
-	int			rows;
-	int			cols;
-	int			collectibles;
-	int			moves;
-	int			exit;
-	t_axis		player_pos;
-	t_container	game;
-	t_container	window;
-}	t_map;
-
 typedef struct s_container
 {
 	void	*game;
@@ -74,13 +58,26 @@ typedef struct s_container
 	int		window_h;
 	int		sprite_w;
 	int		sprite_h;
-	t_map	map;
+	t_map	*map;
 }	t_container;
+
+typedef struct s_map
+{
+	char		**map;
+	int			rows;
+	int			cols;
+	int			collectibles;
+	int			moves;
+	int			exit;
+	t_axis		player_pos;
+	t_container	game;
+	t_container	window;
+}	t_map;
+
 
 /* Map Rendering */
 
-int		check_map_validity(t_map *map);
-char	*read_map(t_map *map_ptr, char *ptr);
+char	*render_map(t_map *map_ptr, char *ptr);
 
 /* Utils */
 
@@ -103,5 +100,6 @@ int		quit_game(t_container *quit);
 /* Main */
 
 void	init_vars(t_map *init);
+void	init_window(t_container *init);
 
 #endif

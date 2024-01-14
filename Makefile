@@ -1,14 +1,14 @@
-NAME = so_long
+NAME = so_long.a
+HNAME = so_long.h
 CC = cc
 CFLAGS = -Wextra -Werror -Wall -g
 RM = rm -f
-
 LINKS_LINUX = -lX11 -lm -lXext
 MINILIBX = mlx/libmlx.a
 LIBFT_DIR = Libft
 FT_PRINTF_DIR = ft_printf
 GNL_DIR = get_next_line
-EVERY_INCLUDES=-I. -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR) -I$(GNL_DIR)
+EVERY_INCLUDE=-I. -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR) -I$(GNL_DIR)
 
 SRC =   ./main.c \
 		./map_rendering.c \
@@ -25,10 +25,10 @@ $(NAME): mlx_comp ft_printf_comp Libft_comp gnl_comp comp
 
 mlx_comp:
 	make -C mlx/
-ft_printf_comp:
-	make -C ft_printf/
 Libft_comp:
 	make -C Libft/
+ft_printf_comp:
+	make -C ft_printf/
 gnl_comp:
 	make -C get_next_line/
 
