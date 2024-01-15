@@ -13,7 +13,10 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "mlx/mlx.h"
+# include "./mlx/mlx.h"
+# include "./Libft/libft.h"
+# include "./ft_printf/ft_printf.h"
+# include "./get_next_line/gnl.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <stdio.h>
@@ -37,18 +40,28 @@
 # define SPRITE_WIDTH 32
 # define SPRITE_HEIGHT 32
 
-
 typedef struct s_axis
 {
 	int	x;
 	int	y;
 }	t_axis;
 
+typedef struct s_map
+{
+	char		**map;
+	int			rows;
+	int			cols;
+	int			collectibles;
+	int			moves;
+	int			exit;
+	t_axis		player_pos;
+}	t_map;
+
 typedef struct s_container
 {
 	void	*game;
 	void	*window;
-	void	*player[3];
+	void	*player[4];
 	void	*floor;
 	void	*wall;
 	void	*exit;
@@ -61,19 +74,10 @@ typedef struct s_container
 	t_map	*map;
 }	t_container;
 
-typedef struct s_map
+typedef struct s_ultimate
 {
-	char		**map;
-	int			rows;
-	int			cols;
-	int			collectibles;
-	int			moves;
-	int			exit;
-	t_axis		player_pos;
-	t_container	game;
-	t_container	window;
-}	t_map;
-
+	t_container	*window_data;
+}	t_ultimate;
 
 /* Map Rendering */
 
@@ -99,7 +103,7 @@ int		quit_game(t_container *quit);
 
 /* Main */
 
-void	init_vars(t_map *init);
+void	init_vars(t_container *init);
 void	init_window(t_container *init);
 
 #endif

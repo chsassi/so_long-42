@@ -1,7 +1,9 @@
-NAME = so_long.a
+NAME = so_long
+NAMEA = so_long.a
 HNAME = so_long.h
 CC = cc
 CFLAGS = -Wextra -Werror -Wall -g
+ARCHIVE = ar rc $(NAME)
 RM = rm -f
 LINKS_LINUX = -lX11 -lm -lXext
 MINILIBX = mlx/libmlx.a
@@ -19,9 +21,15 @@ SRC =   ./main.c \
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+all: $(NAMEA)
 
-$(NAME): mlx_comp ft_printf_comp Libft_comp gnl_comp comp
+$(NAMEA): mlx_comp ft_printf_comp Libft_comp gnl_comp comp $(OBJ)
+	mv mlx/libmlx.a ./$(NAMEA)
+	mv Libft/libft.a ./$(NAMEA)
+	mv ft_printf/libftprintf.a ./$(NAMEA)
+	mv get_next_line/gnl.a ./$(NAMEA)
+	$(ARCHIVE) $(NAMEA) $(OBJ)
+	$(CC) $(CFLAGS) $(EVERY_INCLUDE) main.c -L. -lso_long -o $(NAME)
 
 mlx_comp:
 	make -C mlx/
@@ -33,7 +41,7 @@ gnl_comp:
 	make -C get_next_line/
 
 comp:
-	@echo "Compiled ✅\033[0;37m"
+	@echo "Game compiled! ✅🚀\033[0;37m"
 
 clean:
 	$(RM) $(OBJ)

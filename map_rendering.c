@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static int	check_borders(t_map *map)
+/* static int	check_borders(t_map *map)
 {
 	int valid = 1;
 	int exit_found = 0;
@@ -23,7 +23,7 @@ static int	check_borders(t_map *map)
 		print_error("Invalid map dimensions", NULL);
 		return (0);
 	}
-}
+} */
 
 char	*render_map(t_map *ptr, char *path)
 {
@@ -38,7 +38,7 @@ char	*render_map(t_map *ptr, char *path)
 	if (!ptr->map)
 		return (NULL);
 	while (tmp)
-		ptr->map[i++] = ft_strtrim(tmp, '\n');
+		ptr->map[i++] = ft_strtrim(tmp, "\n");
 	free(tmp);
-	return (ptr->map);
+	return (*ptr->map);
 }
