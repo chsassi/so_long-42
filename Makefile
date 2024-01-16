@@ -2,15 +2,14 @@ NAME = so_long
 NAMEA = so_long.a
 HNAME = so_long.h
 CC = cc
-CFLAGS = -Wextra -Werror -Wall -g
-ARCHIVE = ar rc $(NAME)
+CFLAGS = -Wextra -Werror -Wall -lX11 -lm -lXext -g
+ARCHIVE = ar rc 
 RM = rm -f
-LINKS_LINUX = -lX11 -lm -lXext
-MINILIBX = mlx/libmlx.a
-LIBFT_DIR = Libft
-FT_PRINTF_DIR = ft_printf
-GNL_DIR = get_next_line
-EVERY_INCLUDE=-I. -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR) -I$(GNL_DIR)
+MINILIBX = ./mlx/libmlx.a
+LIBFT_DIR = ./Libft
+FT_PRINTF_DIR = ./ft_printf
+GNL_DIR = ./get_next_line
+EVERY_INCLUDE=-I. -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR) -I$(GNL_DIR) -I$(MINILIBX)
 
 SRC =   ./main.c \
 		./map_rendering.c \
@@ -24,7 +23,6 @@ OBJ = $(SRC:.c=.o)
 all: $(NAMEA)
 
 $(NAMEA): mlx_comp ft_printf_comp Libft_comp gnl_comp comp $(OBJ)
-	mv mlx/libmlx.a ./$(NAMEA)
 	mv Libft/libft.a ./$(NAMEA)
 	mv ft_printf/libftprintf.a ./$(NAMEA)
 	mv get_next_line/gnl.a ./$(NAMEA)
