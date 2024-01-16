@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "gnl.h"
 
-int	str_len(char *str)
+int	strlen_gnl(char *str)
 {
 	int		i;
 
@@ -21,7 +21,7 @@ int	str_len(char *str)
 	return (i);
 }
 
-char	*freejoin(char **s1, char *s2)
+char	*strjoin_gnl(char **s1, char *s2)
 {
 	char	*res;
 	int		len;
@@ -46,7 +46,7 @@ char	*freejoin(char **s1, char *s2)
 	return (res);
 }
 
-void	*callog_gnl(size_t nmemb, size_t size)
+void	*calloc_gnl(size_t nmemb, size_t size)
 {
 	char	*str;
 	char	*ptr;
@@ -80,7 +80,7 @@ int	strchr_gnl(char *s, int c)
 	return (-1);
 }
 
-char	*substrr_gnl(char *s, size_t start, size_t end)
+char	*substr_gnl(char *s, size_t start, size_t end)
 {
 	char			*res;
 	size_t			i;

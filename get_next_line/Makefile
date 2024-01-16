@@ -1,4 +1,4 @@
-NAME = gnl.a
+NAME = libgnl.a
 HNAME = gnl.h
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -12,9 +12,9 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
+# $(COMPILE) $(FLAG) -c $(SRC)
 $(NAME): $(OBJ) $(HNAME)
-		@$(COMPILE) $(FLAG) -c $(SRC)
-		@ar rc $(NAME) $(OBJ)
+		ar rc $(NAME) $(OBJ)
 
 RM = rm -f
 

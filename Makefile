@@ -1,15 +1,16 @@
+NAMEA = libso_long.a
 NAME = so_long
-NAMEA = so_long.a
 HNAME = so_long.h
 CC = cc
-CFLAGS = -Wextra -Werror -Wall -lX11 -lm -lXext -g
+CFLAGS = -Wextra -Werror -Wall -g
 ARCHIVE = ar rc 
 RM = rm -f
-MINILIBX = ./mlx/libmlx.a
+MINILIBX = ./mlx
 LIBFT_DIR = ./Libft
 FT_PRINTF_DIR = ./ft_printf
 GNL_DIR = ./get_next_line
-EVERY_INCLUDE=-I. -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR) -I$(GNL_DIR) -I$(MINILIBX)
+EVERY_INCLUDE= -I. -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR) -I$(GNL_DIR) -I$(MINILIBX)
+EVERY_LIB= -L$(LIBFT_DIR) -L$(GNL_DIR) -lgnl -lft -L$(FT_PRINTF_DIR) -lftprintf  -L$(MINILIBX) -lmlx -lX11 -lm -lXext
 
 SRC =   ./main.c \
 		./map_rendering.c \
@@ -22,12 +23,10 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAMEA)
 
+# L ->
+#l -> 
 $(NAMEA): mlx_comp ft_printf_comp Libft_comp gnl_comp comp $(OBJ)
-	mv Libft/libft.a ./$(NAMEA)
-	mv ft_printf/libftprintf.a ./$(NAMEA)
-	mv get_next_line/gnl.a ./$(NAMEA)
-	$(ARCHIVE) $(NAMEA) $(OBJ)
-	$(CC) $(CFLAGS) $(EVERY_INCLUDE) main.c -L. -lso_long -o $(NAME)
+	$(CC) $(CFLAGS) $(EVERY_INCLUDE) $(OBJ) -o $(NAME) $(EVERY_LIB)
 
 mlx_comp:
 	make -C mlx/
@@ -50,6 +49,6 @@ fclean: clean
 	make fclean -C Libft/
 	make fclean -C get_next_line/
 
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAMEA)
 
 re: fclean all

@@ -15,9 +15,6 @@ void	init_vars(t_container *init)
 	init->collectible = NULL;
 	init->sprite_w = 0;
 	init->sprite_h = 0;
-	init->map = 0;
-	init->map->rows = 0;
-	init->map->cols = 0;
 	init->map->collectibles = 0;
 	init->map->moves = 0;
 	init->map->exit = 0;
@@ -28,7 +25,7 @@ void	init_vars(t_container *init)
 void	init_window(t_container *init)
 {
 	init->game = mlx_init();
-	init->window = mlx_new_window(init->window, (32 * init->sprite_w),
+	init->game = mlx_new_window(init->game, (32 * init->sprite_w),
 			(32 * init->sprite_h), "so_long");
 }
 

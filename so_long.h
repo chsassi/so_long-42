@@ -14,9 +14,11 @@
 # define SO_LONG_H
 
 # include "./mlx/mlx.h"
+# include "./mlx/mlx_int.h"
 # include "./Libft/libft.h"
 # include "./ft_printf/ft_printf.h"
 # include "./get_next_line/gnl.h"
+# include <X11/Xlib.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <stdio.h>
