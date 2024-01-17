@@ -2,8 +2,8 @@
 
 void	init_vars(t_container *init)
 {
-	init->window_w = 1;
-	init->window_h = 1;
+	init->window_w = 0;
+	init->window_h = 0;
 	init->floor = NULL;
 	init->wall = NULL;
 	init->exit = NULL;
@@ -13,8 +13,8 @@ void	init_vars(t_container *init)
 	init->player[3] = NULL;
 	init->enemy = NULL;
 	init->collectible = NULL;
-	init->sprite_w = 0;
-	init->sprite_h = 0;
+	init->sprite_w = 1;
+	init->sprite_h = 1;
 	init->map->collectibles = 0;
 	init->map->moves = 0;
 	init->map->exit = 0;

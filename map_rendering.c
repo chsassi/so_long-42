@@ -29,14 +29,35 @@ char	*render_map(t_map *ptr, char *path)
 {
 	int		fd;
 	char	*tmp;
+	char* 	res;
+	char* 	tmp2;
+	char** mtx;
 	int		i;
 
-	fd = open(path, O_RDONLY);
-	tmp = gnl(fd);
 	i = 0;
-	ptr->map = ft_calloc(sizeof(char *), 2);
-	if (!ptr->map)
-		return (NULL);
+	path = ft_strjoin("./maps/", path);
+	res = NULL;
+	tmp2 = NULL;
+	fd = open(path, O_RDONLY);
+	while(42)
+	{
+		tmp = gnl(fd);
+		if(tmp == NULL)
+		{
+			/**vanno fatti i free*/
+			break ;
+		}
+		res = tmp2;
+		tmp2 = strjoin_gnl(res, tmp);
+	}
+	ptr->map = ft_split(tmp2, '\n');
+	/* TODO abbiamo allocato la mappa, ora bisogna controllare che i valori della mappa siano corretti
+	 * bisogna fare una funzione che faccia il parsing della mappa:
+	 * 	-controlli che i bordi siano tutti 1
+	 *	- controllare che sia valida (int	element_check(char c), NO '\n', .... )
+	 *  -controlli che siano presenti una uscita e un giocatore
+	 * 	-controlli che sia presente almeno un percorso valido
+	*/
 	while (tmp)
 		ptr->map[i++] = ft_strtrim(tmp, "\n");
 	free(tmp);
