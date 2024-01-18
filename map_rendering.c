@@ -12,18 +12,45 @@
 
 #include "so_long.h"
 
-/* static int	check_borders(t_map *map)
+int		check_nl(char *s)
 {
-	int valid = 1;
-	int exit_found = 0;
-	int collectible_found = 0;
+	int	i;
 
-	if (map->rows <= 0 || map->cols <= 0)
+	i = 0;
+	while (s && s[i])
 	{
-		print_error("Invalid map dimensions", NULL);
-		return (0);
+		if (s[i] == '\n' && s[i + 1] == '\n')
+			return (0);
+		else
+			return (1);
 	}
-} */
+}
+
+int	*check_map(t_map *ptr, char *path, int fd)
+{
+	char	*tmp;
+	char	*tmp2;
+	char	*res;
+
+	while (42)
+	{
+		tmp = gnl(fd);
+		if(tmp == NULL)
+		{
+			free(tmp);
+			break ;
+		}
+		res = tmp2;
+		tmp2 = strjoin_gnl(res, tmp);
+	}
+	if (check_nl(tmp2) == 1)
+	{
+		ptr->map = ft_split(tmp2, '\n');
+		return (1);
+	}
+	else
+		return (0);
+}
 
 char	*render_map(t_map *ptr, char *path)
 {
@@ -39,21 +66,9 @@ char	*render_map(t_map *ptr, char *path)
 	res = NULL;
 	tmp2 = NULL;
 	fd = open(path, O_RDONLY);
-	while(42)
-	{
-		tmp = gnl(fd);
-		if(tmp == NULL)
-		{
-			/**vanno fatti i free*/
-			break ;
-		}
-		res = tmp2;
-		tmp2 = strjoin_gnl(res, tmp);
-	}
-	ptr->map = ft_split(tmp2, '\n');
+
 	/* TODO abbiamo allocato la mappa, ora bisogna controllare che i valori della mappa siano corretti
 	 * bisogna fare una funzione che faccia il parsing della mappa:
-	 * 	-controlli che i bordi siano tutti 1
 	 *	- controllare che sia valida (int	element_check(char c), NO '\n', .... )
 	 *  -controlli che siano presenti una uscita e un giocatore
 	 * 	-controlli che sia presente almeno un percorso valido

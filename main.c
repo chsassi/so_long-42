@@ -1,25 +1,25 @@
 #include "so_long.h"
 
-void	init_vars(t_container *init)
+void	init_vars(t_container *container_ptr) // passare anche altre struct da allocare
 {
-	init->window_w = 0;
-	init->window_h = 0;
-	init->floor = NULL;
-	init->wall = NULL;
-	init->exit = NULL;
-	init->player[0] = NULL;
-	init->player[1] = NULL;
-	init->player[2] = NULL;
-	init->player[3] = NULL;
-	init->enemy = NULL;
-	init->collectible = NULL;
-	init->sprite_w = 1;
-	init->sprite_h = 1;
-	init->map->collectibles = 0;
-	init->map->moves = 0;
-	init->map->exit = 0;
-	init->map->player_pos.x = 0;
-	init->map->player_pos.y = 0;
+	container_ptr->window_w = 0;
+	container_ptr->window_h = 0;
+	container_ptr->floor = NULL;
+	container_ptr->wall = NULL;
+	container_ptr->exit = NULL;
+	container_ptr->player[0] = NULL;
+	container_ptr->player[1] = NULL;
+	container_ptr->player[2] = NULL;
+	container_ptr->player[3] = NULL;
+	container_ptr->enemy = NULL;
+	container_ptr->collectible = NULL;
+	container_ptr->sprite_w = 1;
+	container_ptr->sprite_h = 1;
+	container_ptr->map->collectibles = 0;
+	container_ptr->map->moves = 0;
+	container_ptr->map->exit = 0;
+	container_ptr->map->player_pos.x = 0;
+	container_ptr->map->player_pos.y = 0;
 }
 
 void	init_window(t_container *init)
