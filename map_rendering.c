@@ -69,7 +69,7 @@ char	*render_map(t_map *ptr, char *path)
 
 	/* TODO abbiamo allocato la mappa, ora bisogna controllare che i valori della mappa siano corretti
 	 * bisogna fare una funzione che faccia il parsing della mappa:
-	 *	- controllare che sia valida (int	element_check(char c), NO '\n', .... )
+	 *	- controllare che sia valida (int element_check(char c), NO '\n', .... )
 	 *  -controlli che siano presenti una uscita e un giocatore
 	 * 	-controlli che sia presente almeno un percorso valido
 	*/

@@ -23,8 +23,6 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAMEA)
 
-# L ->
-#l -> 
 $(NAMEA): mlx_comp ft_printf_comp Libft_comp gnl_comp comp $(OBJ)
 	$(CC) $(CFLAGS) $(EVERY_INCLUDE) $(OBJ) -o $(NAME) $(EVERY_LIB)
 
