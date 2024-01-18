@@ -36,7 +36,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 }
 
 /*int	main() {
-	const char	str1[] = "Hello, ";
 	char		dest[20] = "Hello, ";
 	const char	src[] = "world!";
 	size_t		result_len = ft_strlcat(dest, src, sizeof(dest));

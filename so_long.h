@@ -85,12 +85,6 @@ typedef struct s_ultimate
 
 char	*render_map(t_map *map_ptr, char *ptr);
 
-/* Utils */
-
-size_t	strlen_sl(char *s);
-void	print_error(char *error_msg, char **mtx);
-int		element_check(char c);
-
 /* Image Rendering */
 
 void	render_player(t_container *img);
@@ -107,5 +101,12 @@ int		quit_game(t_container *quit);
 
 void	init_vars(t_container *init);
 void	init_window(t_container *init);
+
+/* Utils */
+
+size_t	strlen_sl(char *s);
+void	print_error(char *error_msg, char **mtx);
+int		element_check(char c);
+int		check_borders(char *s);
 
 #endif
