@@ -56,65 +56,35 @@ int	check_rectangle(char **map, int rows, int cols)
 	return (1);
 }
 
-int check_valid_map_path(char **map, int rows, int cols)
-{
-	int i, j;
-	int player_found = 0;
-	int exit_found = 0;
-	int collectibles_count = 0;
+int dfs(t_map *map, int x, int y, int visited[map->rows][map->cols]) {
+    // Check if the current position is out of bounds, a wall, or already visited
+    if (x < 0 || y < 0 || x >= map->rows || y >= map->cols || map->map[x][y] == '1' || visited[x][y]) {
+        return 0;
+    }
 
-	for (i = 0; i < rows; i++)
-	{
-		for (j = 0; j < cols; j++)
-		{
-			char c = map[i][j];
+    // Check if the current position is the exit
+    if (map->map[x][y] == 'E') {
+        return 1;
+    }
 
-			if (c == 'P')
-			{
-				if (player_found)
-				{
-					ft_printf("Map is invalid: Multiple players found.");
-					return 0;
-				}
-				player_found = 1;
-			}
-			else if (c == 'E')
-			{
-				if (exit_found)
-				{
-					ft_printf("Map is invalid: Multiple exits found.");
-					return 0;
-				}
-				exit_found = 1;
-			}
-			else if (c == 'C')
-			{
-				collectibles_count++;
-			}
-			else if (c == 'N')
-			{
-				ft_printf("Game over: Player hit a N.");
-				return 0;
-			}
-			else if (c != '0' && c != '1')
-			{
-				ft_printf("Map is invalid: Invalid character found.");
-				return 0;
-			}
-		}
-	}
+    // Mark the current position as visited
+    visited[x][y] = 1;
 
-	if (!player_found)
-	{
-		ft_printf("Map is invalid: Player not found.");
-		return 0;
-	}
+    // Call the DFS function for each of the four directions
+    if (dfs(map, x - 1, y, visited) || dfs(map, x + 1, y, visited) || dfs(map, x, y - 1, visited) || dfs(map, x, y + 1, visited)) {
+        return 1;
+    }
 
-	if (collectibles_count == 0 && !exit_found)
-	{
-		ft_printf("Map is invalid: No exit found.");
-		return 0;
-	}
+    return 0;
+}
 
-	return 1;
+int is_valid_path(t_map *map) {
+    int visited[map->rows][map->cols];
+    memset(visited, 0, sizeof(visited));
+
+    if (dfs(map, map->player_pos.x, map->player_pos.y, visited)) {
+        return 1;
+    } else {
+        return 0;
+    }
 }

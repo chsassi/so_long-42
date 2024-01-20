@@ -22,6 +22,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <stdio.h>
+# include <stddef.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
