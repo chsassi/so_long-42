@@ -38,14 +38,9 @@ int	main(int ac, char **av)
 	container_ptr = ft_calloc(sizeof(t_container), 1);
 	container_ptr->map = ft_calloc(sizeof(t_map), 1);
 	init_vars(container_ptr);
-	if (ac == 2)
+	if (check_args(ac, path) == 1)
 	{
 		render_map(container_ptr->map, path);
 		init_window(container_ptr);
 	}
-	if (ac > 2)
-		ft_printf("Too many arguments. Run with './so_long' and a .ber file");
-	else
-		ft_printf("Too few arguments. Run with './so_long' and a .ber file");
-	return (0);
 }

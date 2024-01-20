@@ -83,7 +83,16 @@ typedef struct s_ultimate
 
 /* Map Rendering */
 
-char	*render_map(t_map *map_ptr, char *ptr);
+int		check_nl(char *s);
+char	*get_map(t_map *map_ptr, char *ptr);
+char	**render_map(t_map *map_ptr, char *ptr);
+
+/* Map Management */
+
+int		check_element(char c);
+int		check_borders(char *s);
+int		check_walls(char *s);
+int		check_rectangle(char **map, int rows, int cols);
 
 /* Image Rendering */
 
@@ -106,7 +115,6 @@ void	init_window(t_container *init);
 
 size_t	strlen_sl(char *s);
 void	print_error(char *error_msg, char **mtx);
-int		element_check(char c);
-int		check_borders(char *s);
+int		check_args(int ac, char *map_file);
 
 #endif

@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int		check_nl(char *s)
+int	check_nl(char *s)
 {
 	int	i;
 
@@ -26,46 +26,42 @@ int		check_nl(char *s)
 	}
 }
 
-int	*check_map(t_map *ptr, char *path, int fd)
+char	*get_map(t_map *ptr, char *path)
 {
+	int		fd;
+	char	*line;
 	char	*tmp;
-	char	*tmp2;
 	char	*res;
 
+	fd = open(path, O_RDONLY);
 	while (42)
 	{
-		tmp = gnl(fd);
-		if(tmp == NULL)
+		line = gnl(fd);
+		if (line == NULL)
 		{
-			free(tmp);
+			free(line);
 			break ;
 		}
-		res = tmp2;
-		tmp2 = strjoin_gnl(res, tmp);
+		res = tmp;
+		tmp = strjoin_gnl(res, line);
 	}
-	if (check_nl(tmp2) == 1)
-	{
-		ptr->map = ft_split(tmp2, '\n');
-		return (1);
-	}
-	else
-		return (0);
+	close(fd);
+	return (tmp);
 }
 
-char	*render_map(t_map *ptr, char *path)
+char	**render_map(t_map *ptr, char *path)
 {
 	int		fd;
 	char	*tmp;
-	char* 	res;
-	char* 	tmp2;
-	char** mtx;
+	char	*res;
+	char	*tmp2;
+	char	**mtx;
 	int		i;
 
 	i = 0;
 	path = ft_strjoin("./maps/", path);
 	res = NULL;
 	tmp2 = NULL;
-	fd = open(path, O_RDONLY);
 
 	/* TODO abbiamo allocato la mappa, ora bisogna controllare che i valori della mappa siano corretti
 	 * bisogna fare una funzione che faccia il parsing della mappa:
