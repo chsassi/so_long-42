@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-size_t	strlen_sl(char *s)
+int	strlen_sl(char *s)
 {
 	int	i;
 
@@ -22,14 +22,6 @@ size_t	strlen_sl(char *s)
 	while (s && s[i])
 		i++;
 	return (i);
-}
-
-void	print_error(char *error_msg, char **mtx)
-{
-	if (mtx)
-		free_map(mtx);
-	ft_printf("Error!\n%s!\n", error_msg);
-	exit (1);
 }
 
 int		check_args(int ac, char *map_file)

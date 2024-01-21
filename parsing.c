@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_rendering.c                                    :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -25,7 +25,7 @@ int	check_nl(char *s)
 	return (1);
 }
 
-char	*get_map(char *path)
+char	*get_line(char *path)
 {
 	int		fd;
 	char	*line;
@@ -48,7 +48,7 @@ char	*get_map(char *path)
 	return (tmp);
 }
 
-/* char	**render_map(t_map *ptr, char *path)
+char	**get_mtx(t_map *ptr, char *path)
 {
 	int		fd;
 	char	*tmp;
@@ -67,4 +67,3 @@ char	*get_map(char *path)
 	free(tmp);
 	return (*ptr->map);
 } 
-*/

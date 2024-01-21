@@ -58,6 +58,9 @@ typedef struct s_map
 	int			moves;
 	int			exit;
 	t_axis		player_pos;
+	t_axis		exit_pos;
+	t_axis		*collectible_pos;
+	t_axis		*enemy_pos;
 }	t_map;
 
 typedef struct s_container
@@ -74,7 +77,7 @@ typedef struct s_container
 	int		window_h;
 	int		sprite_w;
 	int		sprite_h;
-	t_map	*map;
+	t_map	map;
 }	t_container;
 
 typedef struct s_ultimate
@@ -82,40 +85,42 @@ typedef struct s_ultimate
 	t_container	*window_data;
 }	t_ultimate;
 
-/* Map Rendering */
+/* Image Rendering */
+
+int		*calculate_size(int size);
+void	render_player(t_container *img);
+void	render_elements(t_container *img);
+void	insert_image(t_container *img, int x, int y);
+
+/* Parsing */
 
 int		check_nl(char *s);
-char	*get_map(t_map *map_ptr, char *ptr);
-char	**render_map(t_map *map_ptr, char *ptr);
+char	*get_line(char *path);
+char	**get_mtx(t_map *map_ptr, char *path);
 
-/* Map Management */
+/* Map Handling */
 
 int		check_element(char c);
 int		check_borders(char *s);
 int		check_walls(char *s);
 int		check_rectangle(char **map, int rows, int cols);
 
-/* Image Rendering */
-
-void	render_player(t_container *img);
-void	render_elements(t_container *img);
-void	insert_image(t_container *img, int x, int y);
-
-/* Process Endgame */
+/* Endgame */
 
 void	free_map(char **map);
 void	free_images(t_container *free);
 int		quit_game(t_container *quit);
 
-/* Main */
+/* Init */
 
-void	init_vars(t_container *init);
+void	init_map(t_map *map);
+void	init_container(t_container *vars);
 void	init_window(t_container *init);
+void	init_all_innit(t_container *var_container);
 
 /* Utils */
 
-size_t	strlen_sl(char *s);
-void	print_error(char *error_msg, char **mtx);
+int		strlen_sl(char *s);
 int		check_args(int ac, char *map_file);
 
 #endif

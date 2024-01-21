@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_handling.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/21 21:17:53 by chsassi           #+#    #+#             */
+/*   Updated: 2024/01/21 21:17:54 by chsassi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	check_element(char c)
@@ -80,7 +92,7 @@ static int is_valid_path(t_map *map)
 	else
 		return (0);
 }
-
+/* 
 int	main(void)
 {
 	t_map	*map;
@@ -112,4 +124,4 @@ int	main(void)
 	map->player_pos.y = 1;
 	int i = is_valid_path(map);
 	printf("Map is valid\n%i\n", i);
-}
+} */

@@ -14,6 +14,7 @@ EVERY_LIB= -L$(LIBFT_DIR) -L$(GNL_DIR) -lgnl -lft -L$(FT_PRINTF_DIR) -lftprintf 
 
 SRC =   ./main.c \
 		./map_rendering.c \
+		./map_management.c \
 		./image_rendering.c \
 		./movement.c \
 		./process_endgame.c \
