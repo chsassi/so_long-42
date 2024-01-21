@@ -13,11 +13,12 @@ EVERY_INCLUDE= -I. -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR) -I$(GNL_DIR) -I$(MINILIBX)
 EVERY_LIB= -L$(LIBFT_DIR) -L$(GNL_DIR) -lgnl -lft -L$(FT_PRINTF_DIR) -lftprintf  -L$(MINILIBX) -lmlx -lX11 -lm -lXext
 
 SRC =   ./main.c \
-		./map_rendering.c \
-		./map_management.c \
+		./init.c \
+		./map_handling.c \
 		./image_rendering.c \
 		./movement.c \
-		./process_endgame.c \
+		./parsing.c \
+		./endgame.c \
 		./utils.c
 
 OBJ = $(SRC:.c=.o)

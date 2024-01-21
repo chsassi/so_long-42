@@ -25,8 +25,6 @@ void	free_map(char **map)
 	free(map);
 }
 
-/*mettere controllo su null alle variabili degli sprite*/
-
 void	free_images(t_container *free)
 {
 	int	i;
@@ -45,7 +43,7 @@ void	free_images(t_container *free)
 
 int	quit_game(t_container *quit)
 {
-	free_map(quit->map->map);
+	free_map(quit->map.map);
 	free_images(quit);
 	mlx_destroy_window(quit->game, quit->window);
 	mlx_destroy_display(quit->game);

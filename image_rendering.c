@@ -75,24 +75,27 @@ void	insert_image(t_container *img, int x, int y)
 
 	size_w = calculate_size(img->sprite_w);
 	size_h = calculate_size(img->sprite_h);
-	if (img->map->map[x][y] == '1')
+	if (img->map.map[x][y] == WALL)
 		mlx_put_image_to_window(img->game, img->window,
 			img->wall, *size_w,
 			*size_h);
-	else if (img->map->map[x][y] == '0')
+	else if (img->map.map[x][y] == FLOOR)
 		mlx_put_image_to_window(img->game, img->window,
 			img->floor, *size_w,
 			*size_h);
-	else if (img->map->map[x][y] == 'C')
+	else if (img->map.map[x][y] == COLLECTIBLE)
 		mlx_put_image_to_window(img->game, img->window,
 			img->collectible, *size_w,
 			*size_h);
-	else if (img->map->map[x][y] == 'E')
+	else if (img->map.map[x][y] == EXIT)
 		mlx_put_image_to_window(img->game, img->window,
 			img->exit, *size_w,
 			*size_h);
-	else if (img->map->map[x][y] == 'P')
+	else if (img->map.map[x][y] == PLAYER)
 		mlx_put_image_to_window(img->game, img->window,
 			img->player[3], *size_w,
 			*size_h);
+	else if (img->map.map[x][y] == ENEMY)
+		mlx_put_image_to_window(img->game, img->window,
+			img->enemy, *size_w, *size_h);
 }

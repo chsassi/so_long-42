@@ -48,7 +48,7 @@ char	*get_line(char *path)
 	return (tmp);
 }
 
-char	**get_mtx(t_map *ptr, char *path)
+/* char	**get_mtx(t_map *ptr, char *path)
 {
 	int		fd;
 	char	*tmp;
@@ -66,4 +66,4 @@ char	**get_mtx(t_map *ptr, char *path)
 		ptr->map[i++] = ft_strtrim(tmp, "\n");
 	free(tmp);
 	return (*ptr->map);
-} 
+}  */

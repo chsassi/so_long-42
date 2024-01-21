@@ -23,6 +23,7 @@
 # include <X11/keysym.h>
 # include <stdio.h>
 # include <stddef.h>
+# include <strings.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -42,6 +43,13 @@
 
 # define SPRITE_WIDTH 32
 # define SPRITE_HEIGHT 32
+
+# define PLAYER 'P'
+# define COLLECTIBLE 'C'
+# define ENEMY 'N'
+# define EXIT 'E'
+# define FLOOR '0'
+# define WALL '1'
 
 typedef struct s_axis
 {

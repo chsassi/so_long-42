@@ -54,4 +54,5 @@ void init_all_innit(t_container *var_container)
 {
 	init_container(var_container);
 	init_map(&var_container->map);
+	init_window(var_container);
 }
