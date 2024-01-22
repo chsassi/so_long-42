@@ -12,25 +12,45 @@
 
 #include "so_long.h"
 
-static int dfs(t_map *map, int rows, int cols, int element_visited[map->rows][map->cols])
+/* int	dfs(t_map *map, int element_visited[map->rows][map->cols], t_axis *seeker, t_axis to_find)
 {
-	if (rows < 0 || cols < 0 || rows >= map->rows || cols >= map->cols
-			|| map->map[rows][cols] == WALL || element_visited[rows][cols])
+	if (seeker->x < 0 || seeker->y < 0 || seeker->x >= map->rows
+		|| seeker->y >= map->cols || element_visited[map->rows][map->cols] || map->map[map->rows][map->cols] == WALL)
 		return (0);
-	if (map->map[rows][cols] == WALL)
+	if 
+} */
+
+int	dfs(t_map *map, int element_visited[map->rows][map->cols], t_axis *seeker, t_axis to_find)
+{
+/* 	if (rows < 0 || cols < 0 || rows >= map->rows || cols >= map->cols
+			|| map->map[rows][cols] == WALL || element_visited[rows][cols])
+		return (0); */
+/* 	if (map->map[rows][cols] == EXIT)
 		return (1);
-	element_visited[rows][cols] = 1;
-	if (dfs(map, rows - 1, cols, element_visited) || dfs(map, rows + 1, cols, element_visited) || dfs(map, rows, cols - 1, element_visited)
+	element_visited[rows][cols] = 1; */
+	if (seeker->x < 0 || seeker->y < 0 || seeker->x >= map->rows
+		|| seeker->y >= map->cols || element_visited[map->rows][map->cols] || map->map[map->rows][map->cols] == WALL)
+		return (0);
+	if (dfs(map, element_visited, seeker + i, ) || dfs(map, rows + 1, cols, element_visited) || dfs(map, rows, cols - 1, element_visited)
 			|| dfs(map, rows, cols + 1, element_visited))
 		return (1);
 	return (0);
 }
 
-static int is_valid_path(t_map *map)
+/* 	to_find.y--
+	dfs(map, element_visited, to_find) 
+	to_find.y+=2;
+	dfs(map, rows + 1, cols, element_visited)
+	
+	dfs(map, rows, cols - 1, element_visited)
+	dfs(map, rows, cols + 1, element_visited)) */
+
+int	is_valid_path(t_map *map)
 {
 	int visited[map->rows][map->cols];
 	memset(visited, 0, sizeof(visited));
 
+	while(/*i < seeker_len**/)
 	if (dfs(map, map->player_pos.x, map->player_pos.y, visited))
 		return (1);
 	else

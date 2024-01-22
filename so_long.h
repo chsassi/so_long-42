@@ -62,9 +62,10 @@ typedef struct s_map
 	char		**map;
 	int			rows;
 	int			cols;
-	int			collectibles;
 	int			moves;
 	int			exit;
+	int			collectibles;
+	int			enemies;
 	t_axis		player_pos;
 	t_axis		exit_pos;
 	t_axis		*collectible_pos;
@@ -105,16 +106,21 @@ char	*get_line(char *path);
 char	**get_mtx(t_map *map_ptr, char *path);
 
 /* Map Checks*/
-int	check_mtx_rows(char *mtx);
-int	valid_rows(char **mtx);
-int	check_mtx_cols(char **mtx);
-int	valid_cols(char **mtx);
-int	check_rectangle(char **map, int rows, int cols);
+int		check_mtx_rows(char *mtx);
+int		valid_rows(char **mtx);
+int		check_mtx_cols(char **mtx);
+int		valid_cols(char **mtx);
+int		check_rectangle(char **map, int rows, int cols);
 
 /* Map Handling */
-int		check_mtx_rows(char *mtx_rows);
-int		valid_rows(char **mtx);
-int		check_rectangle(char **map, int rows, int cols);
+int		dfs(t_map *map, int rows, int cols,
+			int element_visited[map->rows][map->cols]);
+
+/* Position */
+t_axis	player_position(char **mtx, t_container *vars);
+t_axis	exit_potision(char **mtx, t_container *vars);
+t_axis	collectibles_position(char **mtx, t_container *vars);
+t_axis	enemies_position(char **mtx, t_container *vars);
 
 /* Endgame */
 void	free_map(char **map);
