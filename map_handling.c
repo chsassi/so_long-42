@@ -12,85 +12,6 @@
 
 #include "so_long.h"
 
-int	check_element(char c)
-{
-	if (c == PLAYER || c == COLLECTIBLE || c == ENEMY || c == EXIT
-			|| c == FLOOR || c == WALL)
-		return (1);
-	else
-	{
-		ft_printf("Map is invalid.");
-		return (0);
-	}
-}
-
-int		check_mtx_rows(char *mtx_rows)
-{
-	int	i;
-
-	i = 0;
-	while (mtx_rows[i])
-	{
-		if (mtx_rows[i] != WALL)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	check_mtx_cols(char **mtx)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = strlen_sl(mtx[i]);
-
-	if (mtx[i][0] == WALL && (mtx[i][len] - 1) == WALL)
-		return (1);
-	else
-		return (0);
-}
-
-int	valid_rows(char **mtx)
-{
-	int	i;
-	int	mtx_len;
-
-	i = 0;
-	mtx_len = 0;
-	while (mtx[mtx_len])
-		mtx_len++;
-	if (!check_mtx_rows(mtx[i]) || !check_mtx_rows(mtx[mtx_len]))
-	{
-		ft_printf("Map is invalid.");
-		return (0);
-	}
-	return (1);
-}
-
-int	valid_cols(char **mtx)
-{
-
-}
-
-int	check_rectangle(char **map, int rows, int cols)
-{
-	int	i;
-
-	i = 0;
-	while (i < rows)
-	{
-		if (strlen_sl(map[i]) != cols)
-		{
-			ft_printf("Map is not rectangular.");
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
 static int dfs(t_map *map, int rows, int cols, int element_visited[map->rows][map->cols])
 {
 	if (rows < 0 || cols < 0 || rows >= map->rows || cols >= map->cols
@@ -115,7 +36,7 @@ static int is_valid_path(t_map *map)
 	else
 		return (0);
 }
-
+/* 
 int	main(void)
 {
 	t_map	*map;
@@ -148,3 +69,4 @@ int	main(void)
 	int i = is_valid_path(map);
 	printf("Map is valid\n%i\n", i);
 }
+ */

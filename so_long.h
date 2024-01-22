@@ -94,40 +94,41 @@ typedef struct s_ultimate
 }	t_ultimate;
 
 /* Image Rendering */
-
 int		*calculate_size(int size);
 void	render_player(t_container *img);
 void	render_elements(t_container *img);
 void	insert_image(t_container *img, int x, int y);
 
 /* Parsing */
-
 int		check_nl(char *s);
 char	*get_line(char *path);
 char	**get_mtx(t_map *map_ptr, char *path);
 
-/* Map Handling */
+/* Map Checks*/
+int	check_mtx_rows(char *mtx);
+int	valid_rows(char **mtx);
+int	check_mtx_cols(char **mtx);
+int	valid_cols(char **mtx);
+int	check_rectangle(char **map, int rows, int cols);
 
-int		check_element(char c);
+/* Map Handling */
 int		check_mtx_rows(char *mtx_rows);
 int		valid_rows(char **mtx);
 int		check_rectangle(char **map, int rows, int cols);
 
 /* Endgame */
-
 void	free_map(char **map);
 void	free_images(t_container *free);
 int		quit_game(t_container *quit);
 
 /* Init */
-
 void	init_map(t_map *map);
 void	init_container(t_container *vars);
 void	init_window(t_container *init);
 void	init_all_innit(t_container *var_container);
 
 /* Utils */
-
+int		check_element(char c);
 int		strlen_sl(char *s);
 int		check_args(int ac, char *map_file);
 

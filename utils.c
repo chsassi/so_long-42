@@ -12,6 +12,18 @@
 
 #include "so_long.h"
 
+int	check_element(char c)
+{
+	if (c == PLAYER || c == COLLECTIBLE || c == ENEMY || c == EXIT
+		|| c == FLOOR || c == WALL)
+		return (1);
+	else
+	{
+		ft_printf("Map is invalid.");
+		return (0);
+	}
+}
+
 int	strlen_sl(char *s)
 {
 	int	i;

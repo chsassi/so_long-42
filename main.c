@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-/* int	main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	char		*path;
 	t_container	*vars;
@@ -28,4 +28,4 @@
 	mlx_hook(window.mlx_win, 2, 1L << 0, &ft_key_press, &window);
 	mlx_hook(window.mlx_win, 17, 1L << 17, &ft_window_close, &window);
 	mlx_loop(window.mlx);
-} */
+}
