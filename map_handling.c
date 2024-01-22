@@ -24,32 +24,54 @@ int	check_element(char c)
 	}
 }
 
-int	check_borders(char *s)
+int		check_mtx_rows(char *mtx_rows)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (mtx_rows[i])
 	{
-		if (s[i] != WALL)
-		{
-			ft_printf("Map is invalid.");
+		if (mtx_rows[i] != WALL)
 			return (0);
-		}
 		i++;
 	}
 	return (1);
 }
 
-int	check_walls(char *s)
+int	check_mtx_cols(char **mtx)
 {
+	int	i;
 	int	len;
 
-	len = strlen_sl(s);
-	if (s[0] == WALL && (s[len] - 1) == WALL)
+	i = 0;
+	len = strlen_sl(mtx[i]);
+
+	if (mtx[i][0] == WALL && (mtx[i][len] - 1) == WALL)
 		return (1);
 	else
 		return (0);
+}
+
+int	valid_rows(char **mtx)
+{
+	int	i;
+	int	mtx_len;
+
+	i = 0;
+	mtx_len = 0;
+	while (mtx[mtx_len])
+		mtx_len++;
+	if (!check_mtx_rows(mtx[i]) || !check_mtx_rows(mtx[mtx_len]))
+	{
+		ft_printf("Map is invalid.");
+		return (0);
+	}
+	return (1);
+}
+
+int	valid_cols(char **mtx)
+{
+
 }
 
 int	check_rectangle(char **map, int rows, int cols)
@@ -77,7 +99,8 @@ static int dfs(t_map *map, int rows, int cols, int element_visited[map->rows][ma
 	if (map->map[rows][cols] == WALL)
 		return (1);
 	element_visited[rows][cols] = 1;
-	if (dfs(map, rows - 1, cols, element_visited) || dfs(map, rows + 1, cols, element_visited) || dfs(map, rows, cols - 1, element_visited) || dfs(map, rows, cols + 1, element_visited))
+	if (dfs(map, rows - 1, cols, element_visited) || dfs(map, rows + 1, cols, element_visited) || dfs(map, rows, cols - 1, element_visited)
+			|| dfs(map, rows, cols + 1, element_visited))
 		return (1);
 	return (0);
 }

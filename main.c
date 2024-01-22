@@ -22,7 +22,10 @@
 	init_all_innit(vars);
 	if (check_args(ac, path) == 1)
 	{
-		//get_mtx(map->map, path);
+		get_mtx(map->map, path);
 		init_window(vars);
 	}
+	mlx_hook(window.mlx_win, 2, 1L << 0, &ft_key_press, &window);
+	mlx_hook(window.mlx_win, 17, 1L << 17, &ft_window_close, &window);
+	mlx_loop(window.mlx);
 } */

@@ -48,22 +48,23 @@ char	*get_line(char *path)
 	return (tmp);
 }
 
-/* char	**get_mtx(t_map *ptr, char *path)
+char	**get_mtx(t_map *ptr, char *path)
 {
-	int		fd;
-	char	*tmp;
-	char	*res;
-	char	*tmp2;
-	char	**mtx;
 	int		i;
+	char	*tmp;
+	int		lines_read;
 
 	i = 0;
-	path = ft_strjoin("./maps/", path);
-	res = NULL;
-	tmp2 = NULL;
+	tmp = get_line(path);
 
-	while (tmp)
-		ptr->map[i++] = ft_strtrim(tmp, "\n");
-	free(tmp);
-	return (*ptr->map);
-}  */
+	if (!check_nl(tmp))
+	{
+		free(tmp);
+		ft_printf("Map contains invalid lines.");
+		return (0);
+	}
+	ptr->map = ft_split(tmp, "\n");
+}
+	free(ptr->map);
+	return (ptr->map);
+}

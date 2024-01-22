@@ -47,6 +47,8 @@ void	init_container(t_container *vars)
 void	init_window(t_container *init)
 {
 	init->game = mlx_init();
+	if (!init->game)
+		return (-1);
 	init->game = mlx_new_window(init->game, (init->sprite_w),
 			(init->sprite_h), "so_long");
 }

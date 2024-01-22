@@ -109,8 +109,8 @@ char	**get_mtx(t_map *map_ptr, char *path);
 /* Map Handling */
 
 int		check_element(char c);
-int		check_borders(char *s);
-int		check_walls(char *s);
+int		check_mtx_rows(char *mtx_rows);
+int		valid_rows(char **mtx);
 int		check_rectangle(char **map, int rows, int cols);
 
 /* Endgame */
