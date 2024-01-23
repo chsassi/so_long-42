@@ -44,20 +44,17 @@ void	init_container(t_container *vars)
 
 void	t_map_init(char **mtx, t_container *vars)
 {
-	/**oltre ad inizializzare le variabili 
-	 * devo anche inizializzare la lunghezza degl array per scorrerli in seguito
-	*/
-	vars->map.player_pos = t_map_init_player(mtx, vars);
-	vars->map.exit_pos = t_map_init_exit(mtx, vars);
-	vars->map.collectible_pos = t_map_init_collectibles(mtx, vars);
-	vars->map.enemy_pos = t_map_init_enemies(mtx, vars);
+	vars->map.player_pos = player_position(mtx);
+	vars->map.exit_pos = exit_potision(mtx);
+	vars->map.collectible_pos = collectibles_position(mtx, vars);
+	vars->map.enemy_pos = enemies_position(mtx, vars);
 }
 
 void	init_window(t_container *init)
 {
 	init->game = mlx_init();
 	if (!init->game)
-		return (-1);
+		return ;
 	init->game = mlx_new_window(init->game, (init->sprite_w),
 			(init->sprite_h), "so_long");
 }
@@ -65,5 +62,6 @@ void init_all_innit(t_container *var_container)
 {
 	init_container(var_container);
 	init_map(&var_container->map);
+	//t_map_init(var_container->map.map, var_container);
 	//init_window(var_container);
 }

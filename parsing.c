@@ -17,10 +17,11 @@ int	check_nl(char *s)
 	int	i;
 
 	i = 0;
-	while (s && s[i])
+	while (s && s[i] && s[i + 1])
 	{
 		if (s[i] == '\n' && s[i + 1] == '\n')
 			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -32,6 +33,8 @@ char	*get_line(char *path)
 	char	*tmp;
 	char	*res;
 
+	res = NULL;
+	tmp = NULL;
 	fd = open(path, O_RDONLY);
 	while (42)
 	{
@@ -41,8 +44,8 @@ char	*get_line(char *path)
 			free(line);
 			break ;
 		}
-		res = tmp;
 		tmp = strjoin_gnl(&res, line);
+		res = tmp;
 	}
 	close(fd);
 	return (tmp);
@@ -52,19 +55,16 @@ char	**get_mtx(t_map *ptr, char *path)
 {
 	int		i;
 	char	*tmp;
-	int		lines_read;
 
 	i = 0;
 	tmp = get_line(path);
-
 	if (!check_nl(tmp))
 	{
 		free(tmp);
 		ft_printf("Map contains invalid lines.");
 		return (0);
 	}
-	ptr->map = ft_split(tmp, "\n");
-}
-	free(ptr->map);
+	ptr->map = ft_split(tmp, '\n');
+	free(tmp);
 	return (ptr->map);
 }

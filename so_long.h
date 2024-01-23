@@ -69,7 +69,9 @@ typedef struct s_map
 	t_axis		player_pos;
 	t_axis		exit_pos;
 	t_axis		*collectible_pos;
+	int 		collectibles_count;
 	t_axis		*enemy_pos;
+	int 		enemies_count;
 }	t_map;
 
 typedef struct s_container
@@ -117,10 +119,10 @@ int		dfs(t_map *map, int rows, int cols,
 			int element_visited[map->rows][map->cols]);
 
 /* Position */
-t_axis	player_position(char **mtx, t_container *vars);
-t_axis	exit_potision(char **mtx, t_container *vars);
-t_axis	collectibles_position(char **mtx, t_container *vars);
-t_axis	enemies_position(char **mtx, t_container *vars);
+t_axis	player_position(char **mtx);
+t_axis	exit_potision(char **mtx);
+t_axis	*collectibles_position(char **mtx, t_container *vars);
+t_axis	*enemies_position(char **mtx, t_container *vars);
 
 /* Endgame */
 void	free_map(char **map);
@@ -132,9 +134,11 @@ void	init_map(t_map *map);
 void	init_container(t_container *vars);
 void	init_window(t_container *init);
 void	init_all_innit(t_container *var_container);
+void	t_map_init(char **mtx, t_container *vars);
 
 /* Utils */
 int		check_element(char c);
+int		count_elements(char **mtx, char c);
 int		strlen_sl(char *s);
 int		check_args(int ac, char *map_file);
 

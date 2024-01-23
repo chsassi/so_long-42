@@ -16,6 +16,7 @@ SRC =   ./main.c \
 		./init.c \
 		./map_handling.c \
 		./image_rendering.c \
+		./position.c \
 		./movement.c \
 		./parsing.c \
 		./endgame.c \

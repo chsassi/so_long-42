@@ -24,6 +24,29 @@ int	check_element(char c)
 	}
 }
 
+int		count_elements(char **mtx, char c)
+{
+	int		rows;
+	int		cols;
+	int		element_nbr;
+
+	rows = 0;
+	element_nbr = 0;
+	while(mtx[rows] != NULL)
+	{
+		cols = 0;
+		while(mtx[rows][cols] != '\0')
+		{
+			if (mtx[rows][cols] == c)
+				element_nbr++;
+			cols++;
+		}
+		rows++;
+	}
+	return (element_nbr);
+}
+
+
 int	strlen_sl(char *s)
 {
 	int	i;

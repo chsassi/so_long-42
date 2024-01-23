@@ -20,22 +20,22 @@
 	if 
 } */
 
-int	dfs(t_map *map, int element_visited[map->rows][map->cols], t_axis *seeker, t_axis to_find)
-{
-/* 	if (rows < 0 || cols < 0 || rows >= map->rows || cols >= map->cols
-			|| map->map[rows][cols] == WALL || element_visited[rows][cols])
-		return (0); */
-/* 	if (map->map[rows][cols] == EXIT)
-		return (1);
-	element_visited[rows][cols] = 1; */
-	if (seeker->x < 0 || seeker->y < 0 || seeker->x >= map->rows
-		|| seeker->y >= map->cols || element_visited[map->rows][map->cols] || map->map[map->rows][map->cols] == WALL)
-		return (0);
-	if (dfs(map, element_visited, seeker + i, ) || dfs(map, rows + 1, cols, element_visited) || dfs(map, rows, cols - 1, element_visited)
-			|| dfs(map, rows, cols + 1, element_visited))
-		return (1);
-	return (0);
-}
+// int	dfs(t_map *map, int element_visited[map->rows][map->cols], t_axis *seeker, t_axis to_find)
+// {
+// /* 	if (rows < 0 || cols < 0 || rows >= map->rows || cols >= map->cols
+// 			|| map->map[rows][cols] == WALL || element_visited[rows][cols])
+// 		return (0); */
+// /* 	if (map->map[rows][cols] == EXIT)
+// 		return (1);
+// 	element_visited[rows][cols] = 1; */
+// 	if (seeker->x < 0 || seeker->y < 0 || seeker->x >= map->rows
+// 		|| seeker->y >= map->cols || element_visited[map->rows][map->cols] || map->map[map->rows][map->cols] == WALL)
+// 		return (0);
+// 	if (dfs(map, element_visited, seeker + i, ) || dfs(map, rows + 1, cols, element_visited) || dfs(map, rows, cols - 1, element_visited)
+// 			|| dfs(map, rows, cols + 1, element_visited))
+// 		return (1);
+// 	return (0);
+// }
 
 /* 	to_find.y--
 	dfs(map, element_visited, to_find) 
@@ -45,17 +45,17 @@ int	dfs(t_map *map, int element_visited[map->rows][map->cols], t_axis *seeker, t
 	dfs(map, rows, cols - 1, element_visited)
 	dfs(map, rows, cols + 1, element_visited)) */
 
-int	is_valid_path(t_map *map)
-{
-	int visited[map->rows][map->cols];
-	memset(visited, 0, sizeof(visited));
+// int	is_valid_path(t_map *map)
+// {
+// 	int visited[map->rows][map->cols];
+// 	memset(visited, 0, sizeof(visited));
 
-	while(/*i < seeker_len**/)
-	if (dfs(map, map->player_pos.x, map->player_pos.y, visited))
-		return (1);
-	else
-		return (0);
-}
+// 	while(/*i < seeker_len**/)
+// 	if (dfs(map, map->player_pos.x, map->player_pos.y, visited))
+// 		return (1);
+// 	else
+// 		return (0);
+// }
 /* 
 int	main(void)
 {

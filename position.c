@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-t_axis	player_position(char **mtx, t_container *vars)
+t_axis	player_position(char **mtx)
 {
 	t_axis	player_pos;
 	int		rows;
@@ -10,12 +10,13 @@ t_axis	player_position(char **mtx, t_container *vars)
 	cols = 0;
 	while(mtx[rows] != NULL)
 	{
-		while(mtx[rows][cols] != NULL)
+		cols = 0;
+		while(mtx[rows][cols] != '\0')
 		{
-			if(mtx[rows][cols] == PLAYER)
+			if(mtx[rows][cols] == 'P')
 			{
-				player_pos.x = cols;
-				player_pos.y = rows;
+				player_pos.x = rows;
+				player_pos.y = cols;
 			}
 			cols++;
 		}
@@ -24,7 +25,7 @@ t_axis	player_position(char **mtx, t_container *vars)
 	return (player_pos);
 }
 
-t_axis	exit_potision(char **mtx, t_container *vars)
+t_axis	exit_potision(char **mtx)
 {
 	t_axis	exit_pos;
 	int		rows;
@@ -34,7 +35,8 @@ t_axis	exit_potision(char **mtx, t_container *vars)
 	cols = 0;
 	while(mtx[rows] != NULL)
 	{
-		while(mtx[rows][cols] != NULL)
+		cols = 0;
+		while(mtx[rows][cols] != '\0')
 		{
 			if(mtx[rows][cols] == EXIT)
 			{
@@ -50,58 +52,60 @@ t_axis	exit_potision(char **mtx, t_container *vars)
 
 t_axis	*collectibles_position(char **mtx, t_container *vars)
 {
-	t_axis	*exit_pos;
+	t_axis	*collectibles_pos;
 	int		rows;
 	int		cols;
 	int		collectible_nbr;
+	int		i;
 
-	rows = 0;
-	cols = 0;
-	collectible_nbr = 0;
-	while(mtx[rows] != NULL)
+	rows = -1;
+	i = 0;
+	collectible_nbr = count_elements(mtx, COLLECTIBLE);
+	vars->map.collectibles_count = collectible_nbr;
+	collectibles_pos = ft_calloc(collectible_nbr, sizeof(t_axis));
+	while (collectible_nbr != 0 && mtx[++rows] != NULL)
 	{
-		while(mtx[rows][cols] != NULL)
-		{
-			if (mtx[rows][cols] == COLLECTIBLE)
-				collectible_nbr++;
-			cols++;
-		}
-		rows++;
-	}
-	exit_pos = ft_calloc(collectible_nbr, sizeof(t_axis));
-	while (collectible_nbr > 0 && mtx[rows] != NULL)
-	{
-		while (mtx[rows][cols] != NULL)
+		cols = -1;
+		while (mtx[rows][++cols] != '\0')
 		{
 			if (mtx[rows][cols] == COLLECTIBLE)
 			{
-				vars->map
+				collectibles_pos[i].x = cols;
+				collectibles_pos[i].y = rows;
 				collectible_nbr--;
+				i++;
 			}
 		}
 	}
-	return ();
+	return (collectibles_pos);
 }
 
-t_axis	enemies_position(char **mtx, t_container *vars)
+t_axis	*enemies_position(char **mtx, t_container *vars)
 {
-	t_axis	exit_pos;
+	t_axis	*enemy_pos;
 	int		rows;
 	int		cols;
 	int		enemy_nbr;
+	int		i;
 
-	rows = 0;
-	cols = 0;
-	enemy_nbr = vars->map.collectibles;
-	while(mtx[rows] != NULL)
+	rows = -1;
+	i = 0;
+	enemy_nbr = count_elements(mtx, ENEMY);
+	vars->map.enemies_count = enemy_nbr;
+	enemy_pos = ft_calloc(enemy_nbr, sizeof(t_axis));
+	while (enemy_nbr != 0 && mtx[++rows] != NULL)
 	{
-		while(mtx[rows][cols] != NULL)
+		cols = -1;
+		while (mtx[rows][++cols] != '\0')
 		{
 			if (mtx[rows][cols] == ENEMY)
-				enemy_nbr++;
-			cols++;
+			{
+				enemy_pos[i].x = cols;
+				enemy_pos[i].y = rows;
+				enemy_nbr--;
+				i++;
+			}
 		}
-		rows++;
 	}
-	return ();
+	return (enemy_pos);
 }

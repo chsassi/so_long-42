@@ -22,4 +22,5 @@ int	parse_keybinds(int bind)
 		return (2);
 	else if (bind == KEY_D || bind == KEY_RIGHT)
 		return (3);
+	return (-1);
 }
