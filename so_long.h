@@ -100,7 +100,7 @@ typedef struct s_ultimate
 int		*calculate_size(int size);
 void	render_player(t_container *img);
 void	render_elements(t_container *img);
-void	insert_image(t_container *img, int x, int y);
+void	insert_image(t_container *img);
 
 /* Parsing */
 int		check_nl(char *s);

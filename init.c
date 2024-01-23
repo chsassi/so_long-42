@@ -27,8 +27,8 @@ void	init_map(t_map *map)
 }
 void	init_container(t_container *vars)
 {
-	vars->window_w = 0;
-	vars->window_h = 0;
+	vars->window_w = 1920;
+	vars->window_h = 1080;
 	vars->floor = NULL;
 	vars->wall = NULL;
 	vars->exit = NULL;
@@ -50,14 +50,13 @@ void	init_elements(char **mtx, t_container *vars)
 	vars->map.enemy_pos = enemies_position(mtx, vars);
 }
 
-void	init_window(t_container *init)
+/* void	init_window(t_container *init)
 {
 	init->game = mlx_init();
-	if (!init->game)
+	if (!init->window)
 		return ;
-	init->game = mlx_new_window(init->game, (init->sprite_w),
-			(init->sprite_h), "so_long");
-}
+	init->window = mlx_new_window(init->game, init->map.rows * init->sprite_w, init->map.cols * init->sprite_h + 30, "so_long");
+} */
 void init_all_innit(t_container *var_container)
 {
 	init_container(var_container);
