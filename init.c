@@ -42,7 +42,7 @@ void	init_container(t_container *vars)
 	vars->sprite_h = 32;
 }
 
-void	t_map_init(char **mtx, t_container *vars)
+void	init_elements(char **mtx, t_container *vars)
 {
 	vars->map.player_pos = player_position(mtx);
 	vars->map.exit_pos = exit_potision(mtx);

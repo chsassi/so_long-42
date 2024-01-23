@@ -42,8 +42,6 @@ void ft_print_structs(t_container	*vars)
 	}
 }
 
-/***/
-
 int	main(int ac, char** av)
 {
 	char		*map_name;
@@ -58,7 +56,7 @@ int	main(int ac, char** av)
 	{
 
 		vars->map.map = get_mtx(&vars->map, path);
-		t_map_init(vars->map.map, vars);
+		init_elements(vars->map.map, vars);
 		ft_print_structs(vars);
 		//init_window(vars); 
 	}

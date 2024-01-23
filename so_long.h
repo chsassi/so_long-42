@@ -65,13 +65,13 @@ typedef struct s_map
 	int			moves;
 	int			exit;
 	int			collectibles;
+	int			collectibles_count;
 	int			enemies;
+	int			enemies_count;
 	t_axis		player_pos;
 	t_axis		exit_pos;
 	t_axis		*collectible_pos;
-	int 		collectibles_count;
 	t_axis		*enemy_pos;
-	int 		enemies_count;
 }	t_map;
 
 typedef struct s_container
@@ -133,8 +133,8 @@ int		quit_game(t_container *quit);
 void	init_map(t_map *map);
 void	init_container(t_container *vars);
 void	init_window(t_container *init);
+void	init_elements(char **mtx, t_container *vars);
 void	init_all_innit(t_container *var_container);
-void	t_map_init(char **mtx, t_container *vars);
 
 /* Utils */
 int		check_element(char c);
