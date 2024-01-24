@@ -26,25 +26,25 @@ int	*calculate_size(int size)
 void	render_player(t_container *pContainer)
 {
 	pContainer->player[0] = mlx_xpm_file_to_image(pContainer->window,
-			"./textures/ShuttleRight.xpm",
+			"./textures/shuttleright.xpm",
 			&pContainer->sprite_w, &pContainer->sprite_h);
 	pContainer->player[1] = mlx_xpm_file_to_image(pContainer->window,
-			"./textures/ShuttleUp.xpm",
+			"./textures/shuttleup.xpm",
 			&pContainer->sprite_w, &pContainer->sprite_h);
 	pContainer->player[2] = mlx_xpm_file_to_image(pContainer->window,
-			"./textures/ShuttleDown.xpm",
+			"./textures/shuttledown.xpm",
 			&pContainer->sprite_w, &pContainer->sprite_h);
 	pContainer->player[3] = mlx_xpm_file_to_image(pContainer->window,
-			"./textures/ShuttleLeft.xpm",
+			"./textures/shuttleleft.xpm",
 			&pContainer->sprite_w, &pContainer->sprite_h);
 }
 
 void	render_elements(t_container *pContainer)
 {
-	pContainer->enemy = mlx_xpm_file_to_image(pContainer->window, "textures/Blackhole.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
-	pContainer->floor = mlx_xpm_file_to_image(pContainer->window, "textures/Floor.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
-	pContainer->exit = mlx_xpm_file_to_image(pContainer->window, "textures/Earth.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
-	pContainer->wall = mlx_xpm_file_to_image(pContainer->window, "textures/Wall.xpm",&pContainer->sprite_h, &pContainer->sprite_w);
+	pContainer->enemy = mlx_xpm_file_to_image(pContainer->window, "./textures/blackhole.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+	pContainer->floor = mlx_xpm_file_to_image(pContainer->window, "./textures/floor.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+	pContainer->exit = mlx_xpm_file_to_image(pContainer->window, "./textures/earth.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+	pContainer->wall = mlx_xpm_file_to_image(pContainer->window, "./textures/wall.xpm",&pContainer->sprite_h, &pContainer->sprite_w);
 }
 
 void	check_image_element(t_container *pContainer, int rows, int cols)
