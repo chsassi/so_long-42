@@ -32,22 +32,22 @@ void	free_images(t_container *free)
 	i = 0;
 	while (i < 4)
 	{
-		mlx_destroy_image(free->game, free->player[i]);
+		mlx_destroy_image(free->mlx, free->player[i]);
 		i++;
 	}
-	mlx_destroy_image(free->game, free->floor);
-	mlx_destroy_image(free->game, free->wall);
-	mlx_destroy_image(free->game, free->exit);
-	mlx_destroy_image(free->game, free->collectible);
+	mlx_destroy_image(free->mlx, free->floor);
+	mlx_destroy_image(free->mlx, free->wall);
+	mlx_destroy_image(free->mlx, free->exit);
+	mlx_destroy_image(free->mlx, free->collectible);
 }
 
 int	quit_game(t_container *quit)
 {
 	free_map(quit->map.map);
 	free_images(quit);
-	mlx_destroy_window(quit->game, quit->window);
-	mlx_destroy_display(quit->game);
-	free(quit->game);
+	mlx_destroy_window(quit->mlx, quit->window);
+	mlx_destroy_display(quit->mlx);
+	free(quit->mlx);
 	exit(0);
 	return (0);
 }

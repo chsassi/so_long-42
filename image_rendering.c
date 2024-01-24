@@ -23,71 +23,57 @@ int	*calculate_size(int size)
 	return (res);
 }
 
-void	render_player(t_container *img)
+void	render_player(t_container *pContainer)
 {
-	img->player[0] = mlx_xpm_file_to_image(img->window,
+	pContainer->player[0] = mlx_xpm_file_to_image(pContainer->window,
 			"./textures/ShuttleRight.xpm",
-			&img->sprite_w, &img->sprite_h);
-	img->player[1] = mlx_xpm_file_to_image(img->window,
+			&pContainer->sprite_w, &pContainer->sprite_h);
+	pContainer->player[1] = mlx_xpm_file_to_image(pContainer->window,
 			"./textures/ShuttleUp.xpm",
-			&img->sprite_w, &img->sprite_h);
-	img->player[2] = mlx_xpm_file_to_image(img->window,
+			&pContainer->sprite_w, &pContainer->sprite_h);
+	pContainer->player[2] = mlx_xpm_file_to_image(pContainer->window,
 			"./textures/ShuttleDown.xpm",
-			&img->sprite_w, &img->sprite_h);
-	img->player[3] = mlx_xpm_file_to_image(img->window,
+			&pContainer->sprite_w, &pContainer->sprite_h);
+	pContainer->player[3] = mlx_xpm_file_to_image(pContainer->window,
 			"./textures/ShuttleLeft.xpm",
-			&img->sprite_w, &img->sprite_h);
+			&pContainer->sprite_w, &pContainer->sprite_h);
 }
 
-void	render_elements(t_container *img)
+void	render_elements(t_container *pContainer)
 {
-	img->collectible = mlx_xpm_file_to_image(img->window,
-			"/textures/Fuel.xpm",
-			&img->sprite_w, &img->sprite_h);
-	img->enemy = mlx_xpm_file_to_image(img->window,
-			"/textures/Blackhole.xpm",
-			&img->sprite_w, &img->sprite_h);
-	img->floor = mlx_xpm_file_to_image(img->window,
-			"/textures/Floor.xpm",
-			&img->sprite_w, &img->sprite_h);
-	img->exit = mlx_xpm_file_to_image(img->window,
-			"/textures/Earth.xpm", &img->sprite_w, &img->sprite_h);
-	img->wall = mlx_xpm_file_to_image(img->window,
-			"/textures/Wall.xpm",&img->sprite_w, &img->sprite_h);
+	pContainer->enemy = mlx_xpm_file_to_image(pContainer->window, "textures/Blackhole.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+	pContainer->floor = mlx_xpm_file_to_image(pContainer->window, "textures/Floor.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+	pContainer->exit = mlx_xpm_file_to_image(pContainer->window, "textures/Earth.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+	pContainer->wall = mlx_xpm_file_to_image(pContainer->window, "textures/Wall.xpm",&pContainer->sprite_h, &pContainer->sprite_w);
 }
 
-void	check_image_element(t_container *img, int rows, int cols)
+void	check_image_element(t_container *pContainer, int rows, int cols)
 {
-	if (img->map.map[rows][cols] == WALL)
-		mlx_put_image_to_window(img->game, img->window,
-			img->wall, rows * 32, cols * 32);
-	else if (img->map.map[rows][cols] == FLOOR)
-		mlx_put_image_to_window(img->game, img->window,
-			img->floor,rows * 32, cols * 32);
-	else if (img->map.map[rows][cols] == COLLECTIBLE)
-		mlx_put_image_to_window(img->game, img->window,
-			img->collectible,rows * 32, cols * 32);
-	else if (img->map.map[rows][cols] == EXIT)
-		mlx_put_image_to_window(img->game, img->window,
-			img->exit,rows * 32, cols * 32);
-	else if (img->map.map[rows][cols] == PLAYER)
-		mlx_put_image_to_window(img->game, img->window,
-			img->player[3],rows * 32, cols * 32);
-	else if (img->map.map[rows][cols] == ENEMY)
-		mlx_put_image_to_window(img->game, img->window,
-			img->enemy,rows * 32, cols * 32);
+	if (pContainer->map.map[rows][cols] == WALL)
+		mlx_put_image_to_window(pContainer->mlx, pContainer->window, pContainer->wall, rows * 32, cols * 32);
+	else if (pContainer->map.map[rows][cols] == FLOOR)
+		mlx_put_image_to_window(pContainer->mlx, pContainer->window, pContainer->floor,rows * 32, cols * 32);
+	else if (pContainer->map.map[rows][cols] == COLLECTIBLE)
+		mlx_put_image_to_window(pContainer->mlx, pContainer->window, pContainer->collectible,rows * 32, cols * 32);
+	else if (pContainer->map.map[rows][cols] == EXIT)
+		mlx_put_image_to_window(pContainer->mlx, pContainer->window, pContainer->exit,rows * 32, cols * 32);
+	else if (pContainer->map.map[rows][cols] == PLAYER)
+		mlx_put_image_to_window(pContainer->mlx, pContainer->window, pContainer->player[3],rows * 32, cols * 32);
+	else if (pContainer->map.map[rows][cols] == ENEMY)
+		mlx_put_image_to_window(pContainer->mlx, pContainer->window, pContainer->enemy,rows * 32, cols * 32);
 }
 
-void	insert_image(t_container *img)
+int	insert_image(t_container *pContainer)
 {
 	int rows;
 	int cols;
 
 	rows = -1;
-	while(img->map.map[++rows])
+	while(pContainer->map.map[++rows])
 	{
 		cols = -1;
-		while(img->map.map[rows][++cols])
-			check_image_element(img, rows, cols);
+		while(pContainer->map.map[rows][++cols])
+			check_image_element(pContainer, rows, cols);
 	}
+	return (0);
 }

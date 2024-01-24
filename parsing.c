@@ -51,7 +51,7 @@ char	*get_line(char *path)
 	return (tmp);
 }
 
-char	**get_mtx(t_map *ptr, char *path)
+char	**get_mtx(t_map *pMap, char *path)
 {
 	int		i;
 	char	*tmp;
@@ -64,7 +64,7 @@ char	**get_mtx(t_map *ptr, char *path)
 		ft_printf("Map contains invalid lines.");
 		return (0);
 	}
-	ptr->map = ft_split(tmp, '\n');
+	pMap->map = ft_split(tmp, '\n');
 	free(tmp);
-	return (ptr->map);
+	return (pMap->map);
 }

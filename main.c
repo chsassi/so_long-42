@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-/* 
-void ft_print_structs(t_container	*vars)
+
+/* void ft_print_structs(t_container	*vars)
 {
 	int i;
 
@@ -40,42 +40,31 @@ void ft_print_structs(t_container	*vars)
 		printf("enemy pos.y: %i\n", vars->map.enemy_pos[i].y);
 		i++;
 	}
-} 
-*/
+} */
+
 int	main(int ac, char** av)
 {
 	char		*map_name;
 	char		*path;
-	t_container	vars;
+	t_container	pContainer;
 
 
 	map_name = av[1];
 	path = ft_strjoin("maps/", map_name);
-	//vars = malloc(sizeof(t_container));
-	init_all_innit(&vars);
-		if (check_args(ac, path))
-		{
-
-			vars.map.map = get_mtx(&vars.map, path);
-			init_elements(vars.map.map, &vars);
-			// ft_print_structs(vars);
-			//init_window(vars);
-			vars.game = mlx_init();
-			/*TODO la moltiplicazione di questi valori da come risultato zero
-			* non aggiorniamo il numero di righe e colonne della mappa
-			*/
-			vars.window = mlx_new_window(vars.game, vars.map.rows * vars.sprite_h,vars.map.cols * vars.sprite_w , "so_long");	
-/* 			if (!vars.window)
-vars.map.rows * vars.sprite_w
-vars.map.cols * vars.sprite_h
-				return 0; */
-			render_player(&vars);
-			render_elements(&vars);
-			//insert_image(&vars);
-//			printf("mlx_loop return: %i\n", i);
-			mlx_loop(vars.game);
-		}
-} 
-
-
-
+	init_all_innit(&pContainer);
+	if (check_args(ac, path))
+	{
+		pContainer.map.map = get_mtx(&pContainer.map, path);
+		init_element_position(pContainer.map.map, &pContainer);
+		pContainer.mlx = mlx_init();
+		render_elements(&pContainer);
+		insert_image(&pContainer);
+		pContainer.window = mlx_new_window(pContainer.mlx, pContainer.map.cols * pContainer.sprite_h,
+			pContainer.map.rows * pContainer.sprite_w , "so_long");	
+		if (!pContainer.window)
+			return 0;
+		// render_player(&pContainer);
+		mlx_loop(pContainer.mlx);
+		mlx_loop_hook(pContainer.mlx, &insert_image, &pContainer);
+	}
+}

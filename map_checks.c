@@ -49,7 +49,7 @@ int	check_mtx_cols(char **mtx)
 	int	mtx_len;
 
 	i = 0;
-	mtx_len = strlen_sl(mtx[i]);
+	mtx_len = ft_strlen(mtx[i]);
 	while (i < mtx_len)
 	{
 		if (mtx[0][i] == WALL && (mtx[mtx_len][i]) == WALL)
@@ -75,7 +75,7 @@ int	check_rectangle(char **map, int rows, int cols)
 	i = 0;
 	while (i < rows)
 	{
-		if (strlen_sl(map[i]) != cols)
+		if (ft_strlen(map[i]) != cols)
 		{
 			ft_printf("Map is not rectangular.");
 			return (0);

@@ -12,55 +12,38 @@
 
 #include "so_long.h"
 
-void	init_map(t_map *map)
+void	init_map(t_map *pMap)
 {
-	map->map = NULL;
-	map->moves = 0;
-	map->exit = 0;
-	map->rows = 0;
-	map->cols = 0;
-	map->collectibles = 0;
-	map->player_pos.x = 0;
-	map->player_pos.y = 0;
-	map->moves = 0;
-	map->exit = 0;
+	pMap->map = NULL;
+	pMap->moves = 0;
+	pMap->exit = 0;
+	pMap->rows = 0;
+	pMap->cols = 0;
+	pMap->collectibles = 0;
+	pMap->player_pos.x = 0;
+	pMap->player_pos.y = 0;
+	pMap->moves = 0;
+	pMap->exit = 0;
 }
-void	init_container(t_container *vars)
+void	init_container(t_container *pContainer)
 {
-	vars->window_w = 1920;
-	vars->window_h = 1080;
-	vars->floor = NULL;
-	vars->wall = NULL;
-	vars->exit = NULL;
-	vars->player[0] = NULL;
-	vars->player[1] = NULL;
-	vars->player[2] = NULL;
-	vars->player[3] = NULL;
-	vars->enemy = NULL;
-	vars->collectible = NULL;
-	vars->sprite_w = 32;
-	vars->sprite_h = 32;
-}
-
-void	init_elements(char **mtx, t_container *vars)
-{
-	vars->map.player_pos = player_position(mtx);
-	vars->map.exit_pos = exit_potision(mtx);
-	vars->map.collectible_pos = collectibles_position(mtx, vars);
-	vars->map.enemy_pos = enemies_position(mtx, vars);
+	pContainer->window_w = 1920;
+	pContainer->window_h = 1080;
+	pContainer->floor = NULL;
+	pContainer->wall = NULL;
+	pContainer->exit = NULL;
+	pContainer->player[0] = NULL;
+	pContainer->player[1] = NULL;
+	pContainer->player[2] = NULL;
+	pContainer->player[3] = NULL;
+	pContainer->enemy = NULL;
+	pContainer->collectible = NULL;
+	pContainer->sprite_w = 32;
+	pContainer->sprite_h = 32;
 }
 
-/* void	init_window(t_container *init)
+void init_all_innit(t_container *pContainer)
 {
-	init->game = mlx_init();
-	if (!init->window)
-		return ;
-	init->window = mlx_new_window(init->game, init->map.rows * init->sprite_w, init->map.cols * init->sprite_h + 30, "so_long");
-} */
-void init_all_innit(t_container *var_container)
-{
-	init_container(var_container);
-	init_map(&var_container->map);
-	//t_map_init(var_container->map.map, var_container);
-	//init_window(var_container);
+	init_container(pContainer);
+	init_map(&pContainer->map);
 }

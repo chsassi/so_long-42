@@ -82,8 +82,8 @@ int	main(void)
 	}
 	close(fd);
 	map->map = ft_split(tmp, '\n');
-	map->rows = strlen_sl(map->map[0]);
-	map->cols = strlen_sl(&map->map[0][0]);
+	map->rows = ft_strlen(map->map[0]);
+	map->cols = ft_strlen(&map->map[0][0]);
 	map->player_pos.x = 4;
 	map->player_pos.y = 1;
 	int i = is_valid_path(map);

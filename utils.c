@@ -46,15 +46,22 @@ int		count_elements(char **mtx, char c)
 	return (element_nbr);
 }
 
-
-int	strlen_sl(char *s)
+int	count_cols(char **mtx)
 {
 	int	i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s && s[i])
+	while (mtx[0][i] != '\0')
+		i++;
+	return (i);
+}
+
+int	count_rows(char **mtx)
+{
+	int	i;
+
+	i = 0;
+	while (mtx[i] != NULL)
 		i++;
 	return (i);
 }
@@ -67,7 +74,7 @@ int		check_args(int ac, char *map_file)
 		ft_printf("Too few arguments. Run with './so_long' and a .ber file");
 	else if (ac == 2)
 	{
-		if (ft_strncmp(&map_file[strlen_sl(map_file) - 4], ".ber", 4) != 0)
+		if (ft_strncmp(&map_file[ft_strlen(map_file) - 4], ".ber", 4) != 0)
 			ft_printf("Invalid file. Run with a .ber file");
 		else
 			return (1);
