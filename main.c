@@ -57,12 +57,12 @@ int	main(int ac, char** av)
 		pContainer.map.map = get_mtx(&pContainer.map, path);
 		init_element_position(pContainer.map.map, &pContainer);
 		pContainer.mlx = mlx_init();
-		render_elements(&pContainer);
-		insert_image(&pContainer);
 		pContainer.window = mlx_new_window(pContainer.mlx, pContainer.map.cols * pContainer.sprite_h,
 			pContainer.map.rows * pContainer.sprite_w , "so_long");	
 		if (!pContainer.window)
 			return 0;
+		render_elements(&pContainer);
+		insert_image(&pContainer);
 		// render_player(&pContainer);
 		mlx_loop(pContainer.mlx);
 		mlx_loop_hook(pContainer.mlx, &insert_image, &pContainer);

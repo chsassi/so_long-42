@@ -12,39 +12,28 @@
 
 #include "so_long.h"
 
-int	*calculate_size(int size)
-{
-	int	x;
-	int	*res;
-
-	x = 32;
-	 res = ft_calloc(1, sizeof(int));
-	*res = size * x;
-	return (res);
-}
-
 void	render_player(t_container *pContainer)
 {
-	pContainer->player[0] = mlx_xpm_file_to_image(pContainer->window,
+	pContainer->player[0] = mlx_xpm_file_to_image(pContainer->mlx,
 			"./textures/shuttleright.xpm",
 			&pContainer->sprite_w, &pContainer->sprite_h);
-	pContainer->player[1] = mlx_xpm_file_to_image(pContainer->window,
+	pContainer->player[1] = mlx_xpm_file_to_image(pContainer->mlx,
 			"./textures/shuttleup.xpm",
 			&pContainer->sprite_w, &pContainer->sprite_h);
-	pContainer->player[2] = mlx_xpm_file_to_image(pContainer->window,
+	pContainer->player[2] = mlx_xpm_file_to_image(pContainer->mlx,
 			"./textures/shuttledown.xpm",
 			&pContainer->sprite_w, &pContainer->sprite_h);
-	pContainer->player[3] = mlx_xpm_file_to_image(pContainer->window,
+	pContainer->player[3] = mlx_xpm_file_to_image(pContainer->mlx,
 			"./textures/shuttleleft.xpm",
 			&pContainer->sprite_w, &pContainer->sprite_h);
 }
 
 void	render_elements(t_container *pContainer)
 {
-	pContainer->enemy = mlx_xpm_file_to_image(pContainer->window, "./textures/blackhole.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
-	pContainer->floor = mlx_xpm_file_to_image(pContainer->window, "./textures/floor.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
-	pContainer->exit = mlx_xpm_file_to_image(pContainer->window, "./textures/earth.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
-	pContainer->wall = mlx_xpm_file_to_image(pContainer->window, "./textures/wall.xpm",&pContainer->sprite_h, &pContainer->sprite_w);
+	pContainer->enemy= mlx_xpm_file_to_image(pContainer->mlx, "/nfs/homes/chsassi/Desktop/Progetti/sl/textures/blackhole.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+	pContainer->floor = mlx_xpm_file_to_image(pContainer->mlx, "/nfs/homes/chsassi/Desktop/Progetti/sl/textures/floor.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+	pContainer->exit = mlx_xpm_file_to_image(pContainer->mlx, "./textures/earth.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+	pContainer->wall = mlx_xpm_file_to_image(pContainer->mlx, "./textures/wall.xpm",&pContainer->sprite_h, &pContainer->sprite_w);
 }
 
 void	check_image_element(t_container *pContainer, int rows, int cols)

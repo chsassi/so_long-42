@@ -24,6 +24,8 @@ void	init_map(t_map *pMap)
 	pMap->player_pos.y = 0;
 	pMap->moves = 0;
 	pMap->exit = 0;
+	pMap->enemies = 0;
+	pMap->enemies_count = 0;
 }
 void	init_container(t_container *pContainer)
 {
