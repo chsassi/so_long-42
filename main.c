@@ -41,7 +41,7 @@
 		i++;
 	}
 } */
-
+ 
 int	main(int ac, char** av)
 {
 	char		*map_name;
@@ -54,7 +54,7 @@ int	main(int ac, char** av)
 	init_all_innit(&pContainer);
 	if (check_args(ac, path))
 	{
-		pContainer.map.map = get_mtx(&pContainer.map, path);
+		get_mtx(&pContainer.map, path);
 		init_element_position(pContainer.map.map, &pContainer);
 		pContainer.mlx = mlx_init();
 		pContainer.window = mlx_new_window(pContainer.mlx, pContainer.map.cols * pContainer.sprite_h,
@@ -62,9 +62,11 @@ int	main(int ac, char** av)
 		if (!pContainer.window)
 			return 0;
 		render_elements(&pContainer);
+		render_player(&pContainer);
 		insert_image(&pContainer);
-		// render_player(&pContainer);
-		mlx_loop(pContainer.mlx);
+		check_map_validity(&pContainer);
 		mlx_loop_hook(pContainer.mlx, &insert_image, &pContainer);
+		// mlx_hook(pContainer.window, 2, 1L<<0, &key_hook, &pContainer);
+		mlx_loop(pContainer.mlx);
 	}
 }

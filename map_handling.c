@@ -12,81 +12,125 @@
 
 #include "so_long.h"
 
-/* int	dfs(t_map *map, int element_visited[map->rows][map->cols], t_axis *seeker, t_axis to_find)
+int	flood_fill(t_container *pMap, char **map_visited, t_axis seeker, t_axis to_find)
 {
-	if (seeker->x < 0 || seeker->y < 0 || seeker->x >= map->rows
-		|| seeker->y >= map->cols || element_visited[map->rows][map->cols] || map->map[map->rows][map->cols] == WALL)
+	if (seeker.x < 0 | seeker.y < 0 || seeker.x >= pMap->map.cols || seeker.y >= pMap->map.rows ||
+			pMap->map.map[seeker.x][seeker.y] == WALL || map_visited[seeker.x][seeker.y] == '1')
 		return (0);
-	if 
-} */
-
-// int	dfs(t_map *map, int element_visited[map->rows][map->cols], t_axis *seeker, t_axis to_find)
-// {
-// /* 	if (rows < 0 || cols < 0 || rows >= map->rows || cols >= map->cols
-// 			|| map->map[rows][cols] == WALL || element_visited[rows][cols])
-// 		return (0); */
-// /* 	if (map->map[rows][cols] == EXIT)
-// 		return (1);
-// 	element_visited[rows][cols] = 1; */
-// 	if (seeker->x < 0 || seeker->y < 0 || seeker->x >= map->rows
-// 		|| seeker->y >= map->cols || element_visited[map->rows][map->cols] || map->map[map->rows][map->cols] == WALL)
-// 		return (0);
-// 	if (dfs(map, element_visited, seeker + i, ) || dfs(map, rows + 1, cols, element_visited) || dfs(map, rows, cols - 1, element_visited)
-// 			|| dfs(map, rows, cols + 1, element_visited))
-// 		return (1);
-// 	return (0);
-// }
-
-/* 	to_find.y--
-	dfs(map, element_visited, to_find) 
-	to_find.y+=2;
-	dfs(map, rows + 1, cols, element_visited)
-	
-	dfs(map, rows, cols - 1, element_visited)
-	dfs(map, rows, cols + 1, element_visited)) */
-
-// int	is_valid_path(t_map *map)
-// {
-// 	int visited[map->rows][map->cols];
-// 	memset(visited, 0, sizeof(visited));
-
-// 	while(/*i < seeker_len**/)
-// 	if (dfs(map, map->player_pos.x, map->player_pos.y, visited))
-// 		return (1);
-// 	else
-// 		return (0);
-// }
-/* 
-int	main(void)
-{
-	t_map	*map;
-	int fd = open("./maps/map_2players.ber", O_RDONLY);
-	char *line;
-	char *tmp;
-	char *res;
-	// t_axis exit_pos = {1, 1};
-
-	map = (t_map *)malloc(sizeof(t_map *) * 1);
-	tmp = NULL;
-	res = NULL;
-	while (1)
-	{
-		line = gnl(fd);
-		if (line == NULL)
-		{
-			free(line);
-			break ;
-		}
-		res = tmp;
-		tmp = strjoin_gnl(&res, line);
-	}
-	close(fd);
-	map->map = ft_split(tmp, '\n');
-	map->rows = ft_strlen(map->map[0]);
-	map->cols = ft_strlen(&map->map[0][0]);
-	map->player_pos.x = 4;
-	map->player_pos.y = 1;
-	int i = is_valid_path(map);
-	printf("Map is valid\n%i\n", i);
+	if(seeker.x ==  to_find.x && seeker.y == to_find.y)
+		return 1;
+	map_visited[seeker.x][seeker.y] = '1';
+	if(flood_fill(pMap, map_visited, (t_axis){seeker.x - 1, seeker.y}, to_find) ||
+			flood_fill(pMap, map_visited, (t_axis){seeker.x + 1, seeker.y}, to_find) ||
+			flood_fill(pMap, map_visited, (t_axis){seeker.x, seeker.y - 1}, to_find) ||
+			flood_fill(pMap, map_visited, (t_axis){seeker.x, seeker.y + 1}, to_find))
+			return 1;
+		return (0);
 }
+int check_elements_loop(char **map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while(map[i] != NULL)
+	{
+		j = 0;
+		while(map[i][j] != '\0')
+		{
+			if(!check_element(map[i][j]))
+				return 0;
+			j++;
+		}
+		i++;
+	}
+	return 1;
+}
+
+int check_elem_number(char **map)
+{
+	int player_nbr;
+	int exit_nbr;
+
+	player_nbr = count_elements(map, PLAYER);
+	exit_nbr = count_elements(map, EXIT);
+	if(player_nbr != 1 || exit_nbr != 1)
+	{
+		ft_printf("Map is invalid.");
+		return 0;
+	}
+	return 1;
+}
+
+int	check_path(t_container *pContainer)
+{
+	
+}
+
+int check_map_validity(t_container *pContainer)
+{
+	if(!valid_cols(pContainer->map.map))
+		return (0);
+	if(!valid_rows(pContainer->map.map))
+		return (0);
+	if(!check_rectangle(pContainer->map.map, pContainer->map.rows, pContainer->map.cols))
+		return (0);
+	if(!check_elements_loop(pContainer->map.map))
+		return (0);
+	if(!check_elem_number(pContainer->map.map))
+		return (0);
+	if (!)
+	return (1);
+}
+/* 
+int main(void)
+{
+	t_container	pContainer;
+	char	*tmp;
+	int		i;
+
+	char *path = "./maps/map.ber";
+	i = 0;
+	tmp = get_line(path);
+	if (!check_nl(tmp))
+	{
+		free(tmp);
+		ft_printf("Map contains invalid lines.");
+		return 0;
+	}
+	pContainer.map.map = ft_split(tmp, '\n');
+	i = 0;
+	while(pContainer.map.map[i] != NULL)
+		i++;
+	
+	pContainer.map.player_pos.x = 4;
+	pContainer.map.player_pos.y = 1;
+	pContainer.map.exit_pos.x = 1;
+	pContainer.map.exit_pos.y = 1;
+	pContainer.map.rows = 6;
+	pContainer.map.cols = 24;
+	char **map_visited = (char **)malloc(sizeof(char *) * 6);
+	i = 0;
+	while(i < 6)
+	{
+		map_visited[i] = (char *)malloc(sizeof(char) * 24);
+		i++;
+	}
+	i = 0;
+	while(i <6)
+	{
+		int j = 0;
+		while(j < 24)
+		{
+			map_visited[i][j] = '0';
+			j++;
+		}
+		i++;
+	}
+	i = flood_fill(&pContainer, map_visited, pContainer.map.player_pos, pContainer.map.exit_pos);
+	printf("RISULTATO FINALE PRE CANNA%i\n", i);
+
+}
+
  */

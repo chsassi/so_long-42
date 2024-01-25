@@ -59,7 +59,6 @@ typedef struct s_axis
 
 typedef struct s_map
 {
-	char		**map;
 	int			rows;
 	int			cols;
 	int			moves;
@@ -72,6 +71,7 @@ typedef struct s_map
 	t_axis		exit_pos;
 	t_axis		*collectible_pos;
 	t_axis		*enemy_pos;
+	char		**map;
 }	t_map;
 
 typedef struct s_container
@@ -100,7 +100,7 @@ int	insert_image(t_container *pContainer);
 /* Parsing */
 int		check_nl(char *s);
 char	*get_line(char *path);
-char	**get_mtx(t_map *pMap, char *path);
+void get_mtx(t_map *pMap, char *path);
 
 /* Map Checks*/
 int		check_mtx_rows(char *mtx);
