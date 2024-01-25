@@ -59,6 +59,7 @@ typedef struct s_axis
 
 typedef struct s_map
 {
+	char		**map;
 	int			rows;
 	int			cols;
 	int			moves;
@@ -71,7 +72,6 @@ typedef struct s_map
 	t_axis		exit_pos;
 	t_axis		*collectible_pos;
 	t_axis		*enemy_pos;
-	char		**map;
 }	t_map;
 
 typedef struct s_container
@@ -92,15 +92,16 @@ typedef struct s_container
 }	t_container;
 
 /* Image Rendering */
-int		*calculate_size(int size);
-void	render_player(t_container *pContainer);
-void	render_elements(t_container *pContainer);
-int	insert_image(t_container *pContainer);
+void	render_player_image(t_container *pContainer);
+void	render_element_image(t_container *pContainer);
+void	render_sprite_on_mtx(t_container *pContainer, int rows, int cols);
+int		render_sprite_loop(t_container *pContainer);
+int		insert_images(t_container *pContainer);
 
 /* Parsing */
 int		check_nl(char *s);
 char	*get_line(char *path);
-void get_mtx(t_map *pMap, char *path);
+char	**get_mtx(char *path);
 
 /* Map Checks*/
 int		check_mtx_rows(char *mtx);
@@ -110,8 +111,11 @@ int		valid_cols(char **mtx);
 int		check_rectangle(char **map, int rows, int cols);
 
 /* Map Handling */
-int		dfs(t_map *map, int rows, int cols,
-			int element_visited[map->rows][map->cols]);
+int		flood_fill(t_container *pMap, char **map_visited, t_axis seeker, t_axis to_find);
+int		check_elem_number(char **map);
+int		check_elements_loop(char **map);
+int		check_if_reachable(t_container *pContainer);
+int		check_map_validity(t_container *pContainer);
 
 /* Position */
 t_axis	player_position(char **mtx);
@@ -122,19 +126,25 @@ void	init_element_position(char **mtx, t_container *pContainer);
 
 /* Endgame */
 void	free_map(char **map);
-void	free_images(t_container *free);
-int		quit_game(t_container *quit);
+void	free_images(t_container *pContainer);
+int		quit_game(t_container *pContainer);
 
 /* Init */
 void	init_map(t_map *pMap);
 void	init_container(t_container *pContainer);
-void	init_all_innit(t_container *pContainer);
-
+void init_all_innit(t_container *pContainer, char* path);
 /* Utils */
 int		check_element(char c);
 int		count_elements(char **mtx, char c);
 int		check_args(int ac, char *map_file);
 int		count_cols(char **mtx);
 int		count_rows(char **mtx);
+int		print_error(int error_nbr);
+
+// 2 players
+// 0 players
+// spazio
+// rettangolo
+// 0 tra 1
 
 #endif

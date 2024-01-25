@@ -25,29 +25,29 @@ void	free_map(char **map)
 	free(map);
 }
 
-void	free_images(t_container *free)
+void	free_images(t_container *pContainer)
 {
 	int	i;
 
 	i = 0;
 	while (i < 4)
 	{
-		mlx_destroy_image(free->mlx, free->player[i]);
+		mlx_destroy_image(pContainer->mlx, pContainer->player[i]);
 		i++;
 	}
-	mlx_destroy_image(free->mlx, free->floor);
-	mlx_destroy_image(free->mlx, free->wall);
-	mlx_destroy_image(free->mlx, free->exit);
-	mlx_destroy_image(free->mlx, free->collectible);
+	mlx_destroy_image(pContainer->mlx, pContainer->floor);
+	mlx_destroy_image(pContainer->mlx, pContainer->wall);
+	mlx_destroy_image(pContainer->mlx, pContainer->exit);
+	mlx_destroy_image(pContainer->mlx, pContainer->collectible);
 }
 
-int	quit_game(t_container *quit)
+int	quit_game(t_container *pContainer)
 {
-	free_map(quit->map.map);
-	free_images(quit);
-	mlx_destroy_window(quit->mlx, quit->window);
-	mlx_destroy_display(quit->mlx);
-	free(quit->mlx);
+	free_map(pContainer->map.map);
+	free_images(pContainer);
+	mlx_destroy_window(pContainer->mlx, pContainer->window);
+	mlx_destroy_display(pContainer->mlx);
+	free(pContainer->mlx);
 	exit(0);
 	return (0);
 }

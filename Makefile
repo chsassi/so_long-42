@@ -20,6 +20,7 @@ SRC =   ./main.c \
 		./movement.c \
 		./parsing.c \
 		./endgame.c \
+		./map_checks.c \
 		./utils.c
 
 OBJ = $(SRC:.c=.o)

@@ -27,7 +27,7 @@ int	flood_fill(t_container *pMap, char **map_visited, t_axis seeker, t_axis to_f
 			return 1;
 		return (0);
 }
-int check_elements_loop(char **map)
+int	check_elements_loop(char **map)
 {
 	int i;
 	int j;
@@ -56,35 +56,58 @@ int check_elem_number(char **map)
 	player_nbr = count_elements(map, PLAYER);
 	exit_nbr = count_elements(map, EXIT);
 	if(player_nbr != 1 || exit_nbr != 1)
-	{
-		ft_printf("Map is invalid.");
 		return 0;
-	}
 	return 1;
 }
 
-int	check_path(t_container *pContainer)
+int	check_if_reachable(t_container *pContainer)
 {
-	
+	char **map_copy;
+	int i = 0;
+
+	map_copy = (char **)ft_calloc(sizeof(char *), pContainer->map.rows);
+	while (i < pContainer->map.cols)
+		map_copy[i++] = (char *)ft_calloc(sizeof(char), pContainer->map.cols);
+	if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos, pContainer->map.exit_pos))
+		return (0);
+	i = 0;
+	while (i < pContainer->map.collectibles_count)
+	{
+		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos, pContainer->map.collectible_pos[i]))
+			return (0);
+		i++;
+	}
+	while (i < pContainer->map.enemies_count)
+	{
+		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos, pContainer->map.enemy_pos[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 int check_map_validity(t_container *pContainer)
 {
-	if(!valid_cols(pContainer->map.map))
+	if(!valid_cols(pContainer->map.map) || !valid_rows(pContainer->map.map) ||
+		!check_rectangle(pContainer->map.map, pContainer->map.rows, pContainer->map.cols))
+	{
+		print_error(-1);
 		return (0);
-	if(!valid_rows(pContainer->map.map))
+	}
+	if(!check_elements_loop(pContainer->map.map) || !check_elem_number(pContainer->map.map))
+	{
+		print_error(-2);
 		return (0);
-	if(!check_rectangle(pContainer->map.map, pContainer->map.rows, pContainer->map.cols))
+	}
+	if(!check_if_reachable(pContainer))
+	{
+		print_error(-3);
 		return (0);
-	if(!check_elements_loop(pContainer->map.map))
-		return (0);
-	if(!check_elem_number(pContainer->map.map))
-		return (0);
-	if (!)
+	}
 	return (1);
 }
-/* 
-int main(void)
+
+/* int main(void)
 {
 	t_container	pContainer;
 	char	*tmp;
@@ -96,7 +119,7 @@ int main(void)
 	if (!check_nl(tmp))
 	{
 		free(tmp);
-		ft_printf("Map contains invalid lines.");
+		ft_printf(-7);
 		return 0;
 	}
 	pContainer.map.map = ft_split(tmp, '\n');
@@ -131,6 +154,4 @@ int main(void)
 	i = flood_fill(&pContainer, map_visited, pContainer.map.player_pos, pContainer.map.exit_pos);
 	printf("RISULTATO FINALE PRE CANNA%i\n", i);
 
-}
-
- */
+}*/

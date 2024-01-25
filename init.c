@@ -44,8 +44,19 @@ void	init_container(t_container *pContainer)
 	pContainer->sprite_h = 32;
 }
 
-void init_all_innit(t_container *pContainer)
+void init_all_innit(t_container *pContainer, char* path)
 {
+	char **tmp_mtx;
+
+	
+	tmp_mtx = get_mtx(path);
 	init_container(pContainer);
 	init_map(&pContainer->map);
+	pContainer->map.map = tmp_mtx;
+	init_element_position(pContainer->map.map, pContainer);
+	pContainer->mlx = mlx_init();
+	pContainer->window = mlx_new_window(pContainer->mlx, pContainer->map.cols * pContainer->sprite_h,
+	pContainer->map.rows * pContainer->sprite_w , "so_long");	
+	if (!pContainer->window)
+		return ;
 }

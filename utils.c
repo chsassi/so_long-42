@@ -18,10 +18,7 @@ int	check_element(char c)
 		|| c == FLOOR || c == WALL)
 		return (1);
 	else
-	{
-		ft_printf("Map is invalid.");
 		return (0);
-	}
 }
 
 int		count_elements(char **mtx, char c)
@@ -69,15 +66,36 @@ int	count_rows(char **mtx)
 int		check_args(int ac, char *map_file)
 {
 	if (ac > 2)
-		ft_printf("Too many arguments. Run with './so_long' and a .ber file");
+		print_error(-4);
 	else if (ac < 2)
-		ft_printf("Too few arguments. Run with './so_long' and a .ber file");
+		print_error(-5);
 	else if (ac == 2)
 	{
-		if (ft_strncmp(&map_file[ft_strlen(map_file) - 4], ".ber", 4) != 0)
-			ft_printf("Invalid file. Run with a .ber file");
+		if (ft_strncmp(&map_file[strlen_gnl(map_file) - 4], ".ber", 4) != 0)
+			print_error(-6);
 		else
 			return (1);
 	}
+	return (0);
+}
+
+
+
+int		print_error(int error_nbr)
+{
+	if (error_nbr == -1)
+		ft_printf("Error in map rendering (check file: smap_checks).");
+	else if (error_nbr == -2)
+		ft_printf("Error in element number or wrong characters in map (check file: map_checks).");
+	else if (error_nbr == -3)
+		ft_printf("Error. Player cannot reach an element (check file: map_handling.c).");
+	else if (error_nbr == -4)
+		ft_printf("Too many arguments. Run with './so_long' and a .ber file");
+	else if (error_nbr == -5)
+		ft_printf("Too few arguments. Run with './so_long' and a .ber file");
+	else if (error_nbr == -6)
+		ft_printf("Invalid file. Run with a .ber file");
+	else if (error_nbr == -7)
+		ft_printf("Map contains invalid/double lines.");
 	return (0);
 }

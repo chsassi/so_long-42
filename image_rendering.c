@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	render_player(t_container *pContainer)
+void	render_player_image(t_container *pContainer)
 {
 	pContainer->player[0] = mlx_xpm_file_to_image(pContainer->mlx,
 			"./textures/shuttleright.xpm",
@@ -28,7 +28,7 @@ void	render_player(t_container *pContainer)
 			&pContainer->sprite_w, &pContainer->sprite_h);
 }
 
-void	render_elements(t_container *pContainer)
+void	render_element_image(t_container *pContainer)
 {
 	pContainer->collectible = mlx_xpm_file_to_image(pContainer->mlx, "./textures/fuel.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
 	pContainer->enemy = mlx_xpm_file_to_image(pContainer->mlx, "./textures/blackhole.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
@@ -37,7 +37,7 @@ void	render_elements(t_container *pContainer)
 	pContainer->wall = mlx_xpm_file_to_image(pContainer->mlx, "./textures/wall.xpm",&pContainer->sprite_h, &pContainer->sprite_w);
 }
 
-void	check_image_element(t_container *pContainer, int rows, int cols)
+void	render_sprite_on_mtx(t_container *pContainer, int rows, int cols)
 {
 	if (pContainer->map.map[rows][cols] == WALL)
 		mlx_put_image_to_window(pContainer->mlx, pContainer->window, pContainer->wall, cols * 32, rows * 32);
@@ -53,7 +53,7 @@ void	check_image_element(t_container *pContainer, int rows, int cols)
 		mlx_put_image_to_window(pContainer->mlx, pContainer->window, pContainer->enemy, cols * 32, rows * 32);
 } 
 
-int	insert_image(t_container *pContainer)
+int	render_sprite_loop(t_container *pContainer)
 {
 	int rows;
 	int cols;
@@ -63,11 +63,15 @@ int	insert_image(t_container *pContainer)
 	{
 		cols = -1;
 		while(pContainer->map.map[rows][++cols])
-		{
-			//printf("%c", pContainer->map.map[rows][cols]);
-			check_image_element(pContainer, rows, cols);
-		}
-		printf("\n");
+			render_sprite_on_mtx(pContainer, rows, cols);
 	}
+	return (0);
+}
+
+int	insert_images(t_container *pContainer)
+{
+	render_player_image(pContainer);
+	render_element_image(pContainer);
+	render_sprite_loop(pContainer);
 	return (0);
 }

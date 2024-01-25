@@ -17,7 +17,7 @@ int	check_mtx_rows(char *mtx)
 	int	i;
 
 	i = 0;
-	while (mtx[i])
+	while (mtx && mtx[i])
 	{
 		if (mtx[i] != WALL)
 			return (0);
@@ -36,36 +36,35 @@ int	valid_rows(char **mtx)
 	while (mtx[mtx_len])
 		mtx_len++;
 	if (!check_mtx_rows(mtx[i]) || !check_mtx_rows(mtx[mtx_len]))
-	{
-		ft_printf("Map is invalid.");
 		return (0);
-	}
 	return (1);
 }
 
 int	check_mtx_cols(char **mtx)
 {
 	int	i;
+	int len;
 	int	mtx_len;
 
 	i = 0;
-	mtx_len = ft_strlen(mtx[i]);
+	len = 0;
+	while(mtx[len])
+		len++;
+	mtx_len = strlen_gnl(mtx[i]);
 	while (i < mtx_len)
 	{
-		if (mtx[0][i] == WALL && (mtx[mtx_len][i]) == WALL)
+		if (mtx[0][i] == WALL && (mtx[len - 1 ][i]) == WALL)
 			return (1);
-		else
-			return (0);
 		i++;
 	}
+	return (0);
 }
 
 int	valid_cols(char **mtx)
 {
 	if (!check_mtx_cols(mtx))
 		return (0);
-	else
-		return (1);
+	return (1);
 }
 
 int	check_rectangle(char **map, int rows, int cols)
@@ -75,11 +74,8 @@ int	check_rectangle(char **map, int rows, int cols)
 	i = 0;
 	while (i < rows)
 	{
-		if (ft_strlen(map[i]) != cols)
-		{
-			ft_printf("Map is not rectangular.");
+		if (strlen_gnl(map[i]) != cols)
 			return (0);
-		}
 		i++;
 	}
 	return (1);
