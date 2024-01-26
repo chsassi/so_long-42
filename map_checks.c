@@ -35,6 +35,13 @@ int	valid_rows(char **mtx)
 	mtx_len = 0;
 	while (mtx[mtx_len])
 		mtx_len++;
+	while (mtx[i] && mtx[mtx_len])
+	{
+		if (strlen_gnl(mtx[i]) != strlen_gnl(mtx[mtx_len]))
+			return (0);
+		i++;
+		mtx_len--;
+	}
 	if (!check_mtx_rows(mtx[i]) || !check_mtx_rows(mtx[mtx_len]))
 		return (0);
 	return (1);

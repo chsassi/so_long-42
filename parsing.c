@@ -26,6 +26,20 @@ int	check_nl(char *s)
 	return (1);
 }
 
+void	reset_matrix_to_zero(char **mtx)
+{
+	int	rows;
+	int	cols;
+
+	rows = 0;
+	while (mtx[rows++] != NULL)
+	{
+		cols = 0;
+		while (mtx[rows][cols++])
+			mtx[rows][cols] = '0';
+	}
+}
+
 char	*get_line(char *path)
 {
 	int		fd;

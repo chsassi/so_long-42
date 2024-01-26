@@ -14,16 +14,27 @@
 
 int	flood_fill(t_container *pMap, char **map_visited, t_axis seeker, t_axis to_find)
 {
-	if (seeker.x < 0 | seeker.y < 0 || seeker.x >= pMap->map.cols || seeker.y >= pMap->map.rows ||
+/* 	int i = 0;
+	int j = 0;
+
+	while(i < pMap->map.rows)
+	{
+		j = 0;
+		while(map_visited[i][j++] != '\0')
+			write(1, &map_visited[i][j], 1);
+		write(1, "\n", 1);
+		i++;
+	}   */
+	if (seeker.x < 0 || seeker.y < 0 || seeker.x >= pMap->map.cols || seeker.y >= pMap->map.rows ||
 			pMap->map.map[seeker.x][seeker.y] == WALL || map_visited[seeker.x][seeker.y] == '1')
 		return (0);
-	if(seeker.x ==  to_find.x && seeker.y == to_find.y)
+	if (seeker.x ==  to_find.x && seeker.y == to_find.y)
 		return 1;
 	map_visited[seeker.x][seeker.y] = '1';
-	if(flood_fill(pMap, map_visited, (t_axis){seeker.x - 1, seeker.y}, to_find) ||
+	if (flood_fill(pMap, map_visited, (t_axis){seeker.x - 1, seeker.y}, to_find) ||
 			flood_fill(pMap, map_visited, (t_axis){seeker.x + 1, seeker.y}, to_find) ||
-			flood_fill(pMap, map_visited, (t_axis){seeker.x, seeker.y - 1}, to_find) ||
-			flood_fill(pMap, map_visited, (t_axis){seeker.x, seeker.y + 1}, to_find))
+			flood_fill(pMap, map_visited, (t_axis){seeker.x, seeker.y + 1}, to_find) ||
+			flood_fill(pMap, map_visited, (t_axis){seeker.x, seeker.y - 1}, to_find))
 			return 1;
 		return (0);
 }
@@ -62,26 +73,29 @@ int check_elem_number(char **map)
 
 int	check_if_reachable(t_container *pContainer)
 {
+	/*TODO bisogna controllare che il flood fill funzioni correttamente*/
 	char **map_copy;
 	int i = 0;
 
 	map_copy = (char **)ft_calloc(sizeof(char *), pContainer->map.rows);
-	while (i < pContainer->map.cols)
+	while (i < pContainer->map.rows)
 		map_copy[i++] = (char *)ft_calloc(sizeof(char), pContainer->map.cols);
 	if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos, pContainer->map.exit_pos))
 		return (0);
-	i = 0;
-	while (i < pContainer->map.collectibles_count)
+	i = -1;
+	reset_matrix_to_zero(map_copy);
+	while (++i < pContainer->map.collectibles_count)
 	{
 		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos, pContainer->map.collectible_pos[i]))
 			return (0);
-		i++;
+		reset_matrix_to_zero(map_copy);
 	}
-	while (i < pContainer->map.enemies_count)
+	i = -1;
+	while (++i < pContainer->map.enemies_count)
 	{
 		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos, pContainer->map.enemy_pos[i]))
 			return (0);
-		i++;
+		reset_matrix_to_zero(map_copy);
 	}
 	return (1);
 }

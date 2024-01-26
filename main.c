@@ -44,6 +44,18 @@
  
 int	main(int ac, char** av)
 {
+	/*TODO controllare la coerenza delle variabili x & y su tutti i file e assicurarsi che siano messi tutti in linea
+	*/
+	/*TODO bisogna implemtare :
+		movimenti
+			aggiornamento mappa in seguito all input del giocatore 
+			tenere conto del numero delle mosse t_map->moves
+		chiusura del gioco
+		inseguimeto dei nemici
+		animazione del player
+
+		
+	*/
 	t_container	pContainer;
 	char		*path;
 
@@ -51,9 +63,9 @@ int	main(int ac, char** av)
 	if (check_args(ac, path))
 	{
 		init_all_innit(&pContainer, path);
-		insert_images(&pContainer);
 		if(!check_map_validity(&pContainer))
 			return 0;
+		insert_images(&pContainer);
 		mlx_loop_hook(pContainer.mlx, &insert_images, &pContainer);
 		mlx_loop(pContainer.mlx);
 	}

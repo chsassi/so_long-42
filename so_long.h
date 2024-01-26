@@ -100,6 +100,7 @@ int		insert_images(t_container *pContainer);
 
 /* Parsing */
 int		check_nl(char *s);
+void	reset_matrix_to_zero(char **mtx);
 char	*get_line(char *path);
 char	**get_mtx(char *path);
 
@@ -132,7 +133,8 @@ int		quit_game(t_container *pContainer);
 /* Init */
 void	init_map(t_map *pMap);
 void	init_container(t_container *pContainer);
-void init_all_innit(t_container *pContainer, char* path);
+void	init_all_innit(t_container *pContainer, char* path);
+
 /* Utils */
 int		check_element(char c);
 int		count_elements(char **mtx, char c);
