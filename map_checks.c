@@ -50,17 +50,17 @@ int	valid_rows(char **mtx)
 int	check_mtx_cols(char **mtx)
 {
 	int	i;
-	int len;
+	int	len;
 	int	mtx_len;
 
 	i = 0;
 	len = 0;
-	while(mtx[len])
+	while (mtx[len])
 		len++;
 	mtx_len = strlen_gnl(mtx[i]);
 	while (i < mtx_len)
 	{
-		if (mtx[0][i] == WALL && (mtx[len - 1 ][i]) == WALL)
+		if (mtx[0][i] == WALL && (mtx[len - 1][i]) == WALL)
 			return (1);
 		i++;
 	}

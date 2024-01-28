@@ -12,6 +12,22 @@
 
 #include "so_long.h"
 
+int	check_args(int ac, char *map_file)
+{
+	if (ac > 2)
+		print_error(-4);
+	else if (ac < 2)
+		print_error(-5);
+	else if (ac == 2)
+	{
+		if (ft_strncmp(&map_file[strlen_gnl(map_file) - 4], ".ber", 4) != 0)
+			print_error(-6);
+		else
+			return (1);
+	}
+	return (0);
+}
+
 void	init_map(t_map *pMap)
 {
 	pMap->map = NULL;

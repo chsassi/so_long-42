@@ -69,7 +69,7 @@ char	**get_mtx(char *path)
 {
 	int		i;
 	char	*tmp;
-	char** 	res;
+	char	**res;
 
 	i = 0;
 	tmp = get_line(path);

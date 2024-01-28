@@ -131,6 +131,7 @@ void	free_images(t_container *pContainer);
 int		quit_game(t_container *pContainer);
 
 /* Init */
+int		check_args(int ac, char *map_file);
 void	init_map(t_map *pMap);
 void	init_container(t_container *pContainer);
 void	init_all_innit(t_container *pContainer, char* path);
@@ -138,7 +139,6 @@ void	init_all_innit(t_container *pContainer, char* path);
 /* Utils */
 int		check_element(char c);
 int		count_elements(char **mtx, char c);
-int		check_args(int ac, char *map_file);
 int		count_cols(char **mtx);
 int		count_rows(char **mtx);
 int		print_error(int error_nbr);
