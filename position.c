@@ -75,7 +75,7 @@ t_axis	*collectibles_position(char **mtx, t_container *pContainer)
 	collectible_nbr = count_elements(mtx, COLLECTIBLE);
 	pContainer->map.collectibles_count = collectible_nbr;
 	collectibles_pos = ft_calloc(collectible_nbr, sizeof(t_axis));
-	while (i < collectible_nbr != 0 && mtx[++rows] != NULL)
+	while ((i < collectible_nbr) != 0 && mtx[++rows] != NULL)
 	{
 		cols = -1;
 		while (mtx[rows][++cols] != '\0')

@@ -14,7 +14,7 @@
 
 int	flood_fill(t_container *pMap, char **map_visited, t_axis seeker, t_axis to_find)
 {
-/* 	int i = 0;
+/*	int i = 0;
 	int j = 0;
 
 	while(i < pMap->map.rows)
@@ -24,7 +24,7 @@ int	flood_fill(t_container *pMap, char **map_visited, t_axis seeker, t_axis to_f
 			write(1, &map_visited[i][j], 1);
 		write(1, "\n", 1);
 		i++;
-	}   */
+	}*/
 	if (seeker.x < 0 || seeker.y < 0 || seeker.x >= pMap->map.cols || seeker.y >= pMap->map.rows ||
 			pMap->map.map[seeker.x][seeker.y] == WALL || map_visited[seeker.x][seeker.y] == '1')
 		return (0);
@@ -38,6 +38,7 @@ int	flood_fill(t_container *pMap, char **map_visited, t_axis seeker, t_axis to_f
 			return 1;
 		return (0);
 }
+
 int	check_elements_loop(char **map)
 {
 	int i;
@@ -61,8 +62,8 @@ int	check_elements_loop(char **map)
 
 int check_elem_number(char **map)
 {
-	int player_nbr;
-	int exit_nbr;
+	int	player_nbr;
+	int	exit_nbr;
 
 	player_nbr = count_elements(map, PLAYER);
 	exit_nbr = count_elements(map, EXIT);
