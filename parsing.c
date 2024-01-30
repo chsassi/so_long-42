@@ -26,17 +26,17 @@ int	check_nl(char *s)
 	return (1);
 }
 
-void	reset_matrix_to_zero(char **mtx)
+void	reset_matrix_to_x(char **mtx)
 {
 	int	rows;
 	int	cols;
 
-	rows = 0;
-	while (mtx[rows++] != NULL)
+	rows = -1;
+	while (mtx[++rows] != NULL)
 	{
-		cols = 0;
-		while (mtx[rows][cols++])
-			mtx[rows][cols] = '0';
+		cols = -1;
+		while (mtx[rows][++cols] != '\0')
+			mtx[rows][cols] = 'X';
 	}
 }
 
@@ -67,11 +67,9 @@ char	*get_line(char *path)
 
 char	**get_mtx(char *path)
 {
-	int		i;
 	char	*tmp;
 	char	**res;
 
-	i = 0;
 	tmp = get_line(path);
 	if (!check_nl(tmp))
 	{

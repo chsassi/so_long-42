@@ -42,9 +42,13 @@
 	}
 }
 */
-
+/* 
 int	main(int ac, char** av)
 {
+	
+	 X sono le colonne 
+	 Y sono le righe
+
 	t_container	pContainer;
 	char		*path;
 
@@ -58,7 +62,7 @@ int	main(int ac, char** av)
 		mlx_loop_hook(pContainer.mlx, &insert_images, &pContainer);
 		mlx_loop(pContainer.mlx);
 	}
-}
+} */
 
 /* 	controllare la coerenza delle variabili x & y su tutti i file e assicurarsi che siano messi tutti in linea
 	bisogna implemtare :
@@ -71,25 +75,44 @@ int	main(int ac, char** av)
  */
 		// mlx_hook(pContainer.window, 2, 1L<<0, &key_hook, &pContainer);
 
-/* typedef struct	s_vars {
-	void	*mlx;
-	void	*win;
-}				t_vars;
+// typedef struct	s_vars {
+// 	void	*mlx;
+// 	void	*win;
+// }				t_vars;
 
-int	key_hook(int keycode, t_vars *vars)
-{
-	(void)vars;
-	printf("%d", keycode);
-	return (0);
-}
 
-int	main(void)
-{
-	t_vars	vars;
+// int	execute(t_container *pContainer, int keycode)
+// {
+// 	char	**map_copy;
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 640, 480, "Hello world!");
-	mlx_key_hook(vars.win, key_hook, &vars);
-	mlx_loop(vars.mlx);
-} */
+// 	map_copy = ft_copy_mtx(pContainer->map.map);
 
+// 		update_player_pos(pContainer, map_copy, keycode);
+// 		/**una volta che ho la nuova posizione del player 
+// 		 * posso controllare se si sovrappone alla posizione di un collezionabile
+// 		 * se si : ->coll_count - 1 / collectibles++ / coll_pos (remove pos coll) / change [C]->[0]
+// 		*/
+
+// 		update_coll_pos();
+// 		/**controllare libreria per il movimento dei nemici*/
+// 		/**una volta che ho la nuova posizione del player 
+// 		 * posso controllare se si sovrappone alla posizione di un collezionabile
+// 		 * se si : ->coll_count - 1 / collectibles++ / coll_pos (remove pos coll) / change [C]->[0]
+// 		*/
+
+// 		update_enemy_pos();
+// 		/**qui dopo aver mosso tutti i muovibili, rifacciamo i controlli sulla raggiungibilita*/
+// 		check_map_copy();
+// 		update_original_map(pContainer);
+
+// }
+
+// int	main(void)
+// {
+// 	t_vars	vars;
+
+// 	vars.mlx = mlx_init();
+// 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
+// 	mlx_hook(vars.win, 2, 1L<<0, execute, &vars);
+// 	mlx_loop(vars.mlx);
+// }

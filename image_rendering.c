@@ -81,6 +81,11 @@ int	render_sprite_loop(t_container *pContainer)
 
 int	insert_images(t_container *pContainer)
 {
+	if(pContainer->map.exit == 1)
+		pContainer->map.map[pContainer->map.exit_pos.y][pContainer->map.exit_pos.x] = EXIT;
+	else
+		pContainer->map.map[pContainer->map.exit_pos.y][pContainer->map.exit_pos.x] = FLOOR;
+
 	render_player_image(pContainer);
 	render_element_image(pContainer);
 	render_sprite_loop(pContainer);

@@ -49,5 +49,4 @@ int	quit_game(t_container *pContainer)
 	mlx_destroy_display(pContainer->mlx);
 	free(pContainer->mlx);
 	exit(0);
-	return (0);
 }

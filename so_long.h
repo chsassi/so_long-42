@@ -100,7 +100,7 @@ int		insert_images(t_container *pContainer);
 
 /* Parsing */
 int		check_nl(char *s);
-void	reset_matrix_to_zero(char **mtx);
+void	reset_matrix_to_x(char **mtx);
 char	*get_line(char *path);
 char	**get_mtx(char *path);
 
@@ -112,7 +112,8 @@ int		valid_cols(char **mtx);
 int		check_rectangle(char **map, int rows, int cols);
 
 /* Map Handling */
-int		flood_fill(t_container *pMap, char **map_visited, t_axis seeker, t_axis to_find);
+int		flood_fill(t_container *pMap, char **map_visited,
+			t_axis seeker, t_axis to_find);
 int		check_elem_number(char **map);
 int		check_elements_loop(char **map);
 int		check_if_reachable(t_container *pContainer);
@@ -134,7 +135,7 @@ int		quit_game(t_container *pContainer);
 int		check_args(int ac, char *map_file);
 void	init_map(t_map *pMap);
 void	init_container(t_container *pContainer);
-void	init_all_innit(t_container *pContainer, char* path);
+void	init_all_innit(t_container *pContainer, char *path);
 
 /* Utils */
 int		check_element(char c);

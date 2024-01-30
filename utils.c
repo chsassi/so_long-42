@@ -48,9 +48,8 @@ int	count_cols(char **mtx)
 	int	i;
 
 	i = 0;
-	while (mtx[0][i] != '\0')
-		i++;
-	return (i);
+	return (ft_strlen(mtx[i]));
+
 }
 
 int	count_rows(char **mtx)
@@ -61,6 +60,25 @@ int	count_rows(char **mtx)
 	while (mtx[i] != NULL)
 		i++;
 	return (i);
+}
+
+char** ft_copy_mtx(char** mtx)
+{
+	char** res;
+	int rows;
+	int cols;
+
+	rows = -1;
+	res = ft_calloc(count_rows(mtx) , sizeof(char*));
+	while(mtx[++rows])
+	{
+		cols = -1;
+		while(mtx[rows][++cols])
+		{
+			res[rows] = ft_strdup(mtx[rows]);
+		}
+	}
+	return (res);
 }
 
 int	print_error(int error_nbr)
