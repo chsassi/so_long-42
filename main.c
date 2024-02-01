@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-/*  void ft_print_structs(t_container	*vars)
+void ft_print_structs(t_container	*vars)
 {
 	int i;
 
@@ -41,9 +41,9 @@
 		i++;
 	}
 }
-*/
 
-int	execute(t_container *pContainer, int keycode)
+
+/* int	execute(t_container *pContainer, int keycode)
 {
 	char	**map_copy;
 	int player_x;
@@ -51,30 +51,14 @@ int	execute(t_container *pContainer, int keycode)
 	
 	player_x = pContainer->map.player_pos.x;
 	player_y = pContainer->map.player_pos.y;
-	map_copy = ft_copy_mtx(pContainer->map.map);
+	map_copy = copy_mtx(pContainer->map.map);
 	update_player_pos(pContainer, map_copy, keycode);
-	/* pContainer->map.map[player_x][player_y] =  */
-
-	
-		/* una volta che ho la nuova posizione del player 
-		 posso controllare se si sovrappone alla posizione di un collezionabile
-		 se si : ->coll_count - 1 / collectibles++ / coll_pos (remove pos coll) / change [C]->[0]
-		
-	se il num di coll di map_copy -1 rispetto a orinal map->richiamo count_coll & coll_pos */
-/* 
-		update_coll_pos(pContainer, map_copy, keycode);
-		controllare libreria per il movimento dei nemici
-		una volta che ho la nuova posizione del player 
-		  posso controllare se si sovrappone alla posizione di un collezionabile
-		 se si : ->coll_count - 1 / collectibles++ / coll_pos (remove pos coll) / change [C]->[0]
-		
-
-		update_enemy_pos();
-		qui dopo aver mosso tutti i muovibili, rifacciamo i controlli sulla raggiungibilita
+	update_coll_pos(pContainer, map_copy, keycode);
+	update_enemy_pos();
 		check_map_copy();
-		update_original_map(pContainer); */
+		update_original_map(pContainer);
 		return 1;
-}
+} */
 
 int	main(int ac, char** av)
 {
@@ -88,8 +72,24 @@ int	main(int ac, char** av)
 		if(!check_map_validity(&pContainer))
 			return 0;
 		insert_images(&pContainer);
-		mlx_hook(pContainer.window, 2, 1L<<0, &execute, &pContainer);
+		// mlx_hook(pContainer.window, 2, 1L<<0, &execute, &pContainer);
 		mlx_loop_hook(pContainer.mlx, &insert_images, &pContainer);
 		mlx_loop(pContainer.mlx);
 	}
 }
+
+	/* pContainer->map.map[player_x][player_y] =  */
+
+/* 		una volta che ho la nuova posizione del player 
+		posso controllare se si sovrappone alla posizione di un collezionabile
+		se si : ->coll_count - 1 / collectibles++ / coll_pos (remove pos coll) / change [C]->[0]
+		
+		se il num di coll di map_copy -1 rispetto a orinal map->richiamo count_coll & coll_pos 
+
+		controllare libreria per il movimento dei nemici
+		una volta che ho la nuova posizione del player 
+		posso controllare se si sovrappone alla posizione di un collezionabile
+		se si : ->coll_count - 1 / collectibles++ / coll_pos (remove pos coll) / change [C]->[0]
+
+		qui dopo aver mosso tutti i muovibili, rifacciamo i controlli sulla raggiungibilita
+ */

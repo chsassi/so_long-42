@@ -15,9 +15,9 @@
 
 # include "./mlx/mlx.h"
 # include "./mlx/mlx_int.h"
-# include "./Libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include "./get_next_line/gnl.h"
+# include "./libft.plus/headers/libft.h"
+# include "./libft.plus/headers/ft_printf.h"
+# include "./libft.plus/headers/gnl.h"
 # include <X11/Xlib.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -144,12 +144,5 @@ void	init_all_innit(t_container *pContainer, char *path);
 /* Utils */
 int		check_element(char c);
 int		print_error(int error_nbr);
-
-
-// 2 players
-// 0 players
-// spazio
-// rettangolo
-// 0 tra 1
 
 #endif

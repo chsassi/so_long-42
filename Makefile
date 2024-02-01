@@ -2,15 +2,18 @@ NAMEA = libso_long.a
 NAME = so_long
 HNAME = so_long.h
 CC = cc
-CFLAGS = -Wextra -Werror -Wall -g
-ARCHIVE = ar rc 
+CFLAGS = -Wextra -Werror -Wall -g -I$(HEADERS)
+ARCHIVE = ar rc $(NAME)
 RM = rm -f
+
 MINILIBX = ./mlx
-LIBFT_DIR = ./Libft
-FT_PRINTF_DIR = ./ft_printf
-GNL_DIR = ./get_next_line
-EVERY_INCLUDE= -I. -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR) -I$(GNL_DIR) -I$(MINILIBX)
-EVERY_LIB= -L$(LIBFT_DIR) -L$(GNL_DIR) -lgnl -lft -L$(FT_PRINTF_DIR) -lftprintf  -L$(MINILIBX) -lmlx -lX11 -lm -lXext
+LIBFT_DIR = ./libft.plus
+HEADER = ./libft.plus/headers
+
+GREEN=\033[0;32m
+RED=\033[0;31m
+BLUE=\033[0;34m
+YELLOW=\033[0;33m
 
 SRC =   ./main.c \
 		./init.c \
@@ -25,31 +28,23 @@ SRC =   ./main.c \
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAMEA)
+all: mlx_comp Libft_comp $(NAMEA)
 
-$(NAMEA): mlx_comp ft_printf_comp Libft_comp gnl_comp comp $(OBJ)
-	$(CC) $(CFLAGS) $(EVERY_INCLUDE) $(OBJ) -o $(NAME) $(EVERY_LIB)
+$(NAMEA): $(OBJ) -I$(HEADERS)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@echo "$(GREEN)Game compiled! ✅🚀"
 
 mlx_comp:
-	make -C mlx/
+	make -C $(MINILIBX)
 Libft_comp:
-	make -C Libft/
-ft_printf_comp:
-	make -C ft_printf/
-gnl_comp:
-	make -C get_next_line/
-
-comp:
-	@echo "Game compiled! ✅🚀\033[0;37m"
+	make -C $(LIBFT_DIR)
 
 clean:
 	$(RM) $(OBJ)
 
 fclean: clean
-	make clean -C mlx/
-	make fclean -C ft_printf/
-	make fclean -C Libft/
-	make fclean -C get_next_line/
+	make clean -C $(MINILIBX)
+	make fclean -C $(LIBFT_DIR)
 
 	$(RM) $(NAME) $(NAMEA)
 
