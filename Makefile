@@ -22,7 +22,6 @@ SRC =   ./main.c \
 		./endgame.c \
 		./map_checks.c \
 		./utils.c \
-		./flood_fill_test.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -12,19 +12,6 @@
 
 #include "so_long.h"
 
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
-
 void	free_images(t_container *pContainer)
 {
 	int	i;
@@ -43,7 +30,7 @@ void	free_images(t_container *pContainer)
 
 int	quit_game(t_container *pContainer)
 {
-	free_map(pContainer->map.map);
+	free_mtx(pContainer->map.map);
 	free_images(pContainer);
 	mlx_destroy_window(pContainer->mlx, pContainer->window);
 	mlx_destroy_display(pContainer->mlx);

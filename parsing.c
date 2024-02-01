@@ -26,20 +26,6 @@ int	check_nl(char *s)
 	return (1);
 }
 
-void	reset_matrix_to_x(char **mtx)
-{
-	int	rows;
-	int	cols;
-
-	rows = -1;
-	while (mtx[++rows] != NULL)
-	{
-		cols = -1;
-		while (mtx[rows][++cols] != '\0')
-			mtx[rows][cols] = 'X';
-	}
-}
-
 char	*get_line(char *path)
 {
 	int		fd;

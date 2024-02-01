@@ -42,13 +42,42 @@
 	}
 }
 */
+
+int	execute(t_container *pContainer, int keycode)
+{
+	char	**map_copy;
+	int player_x;
+	int player_y;
+	
+	player_x = pContainer->map.player_pos.x;
+	player_y = pContainer->map.player_pos.y;
+	map_copy = ft_copy_mtx(pContainer->map.map);
+	update_player_pos(pContainer, map_copy, keycode);
+	/* pContainer->map.map[player_x][player_y] =  */
+
+	
+		/* una volta che ho la nuova posizione del player 
+		 posso controllare se si sovrappone alla posizione di un collezionabile
+		 se si : ->coll_count - 1 / collectibles++ / coll_pos (remove pos coll) / change [C]->[0]
+		
+	se il num di coll di map_copy -1 rispetto a orinal map->richiamo count_coll & coll_pos */
 /* 
+		update_coll_pos(pContainer, map_copy, keycode);
+		controllare libreria per il movimento dei nemici
+		una volta che ho la nuova posizione del player 
+		  posso controllare se si sovrappone alla posizione di un collezionabile
+		 se si : ->coll_count - 1 / collectibles++ / coll_pos (remove pos coll) / change [C]->[0]
+		
+
+		update_enemy_pos();
+		qui dopo aver mosso tutti i muovibili, rifacciamo i controlli sulla raggiungibilita
+		check_map_copy();
+		update_original_map(pContainer); */
+		return 1;
+}
+
 int	main(int ac, char** av)
 {
-	
-	 X sono le colonne 
-	 Y sono le righe
-
 	t_container	pContainer;
 	char		*path;
 
@@ -59,60 +88,8 @@ int	main(int ac, char** av)
 		if(!check_map_validity(&pContainer))
 			return 0;
 		insert_images(&pContainer);
+		mlx_hook(pContainer.window, 2, 1L<<0, &execute, &pContainer);
 		mlx_loop_hook(pContainer.mlx, &insert_images, &pContainer);
 		mlx_loop(pContainer.mlx);
 	}
-} */
-
-/* 	controllare la coerenza delle variabili x & y su tutti i file e assicurarsi che siano messi tutti in linea
-	bisogna implemtare :
-		movimenti
-		aggiornamento mappa in seguito all input del giocatore 
-		tenere conto del numero delle mosse t_map->moves
-		chiusura del gioco
-		inseguimeto dei nemici
-		animazione del player
- */
-		// mlx_hook(pContainer.window, 2, 1L<<0, &key_hook, &pContainer);
-
-// typedef struct	s_vars {
-// 	void	*mlx;
-// 	void	*win;
-// }				t_vars;
-
-
-// int	execute(t_container *pContainer, int keycode)
-// {
-// 	char	**map_copy;
-
-// 	map_copy = ft_copy_mtx(pContainer->map.map);
-
-// 		update_player_pos(pContainer, map_copy, keycode);
-// 		/**una volta che ho la nuova posizione del player 
-// 		 * posso controllare se si sovrappone alla posizione di un collezionabile
-// 		 * se si : ->coll_count - 1 / collectibles++ / coll_pos (remove pos coll) / change [C]->[0]
-// 		*/
-
-// 		update_coll_pos();
-// 		/**controllare libreria per il movimento dei nemici*/
-// 		/**una volta che ho la nuova posizione del player 
-// 		 * posso controllare se si sovrappone alla posizione di un collezionabile
-// 		 * se si : ->coll_count - 1 / collectibles++ / coll_pos (remove pos coll) / change [C]->[0]
-// 		*/
-
-// 		update_enemy_pos();
-// 		/**qui dopo aver mosso tutti i muovibili, rifacciamo i controlli sulla raggiungibilita*/
-// 		check_map_copy();
-// 		update_original_map(pContainer);
-
-// }
-
-// int	main(void)
-// {
-// 	t_vars	vars;
-
-// 	vars.mlx = mlx_init();
-// 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-// 	mlx_hook(vars.win, 2, 1L<<0, execute, &vars);
-// 	mlx_loop(vars.mlx);
-// }
+}

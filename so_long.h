@@ -100,7 +100,7 @@ int		insert_images(t_container *pContainer);
 
 /* Parsing */
 int		check_nl(char *s);
-void	reset_matrix_to_x(char **mtx);
+void	reset_matrix_to_x(char **mtx, int cols, int rows);
 char	*get_line(char *path);
 char	**get_mtx(char *path);
 
@@ -126,8 +126,12 @@ t_axis	*collectibles_position(char **mtx, t_container *pContainer);
 t_axis	*enemies_position(char **mtx, t_container *pContainer);
 void	init_element_position(char **mtx, t_container *pContainer);
 
+/* Movement */
+int		check_new_move(t_container *pContainer, char** map_copy, int flag);
+void	handle_player_move(t_container *pContainer,char** map_copy, int flag);
+void	update_player_pos(t_container *pContainer,char** map_copy, int keycode);
+
 /* Endgame */
-void	free_map(char **map);
 void	free_images(t_container *pContainer);
 int		quit_game(t_container *pContainer);
 
@@ -139,10 +143,8 @@ void	init_all_innit(t_container *pContainer, char *path);
 
 /* Utils */
 int		check_element(char c);
-int		count_elements(char **mtx, char c);
-int		count_cols(char **mtx);
-int		count_rows(char **mtx);
 int		print_error(int error_nbr);
+
 
 // 2 players
 // 0 players

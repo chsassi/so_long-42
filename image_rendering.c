@@ -31,15 +31,20 @@ void	render_player_image(t_container *pContainer)
 void	render_element_image(t_container *pContainer)
 {
 	pContainer->collectible = mlx_xpm_file_to_image(pContainer->mlx,
-		"./textures/fuel.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+			"./textures/fuel.xpm",
+			&pContainer->sprite_h, &pContainer->sprite_w);
 	pContainer->enemy = mlx_xpm_file_to_image(pContainer->mlx,
-		"./textures/blackhole.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+			"./textures/blackhole.xpm",
+			&pContainer->sprite_h, &pContainer->sprite_w);
 	pContainer->floor = mlx_xpm_file_to_image(pContainer->mlx,
-		"./textures/floor.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+			"./textures/floor.xpm",
+			&pContainer->sprite_h, &pContainer->sprite_w);
 	pContainer->exit = mlx_xpm_file_to_image(pContainer->mlx,
-		"./textures/earth.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+			"./textures/earth.xpm",
+			&pContainer->sprite_h, &pContainer->sprite_w);
 	pContainer->wall = mlx_xpm_file_to_image(pContainer->mlx,
-		"./textures/wall.xpm", &pContainer->sprite_h, &pContainer->sprite_w);
+			"./textures/wall.xpm",
+			&pContainer->sprite_h, &pContainer->sprite_w);
 }
 
 void	render_sprite_on_mtx(t_container *pContainer, int rows, int cols)
@@ -81,11 +86,12 @@ int	render_sprite_loop(t_container *pContainer)
 
 int	insert_images(t_container *pContainer)
 {
-	if(pContainer->map.exit == 1)
-		pContainer->map.map[pContainer->map.exit_pos.y][pContainer->map.exit_pos.x] = EXIT;
+	if (pContainer->map.exit == 1)
+		pContainer->map.map[pContainer->map.exit_pos.y]
+		[pContainer->map.exit_pos.x] = EXIT;
 	else
-		pContainer->map.map[pContainer->map.exit_pos.y][pContainer->map.exit_pos.x] = FLOOR;
-
+		pContainer->map.map[pContainer->map.exit_pos.y]
+		[pContainer->map.exit_pos.x] = FLOOR;
 	render_player_image(pContainer);
 	render_element_image(pContainer);
 	render_sprite_loop(pContainer);

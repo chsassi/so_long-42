@@ -12,79 +12,91 @@
 
 #include "so_long.h"
 
-int	flood_fill(t_container *pMap, char **map_visited, t_axis seeker, t_axis to_find)
+int	flood_fill(t_container *pMap, char **map_visited,
+		t_axis seeker, t_axis to_find)
 {
-	if (seeker.x < 0 || seeker.y < 0 || seeker.x >= pMap->map.cols || seeker.y >= pMap->map.rows ||
-			pMap->map.map[seeker.x][seeker.y] == WALL || map_visited[seeker.x][seeker.y] == '*')
+	if (seeker.x < 0 || seeker.y < 0
+		|| seeker.x >= pMap->map.rows
+		|| seeker.y >= pMap->map.cols
+		|| pMap->map.map[seeker.x][seeker.y] == WALL
+		|| map_visited[seeker.x][seeker.y] == 'O')
 		return (0);
-	if (seeker.x ==  to_find.x && seeker.y == to_find.y)
-		return 1;
-	map_visited[seeker.x][seeker.y] = '*';
-	if (flood_fill(pMap, map_visited, (t_axis){seeker.x - 1, seeker.y}, to_find) || flood_fill(pMap, map_visited, (t_axis){seeker.x + 1, seeker.y}, to_find) || flood_fill(pMap, map_visited, (t_axis){seeker.x, seeker.y + 1}, to_find) || flood_fill(pMap, map_visited, (t_axis){seeker.x, seeker.y - 1}, to_find))
-			return 1;
+	if (seeker.x == to_find.x && seeker.y == to_find.y)
+		return (1);
+	map_visited[seeker.x][seeker.y] = 'O';
+	if (flood_fill(pMap, map_visited,
+			(t_axis){seeker.x - 1, seeker.y}, to_find)
+		|| flood_fill(pMap, map_visited,
+			(t_axis){seeker.x, seeker.y + 1}, to_find)
+		|| flood_fill(pMap, map_visited,
+			(t_axis){seeker.x + 1, seeker.y}, to_find)
+		|| flood_fill(pMap, map_visited,
+			(t_axis){seeker.x, seeker.y - 1}, to_find))
+		return (1);
 	return (0);
 }
 
 int	check_elements_loop(char **map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	while(map[i] != NULL)
+	while (map[i] != NULL)
 	{
 		j = 0;
-		while(map[i][j] != '\0')
+		while (map[i][j] != '\0')
 		{
-			if(!check_element(map[i][j]))
-				return 0;
+			if (!check_element(map[i][j]))
+				return (0);
 			j++;
 		}
 		i++;
 	}
-	return 1;
+	return (1);
 }
 
-int check_elem_number(char **map)
+int	check_elem_number(char **map)
 {
 	int	player_nbr;
 	int	exit_nbr;
 
 	player_nbr = count_elements(map, PLAYER);
 	exit_nbr = count_elements(map, EXIT);
-	if(player_nbr != 1 || exit_nbr != 1)
-		return 0;
-	return 1;
+	if (player_nbr != 1 || exit_nbr != 1)
+		return (0);
+	return (1);
 }
 
 int	check_if_reachable(t_container *pContainer)
 {
-	/*TODO bisogna controllare che il flood fill funzioni correttamente*/
-	char **map_copy;
-	int i = 0;
+	char	**map_copy;
+	int		i;
 
+	i = 0;
 	map_copy = (char **)ft_calloc(pContainer->map.rows, sizeof(char *));
 	while (i < pContainer->map.rows)
 	{
 		map_copy[i++] = (char *)ft_calloc(pContainer->map.cols, sizeof(char));
 	}
-	reset_matrix_to_x(map_copy);
+	reset_matrix_to_x(map_copy, pContainer->map.cols, pContainer->map.rows);
 	if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos, pContainer->map.exit_pos))
-		return (0);
+			return (0);
 	i = -1;
+	reset_matrix_to_x(map_copy, pContainer->map.cols, pContainer->map.rows);
 	while (++i < pContainer->map.collectibles_count)
 	{
 		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos, pContainer->map.collectible_pos[i]))
 			return (0);
-		reset_matrix_to_x(map_copy);
+		reset_matrix_to_x(map_copy, pContainer->map.cols, pContainer->map.rows);
 	}
 	i = -1;
 	while (++i < pContainer->map.enemies_count)
 	{
 		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos, pContainer->map.enemy_pos[i]))
 			return (0);
-		reset_matrix_to_x(map_copy);
+		reset_matrix_to_x(map_copy, pContainer->map.cols, pContainer->map.rows);
 	}
 	return (1);
 }

@@ -21,66 +21,6 @@ int	check_element(char c)
 		return (0);
 }
 
-int	count_elements(char **mtx, char c)
-{
-	int	rows;
-	int	cols;
-	int	element_nbr;
-
-	rows = 0;
-	element_nbr = 0;
-	while (mtx[rows] != NULL)
-	{
-		cols = 0;
-		while (mtx[rows][cols] != '\0')
-		{
-			if (mtx[rows][cols] == c)
-				element_nbr++;
-			cols++;
-		}
-		rows++;
-	}
-	return (element_nbr);
-}
-
-int	count_cols(char **mtx)
-{
-	int	i;
-
-	i = 0;
-	return (ft_strlen(mtx[i]));
-
-}
-
-int	count_rows(char **mtx)
-{
-	int	i;
-
-	i = 0;
-	while (mtx[i] != NULL)
-		i++;
-	return (i);
-}
-
-char** ft_copy_mtx(char** mtx)
-{
-	char** res;
-	int rows;
-	int cols;
-
-	rows = -1;
-	res = ft_calloc(count_rows(mtx) , sizeof(char*));
-	while(mtx[++rows])
-	{
-		cols = -1;
-		while(mtx[rows][++cols])
-		{
-			res[rows] = ft_strdup(mtx[rows]);
-		}
-	}
-	return (res);
-}
-
 int	print_error(int error_nbr)
 {
 	if (error_nbr == -1)
