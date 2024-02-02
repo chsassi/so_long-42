@@ -12,6 +12,7 @@
 
 #include "so_long.h"
 
+
 void ft_print_structs(t_container	*vars)
 {
 	int i;

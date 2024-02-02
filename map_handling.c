@@ -77,20 +77,18 @@ int	check_array_reachability(t_container *pContainer, char **map_copy)
 			return (0);
 		reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
 	}
+	return (1);
 }
 
 int	check_if_reachable(t_container *pContainer)
 {
 	char	**map_copy;
-	int		i;
 
-	i = 0;
-	mtx_alloc(map_copy, pContainer->map.rows, pContainer->map.cols);
+	map_copy = mtx_alloc(pContainer->map.map, pContainer->map.rows, pContainer->map.cols);
 	reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
 	if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos,
 			pContainer->map.exit_pos))
 		return (0);
-	i = -1;
 	reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
 	if (check_array_reachability(pContainer, map_copy) == 0)
 		return (0);

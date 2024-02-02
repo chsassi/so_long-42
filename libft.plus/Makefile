@@ -23,6 +23,7 @@ GREEN=\033[0;32m
 RED=\033[0;31m
 BLUE=\033[0;34m
 YELLOW=\033[0;33m
+RESET=\033[0m
 
 SRC = $(CHAR_HAND)/ft_isalnum.c \
 		$(CHAR_HAND)/ft_isalpha.c \
@@ -74,7 +75,7 @@ all: PRINTF_COMP GNL_COMP $(NAME)
 
 $(NAME): $(OBJ) 
 	$(COMPILE) $(SRC) $(EVERY_INCLUDES)
-	@echo "$(BLUE)LIBFT COMPILED! 📖✅"
+	@echo "$(BLUE)	LIBFT COMPILED! 📖✅$(RESET)"
 
 PRINTF_COMP:
 	$(MAKE) -C $(PRINTF)
@@ -94,7 +95,7 @@ fclean: clean
 	@$(RM) ./*.o
 	@$(RM) $(PRINTF)/*.o
 	@$(RM) $(GET_NEXT_LINE)/*.o
-	@echo "$(RED)LIBFT DESTROYED! 📖✅"
+	@echo "$(RED)	LIBFT DESTROYED! 📖✅$(RESET)"
 
 
 re: fclean all $(PRINTF) $(GET_NEXT_LINE)

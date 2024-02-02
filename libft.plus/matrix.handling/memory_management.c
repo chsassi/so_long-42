@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	mtx_alloc(char **mtx, int rows, int cols)
+char	**mtx_alloc(char **mtx, int rows, int cols)
 {
 	int	i;
 
@@ -27,6 +27,7 @@ void	mtx_alloc(char **mtx, int rows, int cols)
 			ft_printf("Errore during col allocation.\n");
 		i++;
 	}
+	return (mtx);
 }
 
 char	**copy_mtx(char** mtx)
