@@ -21,6 +21,18 @@ int	check_element(char c)
 		return (0);
 }
 
+int	check_elem_number(char **map)
+{
+	int	player_nbr;
+	int	exit_nbr;
+
+	player_nbr = count_elements(map, PLAYER);
+	exit_nbr = count_elements(map, EXIT);
+	if (player_nbr != 1 || exit_nbr != 1)
+		return (0);
+	return (1);
+}
+
 int	print_error(int error_nbr)
 {
 	if (error_nbr == -1)

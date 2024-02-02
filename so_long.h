@@ -76,7 +76,7 @@ typedef struct s_map
 
 typedef struct s_container
 {
-	void	*mlx;
+	void	*mlx; //mlx
 	void	*window;
 	void	*player[4];
 	void	*floor;
@@ -127,9 +127,10 @@ t_axis	*enemies_position(char **mtx, t_container *pContainer);
 void	init_element_position(char **mtx, t_container *pContainer);
 
 /* Movement */
-int		check_new_move(t_container *pContainer, char** map_copy, int flag);
-void	handle_player_move(t_container *pContainer,char** map_copy, int flag);
-void	update_player_pos(t_container *pContainer,char** map_copy, int keycode);
+int		check_new_move(t_container *pContainer, char **map_copy, int flag);
+void	handle_player_move(t_container *pContainer, char **map_copy, int flag);
+void	update_player_pos(t_container *pContainer,
+			char **map_copy, int keycode);
 
 /* Endgame */
 void	free_images(t_container *pContainer);
@@ -143,6 +144,7 @@ void	init_all_innit(t_container *pContainer, char *path);
 
 /* Utils */
 int		check_element(char c);
+int		check_elem_number(char **map);
 int		print_error(int error_nbr);
 
 #endif

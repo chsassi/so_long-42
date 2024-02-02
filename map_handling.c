@@ -57,16 +57,26 @@ int	check_elements_loop(char **map)
 	return (1);
 }
 
-int	check_elem_number(char **map)
+int	check_array_reachability(t_container *pContainer, char **map_copy)
 {
-	int	player_nbr;
-	int	exit_nbr;
+	int		i;
 
-	player_nbr = count_elements(map, PLAYER);
-	exit_nbr = count_elements(map, EXIT);
-	if (player_nbr != 1 || exit_nbr != 1)
-		return (0);
-	return (1);
+	i = 0;
+	while (++i < pContainer->map.collectibles_count)
+	{
+		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos,
+				pContainer->map.collectible_pos[i]))
+			return (0);
+		reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
+	}
+	i = -1;
+	while (++i < pContainer->map.enemies_count)
+	{
+		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos,
+				pContainer->map.enemy_pos[i]))
+			return (0);
+		reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
+	}
 }
 
 int	check_if_reachable(t_container *pContainer)
@@ -75,46 +85,34 @@ int	check_if_reachable(t_container *pContainer)
 	int		i;
 
 	i = 0;
-	map_copy = (char **)ft_calloc(pContainer->map.rows, sizeof(char *));
-	while (i < pContainer->map.rows)
-	{
-		map_copy[i++] = (char *)ft_calloc(pContainer->map.cols, sizeof(char));
-	}
-	reset_matrix_to_x(map_copy, pContainer->map.cols, pContainer->map.rows);
-	if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos, pContainer->map.exit_pos))
-			return (0);
+	mtx_alloc(map_copy, pContainer->map.rows, pContainer->map.cols);
+	reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
+	if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos,
+			pContainer->map.exit_pos))
+		return (0);
 	i = -1;
-	reset_matrix_to_x(map_copy, pContainer->map.cols, pContainer->map.rows);
-	while (++i < pContainer->map.collectibles_count)
-	{
-		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos, pContainer->map.collectible_pos[i]))
-			return (0);
-		reset_matrix_to_x(map_copy, pContainer->map.cols, pContainer->map.rows);
-	}
-	i = -1;
-	while (++i < pContainer->map.enemies_count)
-	{
-		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos, pContainer->map.enemy_pos[i]))
-			return (0);
-		reset_matrix_to_x(map_copy, pContainer->map.cols, pContainer->map.rows);
-	}
+	reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
+	if (check_array_reachability(pContainer, map_copy) == 0)
+		return (0);
 	return (1);
 }
 
-int check_map_validity(t_container *pContainer)
+int	check_map_validity(t_container *pContainer)
 {
-	if(!valid_cols(pContainer->map.map) || !valid_rows(pContainer->map.map) ||
-		!check_rectangle(pContainer->map.map, pContainer->map.rows, pContainer->map.cols))
+	if (!valid_cols(pContainer->map.map) || !valid_rows(pContainer->map.map)
+		|| !check_rectangle(pContainer->map.map,
+			pContainer->map.rows, pContainer->map.cols))
 	{
 		print_error(-1);
 		return (0);
 	}
-	if(!check_elements_loop(pContainer->map.map) || !check_elem_number(pContainer->map.map))
+	if (!check_elements_loop(pContainer->map.map)
+		|| !check_elem_number(pContainer->map.map))
 	{
 		print_error(-2);
 		return (0);
 	}
-	if(!check_if_reachable(pContainer))
+	if (!check_if_reachable(pContainer))
 	{
 		print_error(-3);
 		return (0);
@@ -166,7 +164,8 @@ int check_map_validity(t_container *pContainer)
 		}
 		i++;
 	}
-	i = flood_fill(&pContainer, map_visited, pContainer.map.player_pos, pContainer.map.exit_pos);
+	i = flood_fill(&pContainer, map_visited,
+		pContainer.map.player_pos, pContainer.map.exit_pos);
 	printf("RISULTATO FINALE PRE CANNA%i\n", i);
 
 }*/

@@ -44,7 +44,7 @@ clean:
 
 fclean: clean
 	make clean -C $(MINILIBX)
-	make fclean -C $(LIBFT_DIR)
+	make clean -C $(LIBFT_DIR)/../*.o
 
 	$(RM) $(NAME) $(NAMEA)
 
