@@ -63,7 +63,7 @@ void	render_sprite_on_mtx(t_container *pContainer, int rows, int cols)
 			pContainer->exit, cols * 32, rows * 32);
 	else if (pContainer->map.map[rows][cols] == PLAYER)
 		mlx_put_image_to_window(pContainer->mlx, pContainer->window,
-			pContainer->player[0], cols * 32, rows * 32);
+			pContainer->player[3], cols * 32, rows * 32);
 	else if (pContainer->map.map[rows][cols] == ENEMY)
 		mlx_put_image_to_window(pContainer->mlx, pContainer->window,
 			pContainer->enemy, cols * 32, rows * 32);
@@ -86,12 +86,11 @@ int	render_sprite_loop(t_container *pContainer)
 
 int	insert_images(t_container *pContainer)
 {
-	if (pContainer->map.exit == 1)
+/* 	if (pContainer->map.exit == 1)
 		pContainer->map.map[pContainer->map.exit_pos.y]
 		[pContainer->map.exit_pos.x] = EXIT;
 	else
-		pContainer->map.map[pContainer->map.exit_pos.y]
-		[pContainer->map.exit_pos.x] = FLOOR;
+		pContainer->map.map[pContainer->map.exit_pos.y][pContainer->map.exit_pos.x] = FLOOR; */
 	render_player_image(pContainer);
 	render_element_image(pContainer);
 	render_sprite_loop(pContainer);

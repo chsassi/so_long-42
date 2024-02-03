@@ -13,21 +13,12 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "./mlx/mlx.h"
-# include "./mlx/mlx_int.h"
-# include "./libft.plus/headers/libft.h"
-# include "./libft.plus/headers/ft_printf.h"
-# include "./libft.plus/headers/gnl.h"
+# include "mlx.h"
+# include "mlx_int.h"
+# include <libft.h>
 # include <X11/Xlib.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
-# include <stdio.h>
-# include <stddef.h>
-# include <strings.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <limits.h>
 
 # define KEY_W 119
 # define KEY_A 97
@@ -43,6 +34,7 @@
 
 # define SPRITE_WIDTH 32
 # define SPRITE_HEIGHT 32
+# define HB_SIZE 25
 
 # define PLAYER 'P'
 # define COLLECTIBLE 'C'

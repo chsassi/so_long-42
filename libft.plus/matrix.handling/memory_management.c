@@ -19,12 +19,12 @@ char	**mtx_alloc(char **mtx, int rows, int cols)
 	i = 0;
 	mtx = (char**)malloc(rows * sizeof(char*));
 	if (!mtx)
-		ft_printf("Errore during row allocation.\n");
+		ft_printf("Error during row allocation.\n");
 	while (i < rows)
 	{
 		mtx[i] = (char *)malloc(cols * sizeof(char));
 		if (!mtx[i])
-			ft_printf("Errore during col allocation.\n");
+			ft_printf("Error during col allocation.\n");
 		i++;
 	}
 	return (mtx);

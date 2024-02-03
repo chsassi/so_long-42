@@ -1,27 +1,3 @@
-NAME = libft.a
-CC = cc
-HEADERS = ./headers
-CFLAGS = -Wall -Wextra -Werror -I$(HEADERS)
-COMPILE = $(CC) $(CFLAGS) -c 
-ARCHIVE = ar rc $(NAME)
-
-CHAR_HAND = ./char.handling
-CONVERSIONS = ./conversions
-PRINTF = ./ft_printf
-GET_NEXT_LINE = ./get_next_line
-LIST_HAND = ./list.handling
-MATRIX_HAND = ./matrix.handling
-MEMORY_HAND = ./memory.handling
-PRINTS = ./prints
-STRING_HAND = ./string.handling
-
-
-GREEN=\033[0;32m
-RED=\033[0;31m
-BLUE=\033[0;34m
-YELLOW=\033[0;33m
-RESET=\033[0m
-
 SRC = ./char.handling/ft_isalnum.c \
 	./char.handling/ft_isalpha.c \
 	./char.handling/ft_isascii.c \
@@ -80,24 +56,4 @@ SRC = ./char.handling/ft_isalnum.c \
 	./string.handling/ft_strtrim.c \
 	./string.handling/ft_substr.c
 
-OBJ = ${SRC:.c=.o}
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	@echo "$(BLUE)	LIBFT COMPILED! 📖✅$(RESET)"
-	@$(ARCHIVE) $(OBJ)
-RM = rm -f
-
-clean:
-	@$(RM) $(OBJ)
-
-fclean: clean
-	@$(RM) */**/*.o
-	@$(RM) $(NAME)
-	@echo "$(RED)	LIBFT DESTROYED! 📖✅$(RESET)"
-
-re: fclean all
-
-# .SILENT:
-.PHONY: all clean fclean re
+SRC_BONUS = 

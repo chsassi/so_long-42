@@ -84,7 +84,7 @@ int	check_if_reachable(t_container *pContainer)
 {
 	char	**map_copy;
 
-	map_copy = mtx_alloc(pContainer->map.map, pContainer->map.rows, pContainer->map.cols);
+	map_copy = copy_mtx(pContainer->map.map);
 	reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
 	if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos,
 			pContainer->map.exit_pos))

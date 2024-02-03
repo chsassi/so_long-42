@@ -1,17 +1,15 @@
 NAME = so_long
-NAME_A = libso_long.a
 
 CC = cc
-CFLAGS = -Wextra -Werror -Wall -g
+CFLAGS = -Wextra -Werror -Wall -g -I$(HEADER) -Imlx
 ARCHIVE = ar rc $(NAME)
 RM = rm -f
+HEADER = ./libft.plus/headers
 
 MINILIBX = ./mlx
 LIBFT_DIR = ./libft.plus
-LIBFT_A = ./libft.a
-MLX_A = $(MINILIBX)/libmlx.a
+MLX_A = -L$(MINILIBX) -lmlx
 MLXFLAGS = -lX11 -lXext -lm
-HEADER = ./libft.plus/headers
 
 GREEN=\033[0;32m
 RED=\033[0;31m
@@ -32,16 +30,13 @@ SRC =   ./main.c \
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME_A)
+all: $(NAME)
 
-$(NAME_A): mlx_comp Libft_comp $(OBJ)
-	$(CC) $(CFLAGS) -I. -I$(HEADER) $(OBJ) -o $(NAME) $(MLX_A) $(MLXFLAGS) -L. -lso_long
-	@echo "$(GREEN)		Game compiled! 🚀✅$(RESET)"
-
-mlx_comp:
-	make -C $(MINILIBX)
-Libft_comp:
+$(NAME): $(OBJ)
 	make all -C $(LIBFT_DIR)
+	make -C $(MINILIBX)
+	$(CC) $(CFLAGS) -I. -I$(HEADER) $(OBJ) $(MLX_A) $(MLXFLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
+	@echo "$(GREEN)		Game compiled! 🚀✅$(RESET)"
 
 clean:
 	$(RM) $(OBJ)
@@ -52,6 +47,6 @@ fclean: clean
 	make clean -C $(MINILIBX)
 	make fclean -C $(LIBFT_DIR)
 
-	$(RM) $(NAME) $(NAME_A)
+	$(RM) $(NAME)
 
 re: fclean all

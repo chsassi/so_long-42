@@ -39,7 +39,6 @@ void	init_map(t_map *pMap)
 	pMap->player_pos.x = 0;
 	pMap->player_pos.y = 0;
 	pMap->moves = 0;
-	pMap->exit = 0;
 	pMap->enemies = 0;
 	pMap->enemies_count = 0;
 }
@@ -73,7 +72,7 @@ void	init_all_innit(t_container *pContainer, char *path)
 	pContainer->mlx = mlx_init();
 	pContainer->window = mlx_new_window(pContainer->mlx,
 			pContainer->map.cols * pContainer->sprite_h,
-			pContainer->map.rows * pContainer->sprite_w, "so_long");
+			pContainer->map.rows * pContainer->sprite_w + HB_SIZE, "so_long");
 	if (!pContainer->window)
 		return ;
 }
