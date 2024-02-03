@@ -72,7 +72,7 @@ void	init_all_innit(t_container *pContainer, char *path)
 	pContainer->mlx = mlx_init();
 	pContainer->window = mlx_new_window(pContainer->mlx,
 			pContainer->map.cols * pContainer->sprite_h,
-			pContainer->map.rows * pContainer->sprite_w + HB_SIZE, "so_long");
+			pContainer->map.rows * pContainer->sprite_w + EXTRA_WIN, "so_long");
 	if (!pContainer->window)
 		return ;
 }

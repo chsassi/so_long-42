@@ -34,7 +34,7 @@
 
 # define SPRITE_WIDTH 32
 # define SPRITE_HEIGHT 32
-# define HB_SIZE 25
+# define EXTRA_WIN 20
 
 # define PLAYER 'P'
 # define COLLECTIBLE 'C'

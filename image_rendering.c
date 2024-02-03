@@ -81,6 +81,8 @@ int	render_sprite_loop(t_container *pContainer)
 		while (pContainer->map.map[rows][++cols])
 			render_sprite_on_mtx(pContainer, rows, cols);
 	}
+	mlx_string_put(pContainer->mlx, pContainer->window,
+		5, pContainer->map.rows * pContainer->sprite_w + (EXTRA_WIN / 2), 0xFFFFFF, "Moves: ");
 	return (0);
 }
 
