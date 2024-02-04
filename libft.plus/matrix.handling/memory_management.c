@@ -12,17 +12,18 @@
 
 #include "libft.h"
 
-char	**mtx_alloc(char **mtx, int rows, int cols)
+char	**mtx_alloc(int rows, int cols)
 {
-	int	i;
+	int		i;
+	char	**mtx;
 
 	i = 0;
-	mtx = (char**)malloc(rows * sizeof(char*));
+	mtx = ft_calloc(rows, sizeof(char*));
 	if (!mtx)
 		ft_printf("Error during row allocation.\n");
 	while (i < rows)
 	{
-		mtx[i] = (char *)malloc(cols * sizeof(char));
+		mtx[i] = ft_calloc(cols, sizeof(char));
 		if (!mtx[i])
 			ft_printf("Error during col allocation.\n");
 		i++;
@@ -36,17 +37,9 @@ char	**copy_mtx(char** mtx)
 	int rows;
 
 	rows = -1;
-	res = (char **)ft_calloc(count_rows(mtx) , sizeof(char*));
-	while(mtx[++rows])
-	{
+	res = ft_calloc(count_rows(mtx), sizeof(char *));
+	while (mtx[++rows])
 		res[rows] = ft_strdup(mtx[rows]);
-	}
-/* 	int i = 0;
-	while(i < count_rows(mtx))
-	{
-		printf("%s", mtx[i++]);
-		printf("\n");
-	} */
 	return (res);
 }
 

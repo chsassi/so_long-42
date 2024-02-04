@@ -399,7 +399,7 @@ int		ft_tolower(int c);
  * @param rows mtx rows.
  * @param cols mtx cols.
  */
-char	**mtx_alloc(char **mtx, int rows, int cols);
+char	**mtx_alloc(int rows, int cols);
 
 /**
  * @brief Populates an entire matrix with 'X' - useful for floodfill.
