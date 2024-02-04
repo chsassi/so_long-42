@@ -32,9 +32,12 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+libft:
 	make all -C $(LIBFT_DIR)
-	make -C $(MINILIBX)
+
+
+$(NAME): libft $(OBJ)
+	make all -C $(MINILIBX)
 	$(CC) $(CFLAGS) -I. -I$(HEADER) $(OBJ) $(MLX_A) $(MLXFLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
 	@echo "$(GREEN)		Game compiled! 🚀✅$(RESET)"
 
@@ -46,7 +49,6 @@ clean:
 fclean: clean
 	make clean -C $(MINILIBX)
 	make fclean -C $(LIBFT_DIR)
-
 	$(RM) $(NAME)
 
 re: fclean all

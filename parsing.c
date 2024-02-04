@@ -45,6 +45,7 @@ char	*get_line(char *path)
 			break ;
 		}
 		tmp = strjoin_gnl(&res, line);
+		free(line);
 		res = tmp;
 	}
 	close(fd);
@@ -61,7 +62,7 @@ char	**get_mtx(char *path)
 	{
 		free(tmp);
 		print_error(-7);
-		return (0);
+		exit(0);
 	}
 	res = ft_split(tmp, '\n');
 	free(tmp);

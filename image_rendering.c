@@ -88,11 +88,13 @@ int	render_sprite_loop(t_container *pContainer)
 
 int	insert_images(t_container *pContainer)
 {
-/* 	if (pContainer->map.exit == 1)
-		pContainer->map.map[pContainer->map.exit_pos.y]
-		[pContainer->map.exit_pos.x] = EXIT;
+	if (pContainer->map.exit == 1)
+	{
+		pContainer->map.map[pContainer->map.exit_pos.x]
+		[pContainer->map.exit_pos.y] = EXIT;
+	}
 	else
-		pContainer->map.map[pContainer->map.exit_pos.y][pContainer->map.exit_pos.x] = FLOOR; */
+		pContainer->map.map[pContainer->map.exit_pos.x][pContainer->map.exit_pos.y] = FLOOR;
 	render_player_image(pContainer);
 	render_element_image(pContainer);
 	render_sprite_loop(pContainer);

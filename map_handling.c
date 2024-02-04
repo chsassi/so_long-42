@@ -61,7 +61,7 @@ int	check_array_reachability(t_container *pContainer, char **map_copy)
 {
 	int		i;
 
-	i = 0;
+	i = -1;
 	while (++i < pContainer->map.collectibles_count)
 	{
 		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos,
@@ -83,15 +83,30 @@ int	check_array_reachability(t_container *pContainer, char **map_copy)
 int	check_if_reachable(t_container *pContainer)
 {
 	char	**map_copy;
+ 	int i; 
 
 	map_copy = copy_mtx(pContainer->map.map);
 	reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
 	if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos,
 			pContainer->map.exit_pos))
+	{
+		free_mtx(map_copy);
 		return (0);
+	}
 	reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
-	if (check_array_reachability(pContainer, map_copy) == 0)
+	if (!check_array_reachability(pContainer, map_copy))
+	{
+		free_mtx(map_copy);
 		return (0);
+	}
+	i = 0;
+	while(map_copy && i < pContainer->map.rows)
+	{
+		free(map_copy[i]);
+		map_copy[i] = NULL;
+		i++;
+	}
+	free(map_copy); 
 	return (1);
 }
 

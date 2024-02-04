@@ -34,32 +34,34 @@ char	**copy_mtx(char** mtx)
 {
 	char** res;
 	int rows;
-	int cols;
 
 	rows = -1;
-	res = ft_calloc(count_rows(mtx) , sizeof(char*));
+	res = (char **)ft_calloc(count_rows(mtx) , sizeof(char*));
 	while(mtx[++rows])
 	{
-		cols = -1;
-		while(mtx[rows][++cols])
-			res[rows] = ft_strdup(mtx[rows]);
+		res[rows] = ft_strdup(mtx[rows]);
 	}
+/* 	int i = 0;
+	while(i < count_rows(mtx))
+	{
+		printf("%s", mtx[i++]);
+		printf("\n");
+	} */
 	return (res);
 }
 
 void	free_mtx(char **mtx)
 {
-	size_t	i;
+	int	i;
+	int len;
 
+	len = count_rows(mtx);
 	i = 0;
-	if (!mtx)
-		return ;
-	while (mtx[i])
+	while (i < len)
 	{
 		free(mtx[i]);
 		mtx[i] = NULL;
 		i++;
 	}
 	free(mtx);
-	mtx = NULL;
 }

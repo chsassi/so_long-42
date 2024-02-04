@@ -44,23 +44,26 @@ void ft_print_structs(t_container	*vars)
 }
 
 
-/* int	execute(t_container *pContainer, int keycode)
+int	execute(t_container *pContainer, int keycode)
 {
-	char	**map_copy;
-	int player_x;
-	int player_y;
-	
-	player_x = pContainer->map.player_pos.x;
-	player_y = pContainer->map.player_pos.y;
-	map_copy = copy_mtx(pContainer->map.map);
+/* 	char	**map_copy;
+ */
+	printf("%i", keycode);
+	if(keycode == KEY_A)
+	{
+		pContainer->map.map[pContainer->map.player_pos.x - 1][pContainer->map.player_pos.y] = PLAYER;
+		pContainer->map.map[pContainer->map.player_pos.x][pContainer->map.player_pos.y] = FLOOR;
+	}
+
+/* 	map_copy = copy_mtx(pContainer->map.map);
 	update_player_pos(pContainer, map_copy, keycode);
 	update_coll_pos(pContainer, map_copy, keycode);
 	update_enemy_pos();
-		check_map_copy();
-		update_original_map(pContainer);
-		return 1;
-} */
-
+	check_map_copy();
+	update_original_map(pContainer);
+	*/
+	return 1;
+	} 
 
 int	main(int ac, char** av)
 {
@@ -74,7 +77,8 @@ int	main(int ac, char** av)
 		if(!check_map_validity(&pContainer))
 			return 0;
 		insert_images(&pContainer);
-		// mlx_hook(pContainer.window, 2, 1L<<0, &execute, &pContainer);
+		mlx_hook(pContainer.window, 2, 1L<<0, &execute, &pContainer);
+		// mlx_key_hook(pContainer.window, &execute, &pContainer);
 		mlx_loop_hook(pContainer.mlx, &insert_images, &pContainer);
 		mlx_loop(pContainer.mlx);
 	}
