@@ -17,16 +17,16 @@ BLUE=\033[0;34m
 YELLOW=\033[0;33m
 RESET=\033[0m
 
-SRC =   ./main.c \
-		./init.c \
-		./map_handling.c \
-		./image_rendering.c \
-		./position.c \
-		./movement.c \
-		./parsing.c \
-		./endgame.c \
-		./map_checks.c \
-		./utils.c
+SRC =   ./src/main.c \
+		./src/init.c \
+		./src/map_handling.c \
+		./src/image_rendering.c \
+		./src/position.c \
+		./src/movement.c \
+		./src/parsing.c \
+		./src/endgame.c \
+		./src/map_checks.c \
+		./src/utils.c
 
 OBJ = $(SRC:.c=.o)
 
