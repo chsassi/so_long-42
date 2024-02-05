@@ -66,7 +66,10 @@ int	check_array_reachability(t_container *pContainer, char **map_copy)
 	{
 		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos,
 				pContainer->map.collectible_pos[i]))
+		{
+			ft_printf("Collectible not reachable\n");
 			return (0);
+		}
 		reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
 	}
 	i = -1;
@@ -74,7 +77,10 @@ int	check_array_reachability(t_container *pContainer, char **map_copy)
 	{
 		if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos,
 				pContainer->map.enemy_pos[i]))
+		{
+			ft_printf("Enemy not reachable\n");
 			return (0);
+		}
 		reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
 	}
 	return (1);
@@ -83,13 +89,14 @@ int	check_array_reachability(t_container *pContainer, char **map_copy)
 int	check_if_reachable(t_container *pContainer)
 {
 	char	**map_copy;
- 	int i; 
+	int		i;
 
 	map_copy = copy_mtx(pContainer->map.map);
 	reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
 	if (!flood_fill(pContainer, map_copy, pContainer->map.player_pos,
 			pContainer->map.exit_pos))
 	{
+		ft_printf("Exit not reachable\n");
 		free_mtx(map_copy);
 		return (0);
 	}
@@ -106,7 +113,7 @@ int	check_if_reachable(t_container *pContainer)
 		map_copy[i] = NULL;
 		i++;
 	}
-	free(map_copy); 
+	free(map_copy);
 	return (1);
 }
 
