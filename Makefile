@@ -35,10 +35,11 @@ all: $(NAME)
 libft:
 	make all -C $(LIBFT_DIR)
 
+
 $(NAME): libft $(OBJ)
 	make all -C $(MINILIBX)
 	$(CC) $(CFLAGS) -I. -I$(HEADER) $(OBJ) $(MLX_A) $(MLXFLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
-	@echo "$(GREEN)		Game compiled! 🚀✅$(RESET)"
+	@echo "$(GREEN)	SO LONG COMPILED! 🚀✅$(RESET)"
 
 RM = rm -f
 
