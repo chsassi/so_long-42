@@ -26,8 +26,8 @@ t_axis	player_position(char **mtx)
 		{
 			if (mtx[rows][cols] == 'P')
 			{
-				player_pos.x = rows;
-				player_pos.y = cols;
+				player_pos.x = cols;
+				player_pos.y = rows;
 			}
 			cols++;
 		}
@@ -50,8 +50,8 @@ t_axis	exit_potision(char **mtx)
 		{
 			if (mtx[rows][cols] == EXIT)
 			{
-				exit_pos.x = rows;
-				exit_pos.y = cols;
+				exit_pos.x = cols;
+				exit_pos.y = rows;
 			}
 			cols++;
 		}
@@ -80,8 +80,8 @@ t_axis	*collectibles_position(char **mtx, t_container *pContainer)
 		{
 			if (mtx[rows][cols] == COLLECTIBLE)
 			{
-				collectibles_pos[i].x = rows;
-				collectibles_pos[i].y = cols;
+				collectibles_pos[i].x = cols;
+				collectibles_pos[i].y = rows;
 				i++;
 			}
 		}
@@ -109,8 +109,8 @@ t_axis	*enemies_position(char **mtx, t_container *pContainer)
 		{
 			if (mtx[rows][cols] == ENEMY)
 			{
-				enemy_pos[i].x = rows;
-				enemy_pos[i].y = cols;
+				enemy_pos[i].x = cols;
+				enemy_pos[i].y = rows;
 				i++;
 			}
 		}

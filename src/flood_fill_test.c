@@ -1,8 +1,6 @@
 #include "so_long.h"
 #include <stdio.h>
 
-
-
 /* static int	flood_fill2(t_container *pMap, char **map_visited, t_axis seeker, t_axis to_find)
 {
 	for(int i = 0; i < pMap->map.rows; i++)
@@ -36,6 +34,35 @@
 		write(1, "\n", 1);
 	}
 
+void ft_print_structs(t_container *pContainer)
+{
+	int i;
+
+	i = 0;
+	ft_printf("map rows : %i\n", pContainer->map.rows);
+	ft_printf("map cols: %i\n", pContainer->map.cols);
+	ft_printf("map moves: %i\n", pContainer->map.moves);
+	ft_printf("map collectibles: %i\n", pContainer->map.collectibles);
+	ft_printf("map exit: %i\n", pContainer->map.exit);
+	ft_printf("map enemies: %i\n", pContainer->map.enemies);
+	ft_printf("map player.x: %i\n", pContainer->map.player_pos.x);
+	ft_printf("map player.y: %i\n", pContainer->map.player_pos.y);
+	ft_printf("exit pos.x: %i\n", pContainer->map.exit_pos.x);
+	ft_printf("exit pos.y: %i\n", pContainer->map.exit_pos.y);
+	while(i < pContainer->map.collectibles_count)
+	{
+		ft_printf("collectible pos.x: %i\n", pContainer->map.collectible_pos[i].x);
+		ft_printf("collectible pos.y: %i\n", pContainer->map.collectible_pos[i].y);
+		i++;
+	}
+	i = 0;
+	while(i < pContainer->map.enemies_count)
+	{
+		ft_printf("enemy pos.x: %i\n", pContainer->map.enemy_pos[i].x);
+		ft_printf("enemy pos.y: %i\n", pContainer->map.enemy_pos[i].y);
+		i++;
+	}
+}
 
 */
 /* int main(void)

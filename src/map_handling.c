@@ -16,14 +16,14 @@ int	flood_fill(t_container *pMap, char **map_visited,
 		t_axis seeker, t_axis to_find)
 {
 	if (seeker.x < 0 || seeker.y < 0
-		|| seeker.x >= pMap->map.rows
-		|| seeker.y >= pMap->map.cols
-		|| pMap->map.map[seeker.x][seeker.y] == WALL
-		|| map_visited[seeker.x][seeker.y] == 'O')
+		|| seeker.x >= pMap->map.cols
+		|| seeker.y >= pMap->map.rows
+		|| pMap->map.map[seeker.y][seeker.x] == WALL
+		|| map_visited[seeker.y][seeker.x] == 'O')
 		return (0);
 	if (seeker.x == to_find.x && seeker.y == to_find.y)
 		return (1);
-	map_visited[seeker.x][seeker.y] = 'O';
+	map_visited[seeker.y][seeker.x] = 'O';
 	if (flood_fill(pMap, map_visited,
 			(t_axis){seeker.x - 1, seeker.y}, to_find)
 		|| flood_fill(pMap, map_visited,

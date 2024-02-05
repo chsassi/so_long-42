@@ -35,11 +35,11 @@ void	init_map(t_map *pMap)
 	pMap->exit = 0;
 	pMap->rows = 0;
 	pMap->cols = 0;
-	pMap->collectibles = 0;
 	pMap->player_pos.x = 0;
+	pMap->player_direction = 0;
 	pMap->player_pos.y = 0;
+	pMap->collectibles_count = 0;
 	pMap->moves = 0;
-	pMap->enemies = 0;
 	pMap->enemies_count = 0;
 }
 
@@ -62,12 +62,10 @@ void	init_container(t_container *pContainer)
 
 void	init_all_innit(t_container *pContainer, char *path)
 {
-	char	**tmp_mtx;
 
-	tmp_mtx = get_mtx(path);
 	init_container(pContainer);
 	init_map(&pContainer->map);
-	pContainer->map.map = tmp_mtx;
+	pContainer->map.map = get_mtx(path);
 	init_element_position(pContainer->map.map, pContainer);
 	pContainer->mlx = mlx_init();
 	pContainer->window = mlx_new_window(pContainer->mlx,
@@ -75,4 +73,15 @@ void	init_all_innit(t_container *pContainer, char *path)
 			pContainer->map.rows * pContainer->sprite_w + EXTRA_WIN, "so_long");
 	if (!pContainer->window)
 		return ;
+}
+
+int	execute(int keycode, t_container *pContainer)
+{
+	close_window(keycode, pContainer);
+	update_player_pos(keycode, pContainer);
+	(pContainer->map.moves)++;
+	update_coll_info(pContainer);
+	handle_death(pContainer);
+	unlock_exit(pContainer);
+	return (1);
 }

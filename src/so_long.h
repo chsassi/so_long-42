@@ -30,6 +30,7 @@
 # define KEY_RIGHT 65363
 # define KEY_DOWN 65364
 
+# define MOUSE_LEFT 253
 # define KEY_ESC 65307
 
 # define SPRITE_WIDTH 32
@@ -56,10 +57,9 @@ typedef struct s_map
 	int			cols;
 	int			moves;
 	int			exit;
-	int			collectibles;
 	int			collectibles_count;
-	int			enemies;
 	int			enemies_count;
+	int			player_direction;
 	t_axis		player_pos;
 	t_axis		exit_pos;
 	t_axis		*collectible_pos;
@@ -68,7 +68,7 @@ typedef struct s_map
 
 typedef struct s_container
 {
-	void	*mlx; //mlx
+	void	*mlx;
 	void	*window;
 	void	*player[4];
 	void	*floor;
@@ -119,20 +119,23 @@ t_axis	*enemies_position(char **mtx, t_container *pContainer);
 void	init_element_position(char **mtx, t_container *pContainer);
 
 /* Movement */
-int		check_new_move(t_container *pContainer, char **map_copy, int flag);
-void	handle_player_move(t_container *pContainer, char **map_copy, int flag);
-void	update_player_pos(t_container *pContainer,
-			char **map_copy, int keycode);
+int		is_walkable(int keycode, t_container *pContainer);
+void	update_coll_info(t_container *pCont);
+void	handle_death(t_container *pCont);
+void	unlock_exit(t_container *pCont);
+void	update_player_pos(int keycode, t_container *pContainer);
 
 /* Endgame */
 void	free_images(t_container *pContainer);
 int		quit_game(t_container *pContainer);
+int		close_window(int keycode, t_container *pContainer);
 
 /* Init */
 int		check_args(int ac, char *map_file);
 void	init_map(t_map *pMap);
 void	init_container(t_container *pContainer);
 void	init_all_innit(t_container *pContainer, char *path);
+int		execute(int keycode, t_container *pContainer);
 
 /* Utils */
 int		check_element(char c);

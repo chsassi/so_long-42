@@ -18,10 +18,7 @@ void	free_images(t_container *pContainer)
 
 	i = 0;
 	while (i < 4)
-	{
-		mlx_destroy_image(pContainer->mlx, pContainer->player[i]);
-		i++;
-	}
+		mlx_destroy_image(pContainer->mlx, pContainer->player[i++]);
 	mlx_destroy_image(pContainer->mlx, pContainer->floor);
 	mlx_destroy_image(pContainer->mlx, pContainer->wall);
 	mlx_destroy_image(pContainer->mlx, pContainer->exit);
@@ -36,4 +33,11 @@ int	quit_game(t_container *pContainer)
 	mlx_destroy_display(pContainer->mlx);
 	free(pContainer->mlx);
 	exit(0);
+}
+
+int	close_window(int keycode, t_container *pContainer)
+{
+	if (keycode == KEY_ESC)
+		quit_game(pContainer);
+	return (1);
 }

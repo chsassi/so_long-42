@@ -57,6 +57,8 @@ char	**get_mtx(char *path)
 	char	*tmp;
 	char	**res;
 
+
+	res = NULL;
 	tmp = get_line(path);
 	if (!check_nl(tmp))
 	{
