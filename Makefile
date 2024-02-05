@@ -1,10 +1,10 @@
 NAME = so_long
 
 CC = cc
-CFLAGS = -Wextra -Werror -Wall -g -I$(HEADER) -Imlx
-ARCHIVE = ar rc $(NAME)
-RM = rm -f
 HEADER = ./libft.plus/headers
+CFLAGS = -Wextra -Werror -Wall -g -I$(HEADER) -Imlx
+COMPILE = $(CC) $(CFLAGS) -c 
+ARCHIVE = ar rc $(NAME)
 
 MINILIBX = ./mlx
 LIBFT_DIR = ./libft.plus
@@ -35,11 +35,12 @@ all: $(NAME)
 libft:
 	make all -C $(LIBFT_DIR)
 
-
 $(NAME): libft $(OBJ)
 	make all -C $(MINILIBX)
 	$(CC) $(CFLAGS) -I. -I$(HEADER) $(OBJ) $(MLX_A) $(MLXFLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
 	@echo "$(GREEN)		Game compiled! 🚀✅$(RESET)"
+
+RM = rm -f
 
 clean:
 	$(RM) $(OBJ)
