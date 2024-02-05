@@ -1,32 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:13:25 by chsassi           #+#    #+#             */
-/*   Updated: 2024/01/21 21:13:27 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/02/05 23:38:02 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	check_args(int ac, char *map_file)
-{
-	if (ac > 2)
-		print_error(-4);
-	else if (ac < 2)
-		print_error(-5);
-	else if (ac == 2)
-	{
-		if (ft_strncmp(&map_file[strlen_gnl(map_file) - 4], ".ber", 4) != 0)
-			print_error(-6);
-		else
-			return (1);
-	}
-	return (0);
-}
 
 void	init_map(t_map *pMap)
 {
@@ -60,9 +44,18 @@ void	init_container(t_container *pContainer)
 	pContainer->sprite_h = 32;
 }
 
+void	init_element_position(char **mtx, t_container *pContainer)
+{
+	pContainer->map.player_pos = player_position(mtx);
+	pContainer->map.exit_pos = exit_potision(mtx);
+	pContainer->map.collectible_pos = collectibles_position(mtx, pContainer);
+	pContainer->map.enemy_pos = enemies_position(mtx, pContainer);
+	pContainer->map.rows = count_rows(mtx);
+	pContainer->map.cols = count_cols(mtx);
+}
+
 void	init_all_innit(t_container *pContainer, char *path)
 {
-
 	init_container(pContainer);
 	init_map(&pContainer->map);
 	pContainer->map.map = get_mtx(path);
@@ -73,15 +66,4 @@ void	init_all_innit(t_container *pContainer, char *path)
 			pContainer->map.rows * pContainer->sprite_w + EXTRA_WIN, "so_long");
 	if (!pContainer->window)
 		return ;
-}
-
-int	execute(int keycode, t_container *pContainer)
-{
-	close_window(keycode, pContainer);
-	update_player_pos(keycode, pContainer);
-	(pContainer->map.moves)++;
-	update_coll_info(pContainer);
-	handle_death(pContainer);
-	unlock_exit(pContainer);
-	return (1);
 }

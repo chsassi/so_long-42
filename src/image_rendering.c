@@ -45,7 +45,8 @@ void	render_element_image(t_container *pContainer)
 	pContainer->wall = mlx_xpm_file_to_image(pContainer->mlx,
 			"./textures/wall.xpm",
 			&pContainer->sprite_h, &pContainer->sprite_w);
-	pContainer->map.map[pContainer->map.player_pos.y][pContainer->map.player_pos.x] = PLAYER;
+	pContainer->map.map[pContainer->map.player_pos.y]
+	[pContainer->map.player_pos.x] = PLAYER;
 }
 
 void	render_sprite_on_mtx(t_container *pContainer, int rows, int cols)
@@ -64,7 +65,8 @@ void	render_sprite_on_mtx(t_container *pContainer, int rows, int cols)
 			pContainer->exit, cols * 32, rows * 32);
 	else if (pContainer->map.map[rows][cols] == PLAYER)
 		mlx_put_image_to_window(pContainer->mlx, pContainer->window,
-			pContainer->player[pContainer->map.player_direction], cols * 32, rows * 32);
+			pContainer->player[pContainer->map.player_direction],
+			cols * 32, rows * 32);
 	else if (pContainer->map.map[rows][cols] == ENEMY)
 		mlx_put_image_to_window(pContainer->mlx, pContainer->window,
 			pContainer->enemy, cols * 32, rows * 32);
@@ -74,7 +76,7 @@ int	render_sprite_loop(t_container *pContainer)
 {
 	int		rows;
 	int		cols;
-	
+
 	rows = -1;
 	while (pContainer->map.map[++rows])
 	{
@@ -83,8 +85,8 @@ int	render_sprite_loop(t_container *pContainer)
 			render_sprite_on_mtx(pContainer, rows, cols);
 	}
 	mlx_string_put(pContainer->mlx, pContainer->window,
-		5, pContainer->map.rows * pContainer->sprite_w + (EXTRA_WIN / 2), 0xFFFFFF, "Moves: ");
-
+		5, pContainer->map.rows * pContainer->sprite_w + (EXTRA_WIN / 2),
+		0xFFFFFF, "Moves: ");
 	return (0);
 }
 
@@ -96,7 +98,8 @@ int	insert_images(t_container *pContainer)
 		[pContainer->map.exit_pos.x] = EXIT;
 	}
 	else
-		pContainer->map.map[pContainer->map.exit_pos.y][pContainer->map.exit_pos.x] = FLOOR;
+		pContainer->map.map[pContainer->map.exit_pos.y]
+		[pContainer->map.exit_pos.x] = FLOOR;
 	render_player_image(pContainer);
 	render_element_image(pContainer);
 	render_sprite_loop(pContainer);

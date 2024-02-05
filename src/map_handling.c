@@ -86,7 +86,7 @@ int	check_array_reachability(t_container *pContainer, char **map_copy)
 	return (1);
 }
 
-int	check_if_reachable(t_container *pContainer)
+int	check_reachability(t_container *pContainer)
 {
 	char	**map_copy;
 	int		i;
@@ -107,7 +107,7 @@ int	check_if_reachable(t_container *pContainer)
 		return (0);
 	}
 	i = 0;
-	while(map_copy && i < pContainer->map.rows)
+	while (map_copy && i < pContainer->map.rows)
 	{
 		free(map_copy[i]);
 		map_copy[i] = NULL;
@@ -132,60 +132,10 @@ int	check_map_validity(t_container *pContainer)
 		print_error(-2);
 		return (0);
 	}
-	if (!check_if_reachable(pContainer))
+	if (!check_reachability(pContainer))
 	{
 		print_error(-3);
 		return (0);
 	}
 	return (1);
 }
-
-/* int main(void)
-{
-	t_container	pContainer;
-	char	*tmp;
-	int		i;
-
-	char *path = "./maps/map.ber";
-	i = 0;
-	tmp = get_line(path);
-	if (!check_nl(tmp))
-	{
-		free(tmp);
-		ft_printf(-7);
-		return 0;
-	}
-	pContainer.map.map = ft_split(tmp, '\n');
-	i = 0;
-	while(pContainer.map.map[i] != NULL)
-		i++;
-	
-	pContainer.map.player_pos.x = 4;
-	pContainer.map.player_pos.y = 1;
-	pContainer.map.exit_pos.x = 1;
-	pContainer.map.exit_pos.y = 1;
-	pContainer.map.rows = 6;
-	pContainer.map.cols = 24;
-	char **map_visited = (char **)malloc(sizeof(char *) * 6);
-	i = 0;
-	while(i < 6)
-	{
-		map_visited[i] = (char *)malloc(sizeof(char) * 24);
-		i++;
-	}
-	i = 0;
-	while(i <6)
-	{
-		int j = 0;
-		while(j < 24)
-		{
-			map_visited[i][j] = '0';
-			j++;
-		}
-		i++;
-	}
-	i = flood_fill(&pContainer, map_visited,
-		pContainer.map.player_pos, pContainer.map.exit_pos);
-	printf("RISULTATO FINALE PRE CANNA%i\n", i);
-
-}*/

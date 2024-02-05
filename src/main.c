@@ -12,29 +12,40 @@
 
 #include "so_long.h"
 
-int	main(int ac, char** av)
+int	execute(int keycode, t_container *pContainer)
+{
+	close_window(keycode, pContainer);
+	update_player_pos(keycode, pContainer);
+	(pContainer->map.moves)++;
+	handle_collectibles(pContainer);
+	handle_win(pContainer);
+	handle_death(pContainer);
+	return (1);
+}
+
+int	main(int ac, char **av)
 {
 	char		*path;
-	t_container	pContainer;
+	t_container	ptr;
 
 	path = ft_strjoin("maps/", av[1]);
 	if (check_args(ac, path))
 	{
-		init_all_innit(&pContainer, path);
-		if(!check_map_validity(&pContainer))
-			return 0;
-		mlx_hook(pContainer.window, KeyPress, KeyPressMask, &execute, &pContainer);
-		mlx_hook(pContainer.window, KeyPress, KeyPressMask, &close_window, &pContainer);
-		mlx_hook(pContainer.window, 17, 1L << 17, &quit_game, &pContainer);
-		mlx_key_hook(pContainer.window, &execute, &pContainer);
-		mlx_loop_hook(pContainer.mlx, &insert_images, &pContainer);
-		mlx_loop(pContainer.mlx);
+		init_all_innit(&ptr, path);
+		if (!check_map_validity(&ptr))
+			return (0);
+		mlx_hook(ptr.window, KeyPress, KeyPressMask, &execute, &ptr);
+		mlx_hook(ptr.window, KeyPress, KeyPressMask, &close_window, &ptr);
+		mlx_hook(ptr.window, 17, 1L << 17, &quit_game, &ptr);
+		mlx_key_hook(ptr.window, &execute, &ptr);
+		mlx_loop_hook(ptr.mlx, &insert_images, &ptr);
+		mlx_loop(ptr.mlx);
 	}
 }
 
-
 /*TODO 
-	stampare a schermo il numero di collezionabili raccolti e il numero di mosse fatte
+	stampare a schermo il numero di collezionabili 
+				raccolti e il numero di mosse fatte
 	implementare il movimento dei nemici (man math.h)
 	
 	riguardare righe e colonne (lo fa chri)

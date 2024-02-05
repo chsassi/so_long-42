@@ -117,13 +117,3 @@ t_axis	*enemies_position(char **mtx, t_container *pContainer)
 	}
 	return (enemy_pos);
 }
-
-void	init_element_position(char **mtx, t_container *pContainer)
-{
-	pContainer->map.player_pos = player_position(mtx);
-	pContainer->map.exit_pos = exit_potision(mtx);
-	pContainer->map.collectible_pos = collectibles_position(mtx, pContainer);
-	pContainer->map.enemy_pos = enemies_position(mtx, pContainer);
-	pContainer->map.rows = count_rows(mtx);
-	pContainer->map.cols = count_cols(mtx);
-}
