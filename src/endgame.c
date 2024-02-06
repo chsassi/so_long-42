@@ -38,6 +38,9 @@ int	quit_game(t_container *pContainer)
 int	close_window(int keycode, t_container *pContainer)
 {
 	if (keycode == KEY_ESC)
+	{
+		ft_printf("GAME CLOSED SUCCESSFULLY");
 		quit_game(pContainer);
+	}
 	return (1);
 }

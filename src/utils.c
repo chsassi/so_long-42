@@ -67,3 +67,29 @@ int	print_error(int error_nbr)
 		ft_printf("Map contains invalid/double lines. Check parsing file\n");
 	return (0);
 }
+
+void	print_stats(t_container *pContainer)
+{
+	mlx_string_put(pContainer->mlx, pContainer->window,
+		5, pContainer->map.rows * pContainer->sprite_w + (EXTRA_WIN / 2),
+		0xFFFFFF, "Moves: ");
+	mlx_string_put(pContainer->mlx, pContainer->window,
+		45, pContainer->map.rows * pContainer->sprite_w + (EXTRA_WIN / 2),
+		0xFFFFFF, ft_itoa(pContainer->map.moves));
+	mlx_string_put(pContainer->mlx, pContainer->window,
+		45, pContainer->map.rows * pContainer->sprite_w + (EXTRA_WIN / 2),
+		0xFFFFFF, "0");
+	mlx_string_put(pContainer->mlx, pContainer->window,
+		pContainer->map.cols * pContainer->sprite_w + (EXTRA_WIN / 2), 45,
+		0xFFFFFF, "Fuel Tanks:");
+	mlx_string_put(pContainer->mlx, pContainer->window,
+		pContainer->map.cols * pContainer->sprite_w + (EXTRA_WIN / 2), 5,
+		0xFFFFFF, ft_itoa(pContainer->map.collectibles_count));
+}
+
+void	print_game_start()
+{
+	ft_printf("Welcome to so_long!\n");
+	ft_printf("Collect all the fuel tanks and get back to Earth!\n");
+	ft_printf("Be carful, there are blackholes around. Avoid them.\n\n");
+}

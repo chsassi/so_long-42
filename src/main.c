@@ -14,12 +14,12 @@
 
 int	execute(int keycode, t_container *pContainer)
 {
-	close_window(keycode, pContainer);
-	update_player_pos(keycode, pContainer);
+	handle_movement(keycode, pContainer);
 	(pContainer->map.moves)++;
 	handle_collectibles(pContainer);
 	handle_win(pContainer);
 	handle_death(pContainer);
+	close_window(keycode, pContainer);
 	return (1);
 }
 

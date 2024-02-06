@@ -20,14 +20,14 @@ void	handle_movement(int keycode, t_container *pContainer)
 	move_left(keycode, pContainer);
 }
 
-void	handle_enemies(t_container *pContainer)
-{
-	/*
+// void	handle_enemies(t_container *pContainer)
+// {
+// 	/*
 	
 	
 	
-	*/
-}
+// 	*/
+// }
 
 void	handle_collectibles(t_container *pCont)
 {
@@ -66,6 +66,7 @@ void	handle_win(t_container *pCont)
 	if (x && y)
 	{
 		ft_printf("YOU WON!\n");
+		ft_printf("Too easy? Try to win again with less moves!\n");
 		quit_game(pCont);
 	}
 }
@@ -83,7 +84,7 @@ void	handle_death(t_container *pCont)
 		y = pCont->map.player_pos.y == pCont->map.enemy_pos[i].y;
 		if (x && y)
 		{
-			ft_printf("YOU LOSE! Try to avoid the Blackhole!\n");
+			ft_printf("GAME OVER! Try to avoid the blackholes!\n");
 			quit_game(pCont);
 		}
 		i++;

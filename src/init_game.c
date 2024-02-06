@@ -66,4 +66,5 @@ void	init_all_innit(t_container *pContainer, char *path)
 			pContainer->map.rows * pContainer->sprite_w + EXTRA_WIN, "so_long");
 	if (!pContainer->window)
 		return ;
+	print_game_start();
 }

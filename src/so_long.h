@@ -101,6 +101,13 @@ void	init_container(t_container *pContainer);
 void	init_element_position(char **mtx, t_container *pContainer);
 void	init_all_innit(t_container *pContainer, char *path);
 
+/* Map Checks */
+int		check_mtx_rows(char *mtx);
+int		valid_rows(char **mtx);
+int		check_mtx_cols(char **mtx);
+int		valid_cols(char **mtx);
+int		check_rectangle(char **map, int rows, int cols);
+
 /* Map Parsing */
 int		check_nl(char *s);
 char	*get_line(char *path);
@@ -137,5 +144,7 @@ void	move_left(int keycode, t_container *pContainer);
 int		check_element(char c);
 int		check_elem_number(char **map);
 int		print_error(int error_nbr);
+void	print_stats(t_container *pContainer);
+void	print_game_start();
 
 #endif
