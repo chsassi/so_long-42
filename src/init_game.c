@@ -42,6 +42,8 @@ void	init_container(t_container *pContainer)
 	pContainer->collectible = NULL;
 	pContainer->sprite_w = 32;
 	pContainer->sprite_h = 32;
+	pContainer->pixel_reset_w = 32;
+	pContainer->pixel_reset_h = 18;
 }
 
 void	init_element_position(char **mtx, t_container *pContainer)

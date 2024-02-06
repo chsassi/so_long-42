@@ -75,10 +75,13 @@ typedef struct s_container
 	void	*exit;
 	void	*collectible;
 	void	*enemy;
+	void	*pixel_reset;
 	int		window_w;
 	int		window_h;
 	int		sprite_w;
 	int		sprite_h;
+	int		pixel_reset_w;
+	int		pixel_reset_h;
 	t_map	map;
 }	t_container;
 

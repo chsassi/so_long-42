@@ -16,6 +16,7 @@ int	execute(int keycode, t_container *pContainer)
 {
 	handle_movement(keycode, pContainer);
 	(pContainer->map.moves)++;
+	print_stats(pContainer);
 	handle_collectibles(pContainer);
 	handle_win(pContainer);
 	handle_death(pContainer);
@@ -28,7 +29,7 @@ int	main(int ac, char **av)
 	char		*path;
 	t_container	ptr;
 
-	path = ft_strjoin("maps/", av[1]);
+	path = ft_strjoin("/nfs/homes/chsassi/Desktop/Progetti/so_long/maps/", av[1]);
 	if (check_args(ac, path))
 	{
 		init_all_innit(&ptr, path);
@@ -47,6 +48,6 @@ int	main(int ac, char **av)
 	stampare a schermo il numero di collezionabili 
 				raccolti e il numero di mosse fatte
 	implementare il movimento dei nemici (man math.h)
-	
-	riguardare righe e colonne (lo fa chri)
+
+	riguardare righe e colonne
 	*/

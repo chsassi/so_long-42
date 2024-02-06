@@ -70,21 +70,29 @@ int	print_error(int error_nbr)
 
 void	print_stats(t_container *pContainer)
 {
+	char	*nm;
+	char	*nc;
+	char	*moves;
+	char	*collectibles;
+
+	nm = ft_itoa(pContainer->map.moves);
+	moves = ft_strjoin("Moves: ", nm);
+	mlx_put_image_to_window(pContainer->mlx, pContainer->window,
+		pContainer->pixel_reset, 40, 
+		pContainer->map.rows * pContainer->sprite_h); 
 	mlx_string_put(pContainer->mlx, pContainer->window,
-		5, pContainer->map.rows * pContainer->sprite_w + (EXTRA_WIN / 2),
-		0xFFFFFF, "Moves: ");
+		5, pContainer->map.rows * pContainer->sprite_h + (EXTRA_WIN / 2),
+		0xFFFFFF, moves);
+	free(moves);
+	nc = ft_itoa(pContainer->map.collectibles_count);
+	collectibles = ft_strjoin("Fuel Tanks: ", nc);
+	mlx_put_image_to_window(pContainer->mlx, pContainer->window,
+		pContainer->pixel_reset, 185, 
+		pContainer->map.rows * pContainer->sprite_h); 
 	mlx_string_put(pContainer->mlx, pContainer->window,
-		45, pContainer->map.rows * pContainer->sprite_w + (EXTRA_WIN / 2),
-		0xFFFFFF, ft_itoa(pContainer->map.moves));
-	mlx_string_put(pContainer->mlx, pContainer->window,
-		45, pContainer->map.rows * pContainer->sprite_w + (EXTRA_WIN / 2),
-		0xFFFFFF, "0");
-	mlx_string_put(pContainer->mlx, pContainer->window,
-		pContainer->map.cols * pContainer->sprite_w + (EXTRA_WIN / 2), 45,
-		0xFFFFFF, "Fuel Tanks:");
-	mlx_string_put(pContainer->mlx, pContainer->window,
-		pContainer->map.cols * pContainer->sprite_w + (EXTRA_WIN / 2), 5,
-		0xFFFFFF, ft_itoa(pContainer->map.collectibles_count));
+		120, pContainer->map.rows * pContainer->sprite_h + (EXTRA_WIN / 2),
+		0xFFFFFF, collectibles);
+	free(collectibles);
 }
 
 void	print_game_start()

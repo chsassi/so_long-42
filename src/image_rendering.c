@@ -45,6 +45,9 @@ void	render_element_image(t_container *pContainer)
 	pContainer->wall = mlx_xpm_file_to_image(pContainer->mlx,
 			"./textures/wall.xpm",
 			&pContainer->sprite_h, &pContainer->sprite_w);
+	pContainer->pixel_reset = mlx_xpm_file_to_image(pContainer->mlx,
+			"./textures/pixel_reset.xpm",
+			&pContainer->pixel_reset_h, &pContainer->pixel_reset_w);
 	pContainer->map.map[pContainer->map.player_pos.y]
 	[pContainer->map.player_pos.x] = PLAYER;
 }
@@ -100,6 +103,5 @@ int	insert_images(t_container *pContainer)
 	render_player_image(pContainer);
 	render_element_image(pContainer);
 	render_sprite_loop(pContainer);
-	print_stats(pContainer);
 	return (0);
 }
