@@ -19,6 +19,7 @@ RESET=\033[0m
 
 SRC =   ./src/main.c \
 		./src/init_game.c \
+		./src/enemy_handling.c \
 		./src/image_rendering.c \
 		./src/position.c \
 		./src/map_checks.c \

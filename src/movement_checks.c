@@ -41,7 +41,7 @@ int	is_walkable(int keycode, t_container *pContainer)
 	return (1);
 }
 
-void	move_up(int keycode, t_container *pContainer)
+void	parse_move_up(int keycode, t_container *pContainer)
 {
 	if ((keycode == KEY_W || keycode == KEY_UP)
 		&& is_walkable(keycode, pContainer))
@@ -54,7 +54,7 @@ void	move_up(int keycode, t_container *pContainer)
 	}
 }
 
-void	move_right(int keycode, t_container *pContainer)
+void	parse_move_right(int keycode, t_container *pContainer)
 {
 	if ((keycode == KEY_D || keycode == KEY_RIGHT)
 		&& is_walkable(keycode, pContainer))
@@ -67,7 +67,7 @@ void	move_right(int keycode, t_container *pContainer)
 	}
 }
 
-void	move_down(int keycode, t_container *pContainer)
+void	parse_move_down(int keycode, t_container *pContainer)
 {
 	if ((keycode == KEY_S || keycode == KEY_DOWN)
 		&& is_walkable(keycode, pContainer))
@@ -80,7 +80,7 @@ void	move_down(int keycode, t_container *pContainer)
 	}
 }
 
-void	move_left(int keycode, t_container *pContainer)
+void	parse_move_left(int keycode, t_container *pContainer)
 {
 	if ((keycode == KEY_A || keycode == KEY_LEFT)
 		&& is_walkable(keycode, pContainer))

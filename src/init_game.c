@@ -54,6 +54,7 @@ void	init_element_position(char **mtx, t_container *pContainer)
 	pContainer->map.enemy_pos = enemies_position(mtx, pContainer);
 	pContainer->map.rows = count_rows(mtx);
 	pContainer->map.cols = count_cols(mtx);
+	pContainer->map.seed_randomizer = 1;
 }
 
 void	init_all_innit(t_container *pContainer, char *path)

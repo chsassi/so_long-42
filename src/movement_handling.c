@@ -12,22 +12,23 @@
 
 #include "so_long.h"
 
-void	handle_movement(int keycode, t_container *pContainer)
+void	handle_player_movement(int keycode, t_container *pContainer)
 {
-	move_up(keycode, pContainer);
-	move_right(keycode, pContainer);
-	move_down(keycode, pContainer);
-	move_left(keycode, pContainer);
+	parse_move_up(keycode, pContainer);
+	parse_move_right(keycode, pContainer);
+	parse_move_down(keycode, pContainer);
+	parse_move_left(keycode, pContainer);
+	pContainer->map.moves++;
 }
 
-// void	handle_enemies(t_container *pContainer)
-// {
-// 	/*
-	
-	
-	
-// 	*/
-// }
+void	handle_enemy_movement(t_container *pContainer)
+{
+	int	i;
+
+	i = -1;
+	while (++i < pContainer->map.enemies_count)
+		update_enemeies_pos(pContainer, &pContainer->map.enemy_pos[i]);
+}
 
 void	handle_collectibles(t_container *pCont)
 {
@@ -63,7 +64,7 @@ void	handle_win(t_container *pCont)
 	y = pCont->map.player_pos.y == pCont->map.exit_pos.y;
 	if (pCont->map.collectibles_count == 0)
 		pCont->map.exit = 1;
-	if (x && y)
+	if (x && y && pCont->map.exit == 1)
 	{
 		ft_printf("YOU WON!\n");
 		ft_printf("Too easy? Try to win again with less moves!\n");
@@ -84,7 +85,7 @@ void	handle_death(t_container *pCont)
 		y = pCont->map.player_pos.y == pCont->map.enemy_pos[i].y;
 		if (x && y)
 		{
-			ft_printf("GAME OVER! Try to avoid the blackholes!\n");
+			ft_printf("GAME OVER! You have been absorbed by the blackhole!\n");
 			quit_game(pCont);
 		}
 		i++;

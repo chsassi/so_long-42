@@ -34,7 +34,7 @@
 
 # define SPRITE_WIDTH 32
 # define SPRITE_HEIGHT 32
-# define EXTRA_WIN 20
+# define EXTRA_WIN 34
 
 # define PLAYER 'P'
 # define COLLECTIBLE 'C'
@@ -59,6 +59,7 @@ typedef struct s_map
 	int			collectibles_count;
 	int			enemies_count;
 	int			player_direction;
+	int			seed_randomizer;
 	t_axis		player_pos;
 	t_axis		exit_pos;
 	t_axis		*collectible_pos;
@@ -89,6 +90,11 @@ typedef struct s_container
 void	free_images(t_container *pContainer);
 int		quit_game(t_container *pContainer);
 int		close_window(int keycode, t_container *pContainer);
+
+/* Enemy Handling */
+int		bring_into_range(int (*rand)(), int range);
+int		enemy_can_walk(t_container *pContainer, t_axis *enemy, int direction);
+void	update_enemeies_pos(t_container *pContainer, t_axis *enemy);
 
 /* Image Rendering */
 void	render_player_image(t_container *pContainer);
@@ -130,18 +136,18 @@ t_axis	*collectibles_position(char **mtx, t_container *pContainer);
 t_axis	*enemies_position(char **mtx, t_container *pContainer);
 
 /* Movement Handling */
-void	handle_movement(int keycode, t_container *pContainer);
-void	handle_enemies(t_container *pContainer);
+void	handle_player_movement(int keycode, t_container *pContainer);
+void	handle_enemy_movement(t_container *pContainer);
 void	handle_collectibles(t_container *pCont);
 void	handle_win(t_container *pCont);
 void	handle_death(t_container *pCont);
 
 /* Movement Checks*/
 int		is_walkable(int keycode, t_container *pContainer);
-void	move_up(int keycode, t_container *pContainer);
-void	move_right(int keycode, t_container *pContainer);
-void	move_down(int keycode, t_container *pContainer);
-void	move_left(int keycode, t_container *pContainer);
+void	parse_move_up(int keycode, t_container *pContainer);
+void	parse_move_right(int keycode, t_container *pContainer);
+void	parse_move_down(int keycode, t_container *pContainer);
+void	parse_move_left(int keycode, t_container *pContainer);
 
 /* Utils */
 int		check_element(char c);

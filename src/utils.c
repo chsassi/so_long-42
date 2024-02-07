@@ -83,6 +83,7 @@ void	print_stats(t_container *pContainer)
 	mlx_string_put(pContainer->mlx, pContainer->window,
 		5, pContainer->map.rows * pContainer->sprite_h + (EXTRA_WIN / 2),
 		0xFFFFFF, moves);
+	free(nm);
 	free(moves);
 	nc = ft_itoa(pContainer->map.collectibles_count);
 	collectibles = ft_strjoin("Fuel Tanks: ", nc);
@@ -92,12 +93,16 @@ void	print_stats(t_container *pContainer)
 	mlx_string_put(pContainer->mlx, pContainer->window,
 		120, pContainer->map.rows * pContainer->sprite_h + (EXTRA_WIN / 2),
 		0xFFFFFF, collectibles);
+	free(nc);
 	free(collectibles);
 }
 
 void	print_game_start()
 {
-	ft_printf("Welcome to so_long!\n");
+	ft_printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+	ft_printf("	Welcome to so_long!\n");
 	ft_printf("Collect all the fuel tanks and get back to Earth!\n");
-	ft_printf("Be carful, there are blackholes around. Avoid them.\n\n");
+	ft_printf("Be carful, there are blackholes around.\n");
+	ft_printf("Avoid them or you could be absorbed!\n");
+	ft_printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
