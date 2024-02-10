@@ -6,7 +6,7 @@
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 16:45:08 by chsassi           #+#    #+#             */
-/*   Updated: 2024/02/07 23:38:16 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:56:10 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ int	render_sprite_loop(t_container *pContainer)
 	i = 0;
 	while (i < pContainer->map.enemies_count)
 	{
-		pContainer->map.map[pContainer->map.enemy_pos[i].y]\
+		pContainer->map.map[pContainer->map.enemy_pos[i].y]
 		[pContainer->map.enemy_pos[i].x] = ENEMY;
 		i++;
 	}
-	pContainer->map.map[pContainer->map.player_pos.y]\
+	pContainer->map.map[pContainer->map.player_pos.y]
 	[pContainer->map.player_pos.x] = PLAYER;
 	rows = -1;
 	while (pContainer->map.map[++rows])

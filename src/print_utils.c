@@ -1,0 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/10 15:56:07 by chsassi           #+#    #+#             */
+/*   Updated: 2024/02/10 15:56:10 by chsassi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+int	print_error(t_error error_type)
+{
+	if (error_type == INVALID_RENDER)
+		ft_printf("ERROR!\nMap rendering error. Check file map_handling\n");
+	else if (error_type == INVALID_CHARS)
+		ft_printf("ERROR!\nInvalid characters. Check file map_handling\n");
+	else if (error_type == INVALID_REACHABILITY)
+		ft_printf("ERROR!\nElement not reachable. Check file map_handling\n");
+	else if (error_type == INVALID_ARGS)
+		ft_printf("Too many arguments.\nRun with './so_long' and a .ber file");
+	else if (error_type == INVALID_ARGS2)
+		ft_printf("Too few arguments.\nRun with './so_long' and a .ber file");
+	else if (error_type == INVALID_FORMAT)
+		ft_printf("Invalid file.\nRun with a .ber file");
+	else if (error_type == INVALID_PARSING)
+		ft_printf("Map contains invalid/double lines. Check parsing file\n");
+	return (0);
+}
+
+void	print_stats(t_container *pContainer)
+{
+	char	*nm;
+	char	*nc;
+	char	*moves;
+	char	*collectibles;
+
+	nm = ft_itoa(pContainer->map.moves);
+	moves = ft_strjoin("Moves: ", nm);
+	mlx_put_image_to_window(pContainer->mlx, pContainer->window,
+		pContainer->pixel_reset, 40,
+		pContainer->map.rows * pContainer->sprite_h);
+	mlx_string_put(pContainer->mlx, pContainer->window,
+		5, pContainer->map.rows * pContainer->sprite_h + (EXTRA_WIN / 2),
+		0xFFFFFF, moves);
+	free(nm);
+	free(moves);
+	nc = ft_itoa(pContainer->map.collectibles_count);
+	collectibles = ft_strjoin("Fuel Tanks: ", nc);
+	mlx_put_image_to_window(pContainer->mlx, pContainer->window,
+		pContainer->pixel_reset, 185,
+		pContainer->map.rows * pContainer->sprite_h);
+	mlx_string_put(pContainer->mlx, pContainer->window,
+		120, pContainer->map.rows * pContainer->sprite_h + (EXTRA_WIN / 2),
+		0xFFFFFF, collectibles);
+	free(nc);
+	free(collectibles);
+}
+
+void	print_game_start(void)
+{
+	ft_printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+	ft_printf("	Welcome to so_long!\n");
+	ft_printf("Collect all the fuel tanks and get back to Earth!\n");
+	ft_printf("Be carful, there are blackholes around.\n");
+	ft_printf("Avoid them or you could be absorbed!\n");
+	ft_printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+}

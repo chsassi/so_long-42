@@ -6,7 +6,7 @@
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:17:53 by chsassi           #+#    #+#             */
-/*   Updated: 2024/02/07 23:38:16 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:56:10 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,18 +110,18 @@ int	check_map_validity(t_container *pContainer)
 		|| !check_rectangle(pContainer->map.map,
 			pContainer->map.rows, pContainer->map.cols))
 	{
-		print_error(-1);
+		print_error(INVALID_RENDER);
 		return (0);
 	}
 	if (!check_elements_loop(pContainer->map.map)
 		|| !check_elem_number(pContainer->map.map))
 	{
-		print_error(-2);
+		print_error(INVALID_CHARS);
 		return (0);
 	}
 	if (!check_reachability(pContainer))
 	{
-		print_error(-3);
+		print_error(INVALID_REACHABILITY);
 		return (0);
 	}
 	return (1);

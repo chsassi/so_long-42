@@ -6,7 +6,7 @@
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:52:27 by chsassi           #+#    #+#             */
-/*   Updated: 2024/02/07 23:38:16 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:56:10 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	**get_mtx(char *path)
 	if (!check_nl(tmp))
 	{
 		free(tmp);
-		print_error(-7);
+		print_error(INVALID_PARSING);
 		exit(0);
 	}
 	res = ft_split(tmp, '\n');

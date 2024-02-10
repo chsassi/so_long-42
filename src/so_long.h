@@ -6,7 +6,7 @@
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:48:19 by chsassi           #+#    #+#             */
-/*   Updated: 2024/01/08 18:48:22 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:56:34 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,17 @@
 # define EXIT 'E'
 # define FLOOR '0'
 # define WALL '1'
-/* 
+
 typedef enum e_error
 {
 	INVALID_RENDER,
-	INVALID_CHARS
-}	t_error; */
+	INVALID_CHARS,
+	INVALID_REACHABILITY,
+	INVALID_ARGS,
+	INVALID_ARGS2,
+	INVALID_FORMAT,
+	INVALID_PARSING,
+}	t_error;
 
 typedef struct s_axis
 {
@@ -158,8 +163,8 @@ void	parse_move_left(int keycode, t_container *pContainer);
 /* Utils */
 int		check_element(char c);
 int		check_elem_number(char **map);
-int		print_error(int error_nbr);
+int		print_error(t_error error_type);
 void	print_stats(t_container *pContainer);
-void	print_game_start();
+void	print_game_start(void);
 
 #endif

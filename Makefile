@@ -28,6 +28,7 @@ SRC =   ./src/main.c \
 		./src/movement_handling.c \
 		./src/movement_checks.c \
 		./src/endgame.c \
+		./src/print_utils.c \
 		./src/utils.c
 
 OBJ = $(SRC:.c=.o)

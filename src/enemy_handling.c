@@ -6,7 +6,7 @@
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:38:11 by chsassi           #+#    #+#             */
-/*   Updated: 2024/02/07 23:38:16 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:56:10 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	bring_into_range(int (*rand)(), int range)
 {
-	int seed;
+	int	seed;
 
 	seed = rand();
-	while(seed > range)
+	while (seed > range)
 		seed = seed % range;
 	return (seed);
 }
@@ -49,7 +49,7 @@ int	enemy_can_walk(t_container *pContainer, t_axis *enemy, int direction)
 
 void	update_enemeies_pos(t_container *pContainer, t_axis *enemy)
 {
-	int direction;
+	int	direction;
 
 	srand(pContainer->map.seed_randomizer);
 	direction = bring_into_range(&rand, 4);
