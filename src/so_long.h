@@ -42,6 +42,12 @@
 # define EXIT 'E'
 # define FLOOR '0'
 # define WALL '1'
+/* 
+typedef enum e_error
+{
+	INVALID_RENDER,
+	INVALID_CHARS
+}	t_error; */
 
 typedef struct s_axis
 {

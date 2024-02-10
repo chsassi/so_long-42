@@ -6,7 +6,7 @@ void	reset_matrix_to_x(char **mtx, int rows, int cols)
 	int	j;
 
 	i = -1;
-	while (++i < rows )
+	while (++i < rows)
 	{
 		j = -1;
 		while (++j < cols)

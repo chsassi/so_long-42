@@ -24,6 +24,7 @@ void	free_images(t_container *pContainer)
 	mlx_destroy_image(pContainer->mlx, pContainer->exit);
 	mlx_destroy_image(pContainer->mlx, pContainer->collectible);
 	mlx_destroy_image(pContainer->mlx, pContainer->enemy);
+	mlx_destroy_image(pContainer->mlx, pContainer->pixel_reset);
 }
 
 int	quit_game(t_container *pContainer)
@@ -33,8 +34,8 @@ int	quit_game(t_container *pContainer)
 	mlx_destroy_window(pContainer->mlx, pContainer->window);
 	mlx_destroy_display(pContainer->mlx);
 	free(pContainer->mlx);
-
-
+	free(pContainer->map.collectible_pos);
+	free(pContainer->map.enemy_pos);
 	exit(0);
 }
 

@@ -33,11 +33,16 @@ char	**mtx_alloc(int rows, int cols)
 
 char	**copy_mtx(char** mtx)
 {
-	char** res;
-	int rows;
+	char	**res;
+	int		rows;
+	int		size;
 
 	rows = -1;
-	res = ft_calloc(count_rows(mtx), sizeof(char *));
+	size = count_rows(mtx);
+	res = ft_calloc(size + 1, sizeof(char *));
+	if (!res)
+		return (NULL);
+	res[size] = NULL;
 	while (mtx[++rows])
 		res[rows] = ft_strdup(mtx[rows]);
 	return (res);

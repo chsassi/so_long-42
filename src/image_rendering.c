@@ -30,9 +30,6 @@ void	render_player_image(t_container *pContainer)
 
 void	render_element_image(t_container *pContainer)
 {
-	int i;
-
-	i = 0;
 	pContainer->collectible = mlx_xpm_file_to_image(pContainer->mlx,
 			"./textures/fuel.xpm",
 			&pContainer->sprite_h, &pContainer->sprite_w);
@@ -51,16 +48,6 @@ void	render_element_image(t_container *pContainer)
 	pContainer->pixel_reset = mlx_xpm_file_to_image(pContainer->mlx,
 			"./textures/pixel_reset.xpm",
 			&pContainer->pixel_reset_h, &pContainer->pixel_reset_w);
-	pContainer->map.map[pContainer->map.player_pos.y]
-	[pContainer->map.player_pos.x] = PLAYER;
-	while(i < pContainer->map.enemies_count)
-	{
-		pContainer->map.map[pContainer->map.enemy_pos[i].y]
-		[pContainer->map.enemy_pos[i].x] = ENEMY;
-		i++;
-	}
-		pContainer->map.map[pContainer->map.player_pos.y]
-	[pContainer->map.player_pos.x] = PLAYER;
 }
 
 void	render_sprite_on_mtx(t_container *pContainer, int rows, int cols)
@@ -90,7 +77,17 @@ int	render_sprite_loop(t_container *pContainer)
 {
 	int		rows;
 	int		cols;
+	int		i;
 
+	i = 0;
+	while (i < pContainer->map.enemies_count)
+	{
+		pContainer->map.map[pContainer->map.enemy_pos[i].y]\
+		[pContainer->map.enemy_pos[i].x] = ENEMY;
+		i++;
+	}
+	pContainer->map.map[pContainer->map.player_pos.y]\
+	[pContainer->map.player_pos.x] = PLAYER;
 	rows = -1;
 	while (pContainer->map.map[++rows])
 	{

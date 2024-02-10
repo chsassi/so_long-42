@@ -41,7 +41,9 @@ int	check_args(int ac, char *map_file)
 		print_error(-5);
 	else if (ac == 2)
 	{
-		if (ft_strncmp(&map_file[strlen_gnl(map_file) - 4], ".ber", 4) != 0)
+		if (strlen_gnl(map_file) < 4 
+		|| ft_strncmp(&map_file[strlen_gnl(map_file) - 4], ".ber", 4) != 0
+		|| open(map_file, O_RDONLY) == -1)
 			print_error(-6);
 		else
 			return (1);

@@ -29,7 +29,9 @@ int	main(int ac, char **av)
 	t_container	ptr;
 	char		*path;
 
-	path = ft_strjoin("maps/", av[1]);
+	path = NULL;
+	if (ac > 1)
+		path = av[1];
 	if (check_args(ac, path))
 	{
 		init_all_innit(&ptr, path);
@@ -39,7 +41,8 @@ int	main(int ac, char **av)
 		mlx_hook(ptr.window, KeyPress, KeyPressMask, &close_window, &ptr);
 		mlx_hook(ptr.window, 17, 1L << 17, &quit_game, &ptr);
 		mlx_key_hook(ptr.window, &execute, &ptr);
-		mlx_loop_hook(ptr.mlx, &insert_images, &ptr);
+		insert_images(&ptr);
+		mlx_loop_hook(ptr.mlx, &render_sprite_loop, &ptr);
 		mlx_loop(ptr.mlx);
 	}
 }

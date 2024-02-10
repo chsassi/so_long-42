@@ -89,7 +89,6 @@ int	check_array_reachability(t_container *pContainer, char **map_copy)
 int	check_reachability(t_container *pContainer)
 {
 	char	**map_copy;
-	int		i;
 
 	map_copy = copy_mtx(pContainer->map.map);
 	reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
@@ -97,24 +96,12 @@ int	check_reachability(t_container *pContainer)
 			pContainer->map.exit_pos))
 	{
 		ft_printf("Exit not reachable\n");
-		free_mtx(map_copy);
-		return (0);
+		return (free_mtx(map_copy), 0);
 	}
 	reset_matrix_to_x(map_copy, pContainer->map.rows, pContainer->map.cols);
 	if (!check_array_reachability(pContainer, map_copy))
-	{
-		free_mtx(map_copy);
-		return (0);
-	}
-	i = 0;
-	while (map_copy && i < pContainer->map.rows)
-	{
-		free(map_copy[i]);
-		map_copy[i] = NULL;
-		i++;
-	}
-	free(map_copy);
-	return (1);
+		return (free_mtx(map_copy), 0);
+	return (free_mtx(map_copy), 1);
 }
 
 int	check_map_validity(t_container *pContainer)

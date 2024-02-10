@@ -7,10 +7,10 @@
         "type": "cppdbg",
         "request": "launch",
         "program": "${workspaceFolder}/so_long",
-        "args": ["map.ber"],
+        "args": ["./maps/map2.ber"],
         "stopAtEntry": false,
-        "cwd": "${fileDirname}",
-        "environment": [],
+        "cwd": "${workspaceFolder}",
+        "environment": [{"name": "CW"}],
         "externalConsole": false,
         "MIMode": "gdb",
         "setupCommands": [
