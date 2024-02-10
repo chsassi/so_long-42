@@ -160,11 +160,14 @@ void	parse_move_right(int keycode, t_container *pContainer);
 void	parse_move_down(int keycode, t_container *pContainer);
 void	parse_move_left(int keycode, t_container *pContainer);
 
-/* Utils */
-int		check_element(char c);
-int		check_elem_number(char **map);
+/* Print Utils */
 int		print_error(t_error error_type);
 void	print_stats(t_container *pContainer);
 void	print_game_start(void);
+
+/* Utils */
+int		check_element(char c);
+int		check_elem_number(char **map);
+void	assign_exit(t_container *pContainer);
 
 #endif

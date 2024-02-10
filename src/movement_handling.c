@@ -64,6 +64,8 @@ void	handle_win(t_container *pCont)
 	y = pCont->map.player_pos.y == pCont->map.exit_pos.y;
 	if (pCont->map.collectibles_count == 0)
 		pCont->map.exit = 1;
+	else
+		pCont->map.exit = 0;
 	if (x && y && pCont->map.exit == 1)
 	{
 		ft_printf("YOU WON!\n");

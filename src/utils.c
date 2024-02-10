@@ -50,3 +50,15 @@ int	check_args(int ac, char *map_file)
 	}
 	return (0);
 }
+
+void	assign_exit(t_container *pContainer)
+{
+	if (pContainer->map.exit == 1)
+	{
+		pContainer->map.map[pContainer->map.exit_pos.y]
+		[pContainer->map.exit_pos.x] = EXIT;
+	}
+	else
+		pContainer->map.map[pContainer->map.exit_pos.y]
+		[pContainer->map.exit_pos.x] = FLOOR;
+}

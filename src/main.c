@@ -36,7 +36,8 @@ int	main(int ac, char **av)
 	{
 		init_all_innit(&ptr, path);
 		if (!check_map_validity(&ptr))
-			return (0);
+			exit (0);
+		print_game_start();
 		mlx_hook(ptr.window, KeyPress, KeyPressMask, &execute, &ptr);
 		mlx_hook(ptr.window, KeyPress, KeyPressMask, &close_window, &ptr);
 		mlx_hook(ptr.window, 17, 1L << 17, &quit_game, &ptr);

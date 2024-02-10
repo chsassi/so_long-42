@@ -90,7 +90,7 @@ char	**ft_split(const char *s, char c)
 {
 	char	**res;
 
-	res = ft_calloc((count_words(s, c) + 1) * sizeof(char *), 1);
+	res = ft_calloc((count_words(s, c) + 1), sizeof(char *));
 	if (!res || !s)
 		return (NULL);
 	res = new_string (res, s, c);
