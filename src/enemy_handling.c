@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	bring_into_range(int (*rand)(), int range)
+int	get_seed(int (*rand)(), int range)
 {
 	int	seed;
 
@@ -22,7 +22,7 @@ int	bring_into_range(int (*rand)(), int range)
 	return (seed);
 }
 
-int	enemy_can_walk(t_container *pContainer, t_axis *enemy, int direction)
+int	check_around_enemy(t_container *pContainer, t_axis *enemy, int direction)
 {
 	if (direction == 0)
 	{
@@ -47,28 +47,28 @@ int	enemy_can_walk(t_container *pContainer, t_axis *enemy, int direction)
 	return (0);
 }
 
-void	update_enemeies_pos(t_container *pContainer, t_axis *enemy)
+void	enemy_moves(t_container *pContainer, t_axis *enemy)
 {
 	int	direction;
 
 	srand(pContainer->map.seed_randomizer);
-	direction = bring_into_range(&rand, 4);
-	if (direction == 0 && enemy_can_walk(pContainer, enemy, direction))
+	direction = get_seed(&rand, 4);
+	if (direction == 0 && check_around_enemy(pContainer, enemy, direction))
 	{
 		pContainer->map.map[enemy->y][enemy->x] = FLOOR;
 		enemy->x = enemy->x - 1;
 	}
-	if (direction == 1 && enemy_can_walk(pContainer, enemy, direction))
+	if (direction == 1 && check_around_enemy(pContainer, enemy, direction))
 	{
 		pContainer->map.map[enemy->y][enemy->x] = FLOOR;
 		enemy->x = enemy->x + 1;
 	}
-	if (direction == 2 && enemy_can_walk(pContainer, enemy, direction))
+	if (direction == 2 && check_around_enemy(pContainer, enemy, direction))
 	{
 		pContainer->map.map[enemy->y][enemy->x] = FLOOR;
 		enemy->y = enemy->y - 1;
 	}
-	if (direction == 3 && enemy_can_walk(pContainer, enemy, direction))
+	if (direction == 3 && check_around_enemy(pContainer, enemy, direction))
 	{
 		pContainer->map.map[enemy->y][enemy->x] = FLOOR;
 		enemy->y = enemy->y + 1;

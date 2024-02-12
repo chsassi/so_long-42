@@ -27,7 +27,7 @@ void	handle_enemy_movement(t_container *pContainer)
 
 	i = -1;
 	while (++i < pContainer->map.enemies_count)
-		update_enemeies_pos(pContainer, &pContainer->map.enemy_pos[i]);
+		enemy_moves(pContainer, &pContainer->map.enemy_pos[i]);
 }
 
 void	handle_collectibles(t_container *pCont)

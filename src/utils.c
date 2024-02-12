@@ -12,6 +12,24 @@
 
 #include "so_long.h"
 
+int	check_args(int ac, char *map_file)
+{
+	if (ac > 2)
+		print_error(INVALID_ARGS);
+	else if (ac < 2)
+		print_error(INVALID_ARGS2);
+	else if (ac == 2)
+	{
+		if (strlen_gnl(map_file) < 4
+			|| ft_strncmp(&map_file[strlen_gnl(map_file) - 4], ".ber", 4) != 0
+			|| open(map_file, O_RDONLY) == -1)
+			print_error(INVALID_FORMAT);
+		else
+			return (1);
+	}
+	return (0);
+}
+
 int	check_element(char c)
 {
 	if (c == PLAYER || c == COLLECTIBLE || c == ENEMY || c == EXIT
@@ -35,24 +53,6 @@ int	check_elem_number(char **map)
 	return (1);
 }
 
-int	check_args(int ac, char *map_file)
-{
-	if (ac > 2)
-		print_error(INVALID_ARGS);
-	else if (ac < 2)
-		print_error(INVALID_ARGS2);
-	else if (ac == 2)
-	{
-		if (strlen_gnl(map_file) < 4
-			|| ft_strncmp(&map_file[strlen_gnl(map_file) - 4], ".ber", 4) != 0
-			|| open(map_file, O_RDONLY) == -1)
-			print_error(INVALID_FORMAT);
-		else
-			return (1);
-	}
-	return (0);
-}
-
 void	assign_exit(t_container *pContainer)
 {
 	if (pContainer->map.exit == 1)
@@ -63,4 +63,16 @@ void	assign_exit(t_container *pContainer)
 	else
 		pContainer->map.map[pContainer->map.exit_pos.y]
 		[pContainer->map.exit_pos.x] = FLOOR;
+}
+
+int	execute_game(int keycode, t_container *pContainer)
+{
+	handle_player_movement(keycode, pContainer);
+	handle_enemy_movement(pContainer);
+	handle_collectibles(pContainer);
+	print_stats(pContainer);
+	handle_win(pContainer);
+	handle_death(pContainer);
+	close_window(keycode, pContainer);
+	return (1);
 }

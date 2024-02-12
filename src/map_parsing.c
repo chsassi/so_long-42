@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	check_nl(char *s)
+int	check_newline(char *s)
 {
 	int	i;
 
@@ -67,7 +67,7 @@ char	**get_mtx(char *path)
 	tmp = get_line(path);
 	if (tmp == NULL)
 		return (NULL);
-	if (!check_nl(tmp))
+	if (!check_newline(tmp))
 	{
 		free(tmp);
 		print_error(INVALID_PARSING);

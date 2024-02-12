@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "keysym.h": "c",
-        "fcntl.h": "c",
-        "xlib.h": "c",
-        "libft.h": "c",
-        "so_long.h": "c"
-    }
-}
