@@ -62,7 +62,17 @@ void	init_all_innit(t_container *pContainer, char *path)
 	init_container(pContainer);
 	init_map(&pContainer->map);
 	pContainer->map.map = get_mtx(path);
+	if (count_cols(pContainer->map.map) >= MAX_SCREEN_COLS
+		|| count_rows(pContainer->map.map) > MAX_SCREEN_ROWS)
+	{
+		print_error(INVALID_SCREEN_SIZE);
+		free_map(pContainer);
+	}
+	if (pContainer->map.map == NULL)
+		exit(0);
 	init_element_position(pContainer->map.map, pContainer);
+	if (!check_map_validity(pContainer))
+		free_position(pContainer);
 	pContainer->mlx = mlx_init();
 	pContainer->window = mlx_new_window(pContainer->mlx,
 			pContainer->map.cols * pContainer->sprite_h,

@@ -73,17 +73,17 @@ t_axis	*collectibles_position(char **mtx, t_container *pContainer)
 	collectible_nbr = count_elements(mtx, COLLECTIBLE);
 	pContainer->map.collectibles_count = collectible_nbr;
 	collectibles_pos = ft_calloc(collectible_nbr, sizeof(t_axis));
+	if (collectibles_pos == NULL)
+		free(collectibles_pos);
 	while ((i < collectible_nbr) && mtx[++rows] != NULL)
 	{
 		cols = -1;
 		while (mtx[rows][++cols] != '\0')
 		{
 			if (mtx[rows][cols] == COLLECTIBLE)
-			{
 				collectibles_pos[i].x = cols;
-				collectibles_pos[i].y = rows;
-				i++;
-			}
+			if (mtx[rows][cols] == COLLECTIBLE)
+				collectibles_pos[i++].y = rows;
 		}
 	}
 	return (collectibles_pos);
@@ -102,17 +102,17 @@ t_axis	*enemies_position(char **mtx, t_container *pContainer)
 	enemy_nbr = count_elements(mtx, ENEMY);
 	pContainer->map.enemies_count = enemy_nbr;
 	enemy_pos = ft_calloc(enemy_nbr, sizeof(t_axis));
+	if (enemy_pos == NULL)
+		free_position(pContainer);
 	while (i < enemy_nbr && mtx[++rows] != NULL)
 	{
 		cols = -1;
 		while (mtx[rows][++cols] != '\0')
 		{
 			if (mtx[rows][cols] == ENEMY)
-			{
 				enemy_pos[i].x = cols;
-				enemy_pos[i].y = rows;
-				i++;
-			}
+			if (mtx[rows][cols] == ENEMY)
+				enemy_pos[i++].y = rows;
 		}
 	}
 	return (enemy_pos);

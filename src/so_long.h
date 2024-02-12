@@ -34,7 +34,10 @@
 
 # define SPRITE_WIDTH 32
 # define SPRITE_HEIGHT 32
+
 # define EXTRA_WIN 34
+# define MAX_SCREEN_COLS 61
+# define MAX_SCREEN_ROWS 30
 
 # define PLAYER 'P'
 # define COLLECTIBLE 'C'
@@ -52,6 +55,7 @@ typedef enum e_error
 	INVALID_ARGS2,
 	INVALID_FORMAT,
 	INVALID_PARSING,
+	INVALID_SCREEN_SIZE,
 }	t_error;
 
 typedef struct s_axis
@@ -98,6 +102,8 @@ typedef struct s_container
 }	t_container;
 
 /* Endgame */
+void	free_map(t_container *pContainer);
+void	free_position(t_container *pContainer);
 void	free_images(t_container *pContainer);
 int		quit_game(t_container *pContainer);
 int		close_window(int keycode, t_container *pContainer);

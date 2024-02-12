@@ -15,19 +15,23 @@
 int	print_error(t_error error_type)
 {
 	if (error_type == INVALID_RENDER)
-		ft_printf("ERROR!\nMap rendering error. Check file map_handling\n");
+		ft_printf("Error!\nMap rendering error. Check file map_handling\n");
 	else if (error_type == INVALID_CHARS)
-		ft_printf("ERROR!\nInvalid characters. Check file map_handling\n");
+		ft_printf("Error!\nInvalid characters. Check file map_handling\n");
 	else if (error_type == INVALID_REACHABILITY)
-		ft_printf("ERROR!\nElement not reachable. Check file map_handling\n");
+		ft_printf("Error!\nElement not reachable. Check file map_handling\n");
 	else if (error_type == INVALID_ARGS)
-		ft_printf("Too many arguments.\nRun with './so_long' and a .ber file");
+		ft_printf("Error!\nToo many arguments.\n\
+			Run with './so_long' and a .ber file");
 	else if (error_type == INVALID_ARGS2)
-		ft_printf("Too few arguments.\nRun with './so_long' and a .ber file");
+		ft_printf("Error!\nToo few arguments.\n\
+			Run with './so_long' and a .ber file");
 	else if (error_type == INVALID_FORMAT)
-		ft_printf("Invalid file.\nRun with a .ber file");
+		ft_printf("Error!\nInvalid file.\nRun with a .ber file");
 	else if (error_type == INVALID_PARSING)
-		ft_printf("Map contains invalid/double lines. Check parsing file\n");
+		ft_printf("Error!\nMap is invalid/double lines. Check parsing file\n");
+	else if (error_type == INVALID_SCREEN_SIZE)
+		ft_printf("Error!\nScreen size is invalid\n");
 	return (0);
 }
 

@@ -17,6 +17,12 @@ int	check_nl(char *s)
 	int	i;
 
 	i = 0;
+	if (s[0] == '\n')
+	{
+		free(s);
+		print_error(INVALID_CHARS);
+		exit(0);
+	}
 	while (s && s[i] && s[i + 1])
 	{
 		if (s[i] == '\n' && s[i + 1] == '\n')
@@ -59,6 +65,8 @@ char	**get_mtx(char *path)
 
 	res = NULL;
 	tmp = get_line(path);
+	if (tmp == NULL)
+		return (NULL);
 	if (!check_nl(tmp))
 	{
 		free(tmp);

@@ -12,6 +12,20 @@
 
 #include "so_long.h"
 
+void	free_map(t_container *pContainer)
+{
+	free_mtx(pContainer->map.map);
+	exit (0);
+}
+
+void	free_position(t_container *pContainer)
+{
+	free_mtx(pContainer->map.map);
+	free(pContainer->map.collectible_pos);
+	free(pContainer->map.enemy_pos);
+	exit (0);
+}
+
 void	free_images(t_container *pContainer)
 {
 	int	i;

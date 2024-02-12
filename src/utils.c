@@ -25,10 +25,12 @@ int	check_elem_number(char **map)
 {
 	int	player_nbr;
 	int	exit_nbr;
+	int	collectible_nbr;
 
 	player_nbr = count_elements(map, PLAYER);
 	exit_nbr = count_elements(map, EXIT);
-	if (player_nbr != 1 || exit_nbr != 1)
+	collectible_nbr = count_elements(map, COLLECTIBLE);
+	if (player_nbr != 1 || exit_nbr != 1 || collectible_nbr < 1)
 		return (0);
 	return (1);
 }

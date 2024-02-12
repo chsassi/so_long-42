@@ -9,7 +9,6 @@
 /*   Updated: 2024/02/10 15:56:10 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "so_long.h"
 
 int	execute(int keycode, t_container *pContainer)
@@ -35,8 +34,6 @@ int	main(int ac, char **av)
 	if (check_args(ac, path))
 	{
 		init_all_innit(&ptr, path);
-		if (!check_map_validity(&ptr))
-			exit (0);
 		print_game_start();
 		mlx_hook(ptr.window, KeyPress, KeyPressMask, &execute, &ptr);
 		mlx_hook(ptr.window, KeyPress, KeyPressMask, &close_window, &ptr);
@@ -46,4 +43,5 @@ int	main(int ac, char **av)
 		mlx_loop_hook(ptr.mlx, &render_sprite_loop, &ptr);
 		mlx_loop(ptr.mlx);
 	}
+	return (0);
 }
