@@ -56,5 +56,6 @@ fclean: clean
 	make clean -C $(MINILIBX)
 	make fclean -C $(LIBFT_DIR)
 	$(RM) $(NAME)
+	@echo "$(RED)	SO LONG DESTROYED! 🗑️ $(RESET)"
 
 re: fclean all
