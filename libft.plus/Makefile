@@ -1,7 +1,7 @@
 NAME = libft.a
 CC = cc
 HEADERS = ./headers
-CFLAGS = -Wall -Wextra -Werror -I$(HEADERS) -g
+CFLAGS = -Wall -Wextra -Werror -I$(HEADERS)
 COMPILE = $(CC) $(CFLAGS) -c 
 ARCHIVE = ar rc $(NAME)
 
@@ -95,7 +95,7 @@ clean:
 fclean: clean
 	@$(RM) */**/*.o
 	@$(RM) $(NAME)
-	@echo "$(RED)	LIBFT DESTROYED! 📖✅$(RESET)"
+	@echo "$(RED)	LIBFT DESTROYED! 🗑️ 🔴 $(RESET)"
 
 re: fclean all
 

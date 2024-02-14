@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   search.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 16:04:28 by chsassi           #+#    #+#             */
-/*   Updated: 2024/02/10 16:04:54 by chsassi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
 void	reset_matrix_to_x(char **mtx, int rows, int cols)
@@ -18,7 +6,7 @@ void	reset_matrix_to_x(char **mtx, int rows, int cols)
 	int	j;
 
 	i = -1;
-	while (++i < rows)
+	while (++i < rows )
 	{
 		j = -1;
 		while (++j < cols)

@@ -6,7 +6,7 @@
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:05:40 by chsassi           #+#    #+#             */
-/*   Updated: 2024/02/10 16:04:49 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/02/01 20:13:14 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**mtx_alloc(int rows, int cols)
 	char	**mtx;
 
 	i = 0;
-	mtx = ft_calloc(rows, sizeof(char *));
+	mtx = ft_calloc(rows, sizeof(char*));
 	if (!mtx)
 		ft_printf("Error during row allocation.\n");
 	while (i < rows)
@@ -31,18 +31,13 @@ char	**mtx_alloc(int rows, int cols)
 	return (mtx);
 }
 
-char	**copy_mtx(char **mtx)
+char	**copy_mtx(char** mtx)
 {
-	char	**res;
-	int		rows;
-	int		size;
+	char** res;
+	int rows;
 
 	rows = -1;
-	size = count_rows(mtx);
-	res = ft_calloc(size + 1, sizeof(char *));
-	if (!res)
-		return (NULL);
-	res[size] = NULL;
+	res = ft_calloc(count_rows(mtx), sizeof(char *));
 	while (mtx[++rows])
 		res[rows] = ft_strdup(mtx[rows]);
 	return (res);
@@ -51,7 +46,7 @@ char	**copy_mtx(char **mtx)
 void	free_mtx(char **mtx)
 {
 	int	i;
-	int	len;
+	int len;
 
 	len = count_rows(mtx);
 	i = 0;
