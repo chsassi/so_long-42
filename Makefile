@@ -43,6 +43,7 @@ $(NAME): libft $(OBJ)
 	make all -C $(MINILIBX)
 	$(CC) $(CFLAGS) -I. -I$(HEADER) $(OBJ) $(MLX_A) $(MLXFLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
 	@echo "$(GREEN)	SO LONG COMPILED! 🚀✅$(RESET)"
+	@echo "$(GREEN)	Run ./so_long maps/map(1, 2, 3, 4).ber $(RESET)"
 
 RM = rm -f
 
@@ -55,5 +56,6 @@ fclean: clean
 	make clean -C $(MINILIBX)
 	make fclean -C $(LIBFT_DIR)
 	$(RM) $(NAME)
+	@echo "$(RED)	SO LONG DESTROYED! 🗑️ $(RESET)"
 
 re: fclean all
