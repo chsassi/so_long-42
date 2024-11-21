@@ -69,7 +69,7 @@ void	print_game_start(void)
 	ft_printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 	ft_printf("	Welcome to so_long!\n");
 	ft_printf("Collect all the fuel tanks and get back to Earth!\n");
-	ft_printf("Be carful, there are blackholes around.\n");
+	ft_printf("Be careful, there are blackholes around.\n");
 	ft_printf("Avoid them or you could be absorbed!\n");
 	ft_printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
